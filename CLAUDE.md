@@ -92,8 +92,8 @@ készült, jóváhagyásra vár.
   billentyű-navigáció, focus state-ek, kontraszt), erős SEO metaadatok
 - Deploy: Cloudflare Pages (main = éles, dev = fejlesztés)
 - **Nyelvváltó**: EN / HU / DE, nav-ban egy high-tech ikonos (nem zászló)
-  switch. Alapértelmezett nyelv: EN (a nemzetközi célközönség miatt) —
-  [ASSUMPTION: felülírható, ha a designer inkább HU-t akar alapnak].
+  switch. Alapértelmezett nyelv: HU (a designer explicit döntése) — angol
+  és német választható.
   A teljes, végleges fordítás a copywriter-fázis feladata minden
   szekcióra — demo/preview célra részleges fordítás elfogadható, éles
   oldalra nem.
