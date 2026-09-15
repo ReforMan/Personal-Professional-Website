@@ -165,17 +165,25 @@ Vite/framer-motion-re adaptáltunk:
   intelligencia gondolkodik" vizuális klisékhez, amiket kifejezetten
   el akarunk kerülni.
 
-## Fotóra vár
+## Eldöntve — About / ProfileCard
 
-- **ProfileCard** (React Bits, nincs extra npm-függőség) — holografikus,
-  3D-dőlős profilkártya (egér/giroszkóp), avatár + név/pozíció + handle/
-  status/kontakt-gomb overlay. Erősen egyezik a tervezett About-fejléc
-  kártyával (ld. intelligence.md Resume-minta). **Blokkoló**: valódi
-  portré-fotó kell hozzá, ami még nincs — a designer feltölti, amint
-  kész. Nyitott kérdés: a "holo" csillogás teljes szivárvány-spektrumát
-  megtartjuk, vagy egy gold/coral duo-tone verzióra szűkítjük.
-  `prefers-reduced-motion`-nál a 3D dőlés kikapcsolandó (hover-alapú,
-  kisebb súlyú, mint a folyamatos háttér-animációk).
+- **ProfileCard-jellegű kártya** (saját, egyszerűsített implementáció,
+  nincs extra npm-függőség) — 3D-dőlős profilkártya a designer valódi
+  portréjával (`knowledge-base/briefs/personal-website/photos/
+  zoltan-headshot.png`). **Blokkoló feloldva**: a designer feltöltötte
+  a fotót.
+  - **Kép-kezelés eldőlt**: nem "más, menőbb kép" kell, hanem ugyanennek
+    a valódi fotónak egy duotone-kezelése (fekete-fehér + graphite/koral
+    tónusozás, a Réka-inspiráció fekete-fehér portré-technikájának
+    mintájára) — így illeszkedik a Kinetic Signal irány telített, sötét
+    felületéhez a natúr, meleg stúdió-tónus helyett.
+  - A teljes szivárvány-spektrumú "holo" csillogás helyett letisztultabb
+    verzió: egér-követő koral fényfolt (glow) + 3D dőlés, nem a teljes
+    React Bits `ProfileCard` fólia-effektje.
+  - `prefers-reduced-motion`-nál a 3D dőlés kikapcsolva (hover-alapú,
+    kisebb súlyú elem).
+  - Élő demó: `output/landing-design/personal-website/` preview-ban,
+    az About/Enterprise foundation szekcióban.
 
 ## Polcra téve (nem elvetve, csak nem prioritás)
 
