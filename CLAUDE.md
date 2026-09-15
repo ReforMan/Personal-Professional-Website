@@ -91,6 +91,19 @@ A konkrét paletta/tipó/formanyelv a landing-design fázisban dől el
 (ld. output/landing-design/personal-website/) — ott A és B irány is
 készült, jóváhagyásra vár.
 
+**Élő, folyamatban lévő preview**: az iteratív design-egyeztetés jelenleg
+egyetlen self-contained HTML fájlban zajlik, ami a tényleges "élő
+munkapéldány" — ez a forrás igazság, NEM a design-guide.html/-b.html
+(azok a korábbi, azóta felülírt A/B irány-javaslatok voltak):
+`output/landing-design/personal-website/site-preview.html`. Ez a fájl
+verziózott (nincs gitignore-olva) — session indításkor ezt olvasd be,
+ide dolgozz tovább, és minden működő állapot után commitold (rule #5).
+Publikálva Claude Artifactként fut a designerrel való élő egyeztetéshez:
+https://claude.ai/artifact/31K4hvCPJaaNZc2v2D6jXL — módosítás után EZT
+az URL-t add meg az Artifact tool `url` paramétereként, hogy a
+republikálás ugyanazt az Artifactot frissítse, ne jöjjön létre
+duplikátum.
+
 ## Tech stack és workflow
 
 - Build: Cursor + Claude Code
