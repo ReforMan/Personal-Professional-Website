@@ -56,7 +56,7 @@ animáció, `prefers-reduced-motion` tiszteletben tartása.
 - V1: nincs backend/CMS — strukturált lokális adat
 - Teljesen reszponzív, mobile-first, akadálymentes (szemantikus HTML,
   billentyű-navigáció, focus state-ek, kontraszt), erős SEO metaadatok
-- Deploy: Vercel (konzisztensen a másik projekttel, Daily Verse-zel)
+- Deploy: Cloudflare Pages (main = éles, dev = fejlesztés)
 
 ## Működési szabályok
 
