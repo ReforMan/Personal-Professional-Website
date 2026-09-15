@@ -193,6 +193,22 @@ NEM vesszük át:
   kerül — ugyanaz a súrlódás-csökkentő elv, architektúrális, egyszínű
   gomb-stílusban (nem színes Typeform-dizájnnal).
 
+## Designer visszajelzés az A irányra (Layered Blueprint) — irányváltás
+
+Az A irány (graphite/charcoal + champagne-gold, Editorial radius) a
+designer szerint **"vaníliás", élettelen, túl nerd/kocka, semmilyen** —
+a betűtípusok is túl visszafogottak. Kifejezetten hiányolta az
+inspirációként adott Réka-oldal **energiáját, fiatalosságát,
+lendületét**, amit az A irány tudatosan letompított.
+
+→ **B irány készül** (ld. lent), amiben a paletta, a tipó és a
+formanyelv sokkal közelebb megy az inspiráció energiájához — MEGTARTVA
+a CLAUDE.md kemény tiltásait (corporate blue, neon cyberpunk, robot/
+AI-agy/code rain/áramkör-minta, stock fotó), mert azok nem stílus-
+preferenciák, hanem rögzített szabályok. Ha a designer a B irányt
+választja, a CLAUDE.md "Vizuális irány" szakaszát frissíteni kell, hogy
+tükrözze az új döntést (jelenleg még a graphite/gold leírás van benne).
+
 ## Kategória-kutatás (saját, a designer beleegyezésével — "kutass magad")
 
 A designer az inspiráció-kapunál a "Nem, kutass magad" opciót választotta
