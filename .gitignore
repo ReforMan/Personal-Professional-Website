@@ -20,6 +20,9 @@ npm-debug.log*
 .vscode/
 .idea/
 
+# Ideiglenes demó/scratch fájlok — nem projekt-tartalom
+scratch/
+
 # Teszt-artefaktok
 test-results/
 playwright-report/
