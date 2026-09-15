@@ -1,0 +1,950 @@
+<title>Zoltan Botos Portfolio</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --indigo900:#17132A; --indigo700:#221C3D; --indigo500:#3B3163;
+    --coral500:#FF5A3C; --coral300:#FF8468; --lime400:#C6F135;
+    --ivory:#FAF8F5; --ivory-raised:#FFFFFF;
+    --onDark:#FAF8F5; --onDarkMuted:#9D93B8;
+    --onLight:#19141F; --onLightMuted:#6B6478;
+    --indigo900-rgb:23,19,42;
+    --radius-card:20px; --radius-btn:999px;
+    --shadow-sm:0 2px 8px rgba(23,19,42,.10);
+    --shadow-lg:0 24px 56px -12px rgba(255,90,60,.28);
+    --font-display:'Poppins','Century Gothic',sans-serif;
+    --font-body:'Manrope','Segoe UI',sans-serif;
+    --ease-bounce:cubic-bezier(0.34,1.56,0.64,1);
+    --ease-reveal:cubic-bezier(0.16,1,0.3,1);
+  }
+  :root[data-theme="dark"]{
+    --ivory:#17171A; --ivory-raised:#212124;
+    --onLight:#F1F0F0; --onLightMuted:#9C9CA3;
+    --shadow-sm:0 2px 10px rgba(0,0,0,.5);
+    /* dark-mode: graphite/grey-black, not indigo — csak a coral marad
+       végig színes akcentként (proof strip, CTA gombok) */
+    --indigo900:#141416; --indigo700:#1E1E22; --indigo500:#323238;
+    --indigo900-rgb:20,20,22;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;}
+  body{background:var(--ivory);color:var(--onLight);font-family:var(--font-body);line-height:1.6;overflow-x:hidden;transition:background .3s,color .3s;}
+  .wrap{max-width:1280px;margin:0 auto;padding-inline:24px;}
+  h1,h2,h3{font-family:var(--font-display);font-weight:800;letter-spacing:-0.02em;margin:0;text-wrap:balance;}
+  section{padding-block:96px;}
+  @media (min-width:900px){section{padding-block:140px;}}
+  .eyebrow{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--coral500);display:block;margin-bottom:14px;}
+  .eyebrow.on-dark{color:var(--lime400);}
+  a{color:inherit;}
+  img{max-width:100%;}
+  [hidden]{display:none!important;}
+  button{font:inherit;}
+
+  #glowCursor{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:80;}
+
+  /* ---------- BACK TO TOP ---------- */
+  .to-top{position:fixed;right:22px;bottom:22px;width:52px;height:52px;z-index:70;border-radius:50%;border:none;background:rgba(var(--indigo900-rgb),.78);backdrop-filter:blur(10px);cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transform:translateY(10px) scale(.9);transition:opacity .3s var(--ease-reveal),transform .3s var(--ease-bounce),visibility .3s;box-shadow:var(--shadow-sm);}
+  .to-top.show{opacity:1;visibility:visible;transform:translateY(0) scale(1);}
+  .to-top:hover{box-shadow:0 0 0 4px rgba(255,90,60,.18),var(--shadow-lg);}
+  .to-top svg{width:100%;height:100%;position:absolute;inset:0;transform:rotate(-90deg);}
+  .to-top .ring-bg{fill:none;stroke:rgba(255,255,255,.14);stroke-width:2;}
+  .to-top .ring-fg{fill:none;stroke:var(--coral500);stroke-width:2;stroke-linecap:round;transition:stroke-dashoffset .1s linear;}
+  .to-top .arrow{position:relative;color:var(--onDark);font-size:1.1rem;line-height:1;transition:transform .24s var(--ease-bounce);}
+  .to-top:hover .arrow{transform:translateY(-2px);}
+  .to-top:focus-visible{outline:3px solid var(--lime400);outline-offset:3px;}
+  @media (prefers-reduced-motion:reduce){.to-top{transition:opacity .15s,visibility .15s;} .to-top.show{transform:none;} .to-top:hover .arrow{transform:none;}}
+  @media (max-width:640px){.to-top{right:14px;bottom:14px;width:46px;height:46px;}}
+
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .6s var(--ease-reveal),transform .6s var(--ease-reveal);}
+  .reveal.in{opacity:1;transform:translateY(0);}
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1!important;transform:none!important;transition:none!important;}
+  }
+
+  /* ---------- NAV ---------- */
+  header.site-nav{position:sticky;top:0;z-index:50;background:rgba(var(--indigo900-rgb),.72);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.06);}
+  .nav-inner{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;padding-block:10px;}
+  .brand-stack{display:flex;flex-direction:column;align-items:center;gap:3px;justify-self:center;text-decoration:none;}
+  .brand-name{font-family:var(--font-display);font-weight:700;font-size:.92rem;color:var(--onDark);letter-spacing:.01em;white-space:nowrap;}
+  #eyeMark{width:42px;height:42px;flex-shrink:0;}
+  #eyeMark .eye-body{fill:var(--indigo700);transition:fill .2s;}
+  #eyeMark .eye-pupil{fill:var(--ivory);transition:fill .2s;}
+  :root[data-theme="dark"] #eyeMark .eye-body{fill:#FAF8F5;}
+  :root[data-theme="dark"] #eyeMark .eye-pupil{fill:var(--indigo900);}
+  nav.links{display:none;gap:6px;justify-self:start;}
+  @media (min-width:900px){nav.links{display:flex;}}
+  nav.links a{color:var(--onDarkMuted);text-decoration:none;font-size:.88rem;font-weight:600;padding:8px 14px;border-radius:999px;transition:color .2s,background .2s;}
+  nav.links a:hover,nav.links a.active{color:var(--onDark);background:rgba(255,255,255,.08);}
+  .right-cluster{display:flex;align-items:center;gap:10px;justify-self:end;}
+  .lang-switch{display:flex;align-items:center;gap:2px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:3px;}
+  .lang-switch button{background:none;border:none;color:var(--onDarkMuted);font-family:var(--font-body);font-weight:700;font-size:.75rem;letter-spacing:.03em;padding:6px 10px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;}
+  .lang-switch button.sel{background:var(--coral500);color:#fff;}
+  .lang-switch button:not(.sel):hover{color:var(--onDark);}
+  .icon-btn{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:var(--onDark);width:36px;height:36px;border-radius:999px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s,transform .2s;flex-shrink:0;}
+  .icon-btn:hover{background:rgba(255,255,255,.14);transform:translateY(-1px);}
+  .icon-btn svg{width:17px;height:17px;}
+  .nav-cta{background:var(--coral500);color:#fff;text-decoration:none;font-weight:700;font-size:.85rem;padding:10px 20px;border-radius:999px;transition:transform .24s var(--ease-bounce),background .24s;white-space:nowrap;}
+  .nav-cta:hover{background:var(--coral300);transform:translateY(-2px);}
+  .burger{display:flex;background:none;border:none;color:var(--onDark);padding:8px;cursor:pointer;flex-shrink:0;}
+  @media (min-width:900px){.burger{display:none;}}
+  @media (max-width:640px){.nav-cta{display:none;} .brand-name{font-size:.78rem;} #eyeMark{width:36px;height:36px;}}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;background:linear-gradient(150deg,var(--indigo900) 0%,var(--indigo500) 55%,var(--indigo700) 100%);color:var(--onDark);padding-top:88px;padding-bottom:96px;overflow:hidden;}
+  .hero canvas.threads{position:absolute;inset:0;width:100%;height:100%;opacity:.55;pointer-events:none;}
+  .hero-inner{position:relative;z-index:1;display:grid;gap:32px;padding-top:56px;}
+  @media (min-width:900px){.hero-inner{grid-template-columns:1fr .92fr;align-items:center;padding-top:40px;}}
+  .hero h1{font-size:clamp(2.4rem,6.4vw,4.6rem);line-height:1.02;}
+  .hero h1 .pop{color:var(--coral300);-webkit-text-stroke:1.5px var(--coral300);}
+  .hero p.lead{font-size:clamp(1.05rem,1.6vw,1.25rem);color:var(--onDarkMuted);max-width:52ch;margin:22px 0 32px;}
+  .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;}
+  .btn{font-family:var(--font-body);font-weight:700;font-size:.95rem;padding:15px 30px;border-radius:var(--radius-btn);border:none;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;transition:transform .24s var(--ease-bounce),box-shadow .24s var(--ease-bounce),background .24s;}
+  .btn-primary{background:var(--coral500);color:#fff;}
+  .btn-primary:hover{background:var(--coral300);transform:translateY(-3px) scale(1.03);box-shadow:var(--shadow-lg);}
+  .btn-secondary{background:transparent;color:var(--lime400);border:2px solid var(--lime400);}
+  .btn-secondary:hover{background:var(--lime400);color:var(--indigo900);transform:translateY(-3px) scale(1.03);}
+  .btn:focus-visible{outline:3px solid var(--lime400);outline-offset:3px;}
+  .hero-badge{justify-self:center;width:min(320px,86%);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 35% 30%,rgba(255,90,60,.35),rgba(23,19,42,0) 70%);display:flex;align-items:center;justify-content:center;position:relative;}
+  .hero-badge svg{width:100%;height:100%;animation:spin 40s linear infinite;position:relative;z-index:1;}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  @media (prefers-reduced-motion:reduce){.hero-badge svg{animation:none;}}
+  /* a kivágott alak a gyűrűk "glóriájaként" a kör közepén, a szöveg és a
+     forgó jelvény között — a rings mögötte forognak, ő maga statikus */
+  .hero-figure{position:absolute;left:50%;bottom:-6%;transform:translateX(-50%);width:78%;max-width:280px;z-index:2;pointer-events:none;filter:drop-shadow(0 24px 34px rgba(10,8,16,.6));}
+  .hero-figure img{width:100%;height:auto;display:block;}
+  @media (max-width:899px){.hero-badge{width:min(240px,68%);margin:0 auto;}.hero-figure{max-width:200px;}}
+
+  /* ---------- PROOF STRIP ---------- */
+  .proof{background:var(--coral500);color:#fff;padding-block:64px;}
+  .proof .wrap{display:grid;gap:32px;text-align:center;}
+  @media (min-width:700px){.proof .wrap{grid-template-columns:repeat(3,1fr);text-align:left;}}
+  .proof .num{font-family:var(--font-display);font-size:clamp(2.6rem,6vw,4rem);font-weight:800;line-height:1;font-variant-numeric:tabular-nums;}
+  .proof .label{font-family:var(--font-body);font-weight:700;font-size:.95rem;margin-top:8px;text-transform:uppercase;letter-spacing:.04em;opacity:.92;}
+
+  /* ---------- SOLUTIONS (bento) ---------- */
+  .solutions .head{max-width:640px;margin-bottom:48px;}
+  .solutions h2{font-size:clamp(2rem,4vw,3rem);}
+  .bento{display:grid;gap:20px;grid-template-columns:1fr;}
+  @media (min-width:760px){.bento{grid-template-columns:repeat(3,1fr);grid-auto-rows:1fr;}}
+  .bento .card{background:var(--ivory-raised);border-radius:var(--radius-card);padding:32px;box-shadow:var(--shadow-sm);transition:transform .26s var(--ease-bounce),box-shadow .26s var(--ease-bounce);display:flex;flex-direction:column;gap:14px;}
+  .bento .card:hover{transform:translateY(-5px) rotate(-.4deg);box-shadow:var(--shadow-lg);}
+  .bento .card.big{grid-column:span 2;}
+  @media (max-width:759px){.bento .card.big{grid-column:span 1;}}
+  .card .icon-num{font-family:var(--font-display);font-weight:800;font-size:.85rem;color:var(--coral500);}
+  .card h3{font-size:1.3rem;}
+  .card p{color:var(--onLightMuted);font-size:.95rem;margin:0;}
+
+  /* ---------- SELECTED WORK ---------- */
+  .work-item{display:grid;gap:28px;align-items:center;margin-bottom:56px;}
+  @media (min-width:840px){.work-item{grid-template-columns:1.1fr .9fr;}
+    .work-item.alt{grid-template-columns:.9fr 1.1fr;}
+    .work-item.alt .work-media{order:2;}
+  }
+  .work-media{border-radius:var(--radius-card);overflow:hidden;box-shadow:var(--shadow-sm);aspect-ratio:16/10;background:linear-gradient(135deg,var(--indigo700),var(--indigo900));display:flex;align-items:center;justify-content:center;color:var(--onDarkMuted);font-family:var(--font-display);font-weight:700;position:relative;}
+  .work-media img{width:100%;height:100%;object-fit:cover;}
+
+  /* kép-karusszel a Work-kártyákon több screenshothoz (pl. nyelvi nézetek) */
+  .work-media.carousel .carousel-track{position:relative;width:100%;height:100%;}
+  .work-media.carousel .carousel-track img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;transition:opacity .4s var(--ease-reveal);}
+  .work-media.carousel .carousel-track img.active{opacity:1;}
+  .car-btn{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;border:2px solid rgba(255,255,255,.85);background:var(--coral500);color:#fff;font-size:1.3rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.45);transition:background .2s,transform .2s,box-shadow .2s;z-index:2;}
+  .car-btn:hover{background:var(--coral300);transform:translateY(-50%) scale(1.08);box-shadow:0 6px 18px rgba(0,0,0,.5);}
+  .car-btn:focus-visible{outline:3px solid var(--lime400);outline-offset:2px;}
+  .car-btn.prev{left:12px;} .car-btn.next{right:12px;}
+  .car-dots{position:absolute;left:0;right:0;bottom:14px;display:flex;justify-content:center;gap:9px;z-index:2;padding:6px 10px;}
+  .car-dot{width:9px;height:9px;border-radius:50%;border:2px solid rgba(255,255,255,.9);background:rgba(20,17,30,.5);cursor:pointer;padding:0;box-shadow:0 1px 4px rgba(0,0,0,.5);transition:background .2s,transform .2s;}
+  .car-dot.active{background:var(--coral500);transform:scale(1.3);}
+  .car-dot:focus-visible{outline:2px solid var(--lime400);outline-offset:2px;}
+  @media (prefers-reduced-motion:reduce){.work-media.carousel .carousel-track img{transition:none;}}
+  .work-media .embargo{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;padding:24px;}
+  /* MONA-nál a weboldal még nem publikus: a márka-logó áll placeholderként,
+     screenshot/tartalom nélkül, amíg fel nem oldódik az embargó */
+  .work-media.logo-media img{width:100%;height:100%;object-fit:cover;object-position:center 42%;}
+  .work-media.logo-media .embargo-tag{position:absolute;left:14px;right:14px;bottom:14px;background:rgba(20,17,30,.78);backdrop-filter:blur(6px);color:var(--onDark);font-size:.76rem;font-weight:700;letter-spacing:.01em;padding:10px 14px;border-radius:12px;text-align:center;}
+  .work-meta{font-family:var(--font-body);font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--coral500);font-weight:700;margin-bottom:10px;}
+  .work-item h3{font-size:1.7rem;margin-bottom:10px;}
+  .work-item p{color:var(--onLightMuted);margin:0 0 18px;max-width:48ch;}
+  .work-link{display:inline-flex;align-items:center;gap:10px;font-weight:700;text-decoration:none;color:var(--onLight);}
+  .work-link .dot{width:36px;height:36px;border-radius:50%;border:2px solid var(--coral500);display:flex;align-items:center;justify-content:center;transition:background .2s,transform .2s;}
+  .work-link:hover .dot{background:var(--coral500);color:#fff;transform:scale(1.08);}
+
+  /* ---------- APPROACH (dark band) ---------- */
+  .approach{background:var(--indigo900);color:var(--onDark);}
+  .approach h2{font-size:clamp(2rem,4vw,3rem);margin-bottom:48px;max-width:600px;}
+  .steps{display:grid;gap:18px;}
+  @media (min-width:640px){.steps{grid-template-columns:repeat(2,1fr);}}
+  @media (min-width:1080px){.steps{grid-template-columns:repeat(5,1fr);}}
+  .step{background:var(--indigo700);border-radius:var(--radius-card);padding:28px 24px;position:relative;overflow:hidden;}
+  .step .stepnum{position:absolute;right:12px;top:4px;font-family:var(--font-display);font-size:3.4rem;font-weight:800;color:rgba(255,255,255,.06);}
+  .step h3{font-size:1.05rem;position:relative;color:var(--lime400);margin-bottom:8px;}
+  .step p{position:relative;font-size:.88rem;color:var(--onDarkMuted);margin:0;}
+
+  /* ---------- FOUNDATION / ABOUT ---------- */
+  .foundation .wrap{max-width:720px;}
+  .foundation-intro{display:flex;flex-direction:column;align-items:center;text-align:center;margin-bottom:56px;}
+  .foundation p{color:var(--onLightMuted);font-size:1.05rem;}
+  .foundation strong{color:var(--onLight);}
+
+  .pcard-wrap{perspective:900px;width:100%;max-width:340px;position:relative;padding-top:56px;}
+  .pcard{position:relative;border-radius:28px;overflow:hidden;background:linear-gradient(160deg,var(--indigo700),var(--indigo900));box-shadow:var(--shadow-lg);aspect-ratio:.78;transform-style:preserve-3d;transition:transform .5s var(--ease-reveal);will-change:transform;}
+  /* fotó: valódi kivágott alak (átlátszó hátterű PNG, háttér-eltávolítással
+     készült) — "papírból ollóval kivágott figura" hatás. Felül hangsúlyos,
+     kitör a kártya felső pereme fölé. */
+  .pcard-photo{position:absolute;left:-4%;right:-4%;top:-64px;height:86%;z-index:2;pointer-events:none;
+    filter:drop-shadow(0 18px 26px rgba(10,8,16,.55));}
+  .pcard-photo img{width:100%;height:100%;object-fit:contain;object-position:bottom center;filter:grayscale(1) contrast(1.12) brightness(.92);display:block;}
+  .pcard-duotone{position:absolute;inset:0;background:linear-gradient(160deg,var(--coral500) 0%,transparent 55%),linear-gradient(0deg,var(--indigo900) 0%,transparent 70%);mix-blend-mode:color;opacity:.6;}
+  .pcard::after{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(to top,rgba(20,17,30,.96) 0%,rgba(20,17,30,.05) 40%,rgba(20,17,30,0) 62%);}
+  .pcard-glow{position:absolute;inset:-1px;border-radius:28px;pointer-events:none;opacity:0;transition:opacity .3s;z-index:1;background:radial-gradient(280px circle at var(--mx,50%) var(--my,50%),rgba(255,90,60,.35),transparent 60%);mix-blend-mode:screen;}
+  .pcard-wrap:hover .pcard-glow{opacity:1;}
+  /* opcionális, összehasonlításra: a tényleges React Bits ProfileCard
+     "holo" fólia-effektjének mi-palettás verziója, kurzorral mozgó
+     színes sávokkal (nem teljes szivárvány, hanem coral/lime/indigo) */
+  .pcard-shine{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;mix-blend-mode:color-dodge;transition:opacity .35s;
+    background:repeating-linear-gradient(115deg, var(--coral500) 0%, var(--lime400) 9%, var(--coral300) 18%, var(--indigo500) 27%, var(--coral500) 36%);
+    background-size:260% 260%;background-position:var(--mx,50%) var(--my,50%);}
+  .pcard-wrap.holo-on:hover .pcard-shine{opacity:.5;}
+  .pcard-info{position:absolute;left:20px;right:20px;bottom:18px;z-index:3;}
+  .pcard-info .name{font-family:var(--font-display);font-weight:800;color:var(--onDark);font-size:1.15rem;}
+  .pcard-info .role{font-family:var(--font-body);font-weight:700;color:var(--coral300);font-size:.82rem;margin-top:4px;}
+  .holo-toggle{display:flex;align-items:center;gap:8px;justify-self:center;margin-top:14px;font-size:.8rem;color:var(--onLightMuted);}
+  .holo-toggle button{font:inherit;font-weight:700;background:none;border:1px solid var(--coral500);color:var(--coral500);border-radius:999px;padding:6px 14px;cursor:pointer;transition:background .2s,color .2s;}
+  .holo-toggle button.on{background:var(--coral500);color:#fff;}
+  .about-name{font-family:var(--font-display);font-size:clamp(1.6rem,3vw,2.1rem);margin-bottom:4px;}
+  .about-role{color:var(--coral500);font-weight:700;font-size:.95rem;margin-bottom:24px;}
+  .foundation-facts{display:flex;flex-wrap:wrap;gap:28px 36px;margin:28px 0;padding:20px 0;border-top:1px solid rgba(59,49,99,.14);border-bottom:1px solid rgba(59,49,99,.14);}
+  .foundation-facts .fact{display:flex;flex-direction:column;gap:3px;}
+  .foundation-facts .fact-num{font-family:var(--font-display);font-weight:800;font-size:1.2rem;color:var(--coral500);white-space:nowrap;}
+  .foundation-facts .fact-label{font-size:.74rem;color:var(--onLightMuted);text-transform:uppercase;letter-spacing:.06em;font-weight:700;}
+  .skill-tags{display:flex;flex-wrap:wrap;gap:10px;list-style:none;padding:0;margin:0;}
+  .skill-tags li{font-size:.82rem;font-weight:700;padding:8px 16px;border-radius:999px;border:1.5px solid var(--indigo500);color:var(--onLight);background:var(--ivory-raised);transition:border-color .2s,transform .2s;}
+  .skill-tags li:hover{border-color:var(--coral500);transform:translateY(-2px);}
+  .certs-block{margin-top:32px;}
+  .certs-label{display:block;font-size:.74rem;color:var(--onLightMuted);text-transform:uppercase;letter-spacing:.06em;font-weight:700;margin-bottom:12px;}
+  .certs{display:flex;flex-wrap:wrap;gap:12px;}
+  .cert-item{display:flex;align-items:center;gap:10px;padding:10px 16px 10px 12px;border-radius:14px;background:var(--ivory-raised);border:1px solid rgba(59,49,99,.14);box-shadow:var(--shadow-sm);max-width:280px;}
+  .cert-icon{width:26px;height:26px;flex-shrink:0;color:var(--coral500);}
+  .cert-text{display:flex;flex-direction:column;gap:2px;}
+  .cert-title{font-size:.8rem;font-weight:700;color:var(--onLight);line-height:1.3;}
+  .cert-date{font-size:.72rem;color:var(--onLightMuted);}
+
+  /* ---------- CONTACT CTA ---------- */
+  .cta{background:linear-gradient(160deg,var(--indigo900),var(--indigo700));color:var(--onDark);text-align:center;padding-bottom:0;}
+  .cta .wrap{max-width:720px;}
+  .cta .k1{font-family:var(--font-body);font-weight:700;font-size:1.1rem;color:var(--onDarkMuted);}
+  .cta .k2{font-family:var(--font-display);font-weight:800;font-size:clamp(1.6rem,4vw,2.4rem);color:var(--coral300);margin:6px 0;}
+  .cta h2{font-size:clamp(2.4rem,6vw,4rem);margin-top:8px;}
+  .quick{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:32px 0;}
+  .quick button{font-family:var(--font-body);font-weight:600;font-size:.85rem;padding:10px 16px;border-radius:999px;border:2px solid var(--indigo500);background:transparent;color:var(--onDark);cursor:pointer;display:flex;align-items:center;gap:8px;transition:border-color .2s,background .2s;}
+  .quick button b{background:var(--indigo900);color:var(--lime400);width:20px;height:20px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.68rem;flex-shrink:0;}
+  .quick button:hover,.quick button.sel{border-color:var(--coral500);background:rgba(255,90,60,.12);}
+  .time-note{font-size:.82rem;color:var(--onDarkMuted);margin-top:-14px;margin-bottom:24px;}
+
+  /* marquee */
+  .marquee-band{overflow:hidden;padding-block:20px;border-top:1px solid rgba(255,255,255,.08);margin-top:48px;}
+  .marquee-track{display:flex;gap:48px;width:max-content;animation:scroll-x 22s linear infinite;}
+  .marquee-track span{font-family:var(--font-body);font-weight:600;font-size:.85rem;color:var(--onDarkMuted);white-space:nowrap;}
+  @keyframes scroll-x{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @media (prefers-reduced-motion:reduce){.marquee-track{animation:none;}}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--indigo900);color:var(--onDarkMuted);padding-block:32px 0;}
+  .footer-top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px;padding-bottom:28px;}
+  .footer-links{display:flex;gap:20px;flex-wrap:wrap;font-size:.85rem;}
+  .footer-links a{text-decoration:none;color:var(--onDarkMuted);transition:color .2s;}
+  .footer-links a:hover{color:var(--onDark);}
+  .cv-badge{width:64px;height:64px;position:relative;flex-shrink:0;}
+  .cv-badge svg{width:100%;height:100%;animation:spin 14s linear infinite;}
+  @media (prefers-reduced-motion:reduce){.cv-badge svg{animation:none;}}
+  .cv-badge .dl{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--lime400);font-size:1.1rem;}
+  .footer-tech .marquee-band{border-top:1px solid rgba(255,255,255,.06);margin-top:0;padding-block:16px;}
+  .footer-tech .marquee-track span{font-size:.72rem;opacity:.7;}
+  .copyright{text-align:center;font-size:.75rem;padding:18px 0;color:var(--onDarkMuted);opacity:.7;}
+</style>
+
+<canvas id="glowCursor" aria-hidden="true"></canvas>
+
+<header class="site-nav">
+  <div class="wrap nav-inner">
+    <nav class="links" aria-label="Main navigation">
+      <a href="#home" class="active" data-i18n="nav-home">Home</a>
+      <a href="#solutions" data-i18n="nav-solutions">Solutions</a>
+      <a href="#work" data-i18n="nav-work">Work</a>
+      <a href="#approach" data-i18n="nav-approach">Approach</a>
+      <a href="#about" data-i18n="nav-about">About</a>
+    </nav>
+
+    <a href="#home" class="brand-stack">
+      <span class="brand-name">Zoltan Botos</span>
+      <svg id="eyeMark" viewBox="0 0 100 100"><circle class="eye-body" cx="50" cy="50" r="50"/><g id="eyesGrp"><ellipse class="eye-pupil" cx="36" cy="50" rx="8" ry="8"/><ellipse class="eye-pupil" cx="64" cy="50" rx="8" ry="8"/></g></svg>
+    </a>
+
+    <div class="right-cluster">
+      <div class="lang-switch" id="langSwitch" role="group" aria-label="Nyelv / Language / Sprache">
+        <button type="button" data-lang="hu" class="sel">HU</button>
+        <button type="button" data-lang="en">EN</button>
+        <button type="button" data-lang="de">DE</button>
+      </div>
+      <button class="icon-btn" id="themeBtn" type="button" aria-label="Toggle light / dark mode">
+        <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg>
+      </button>
+      <a href="#contact" class="nav-cta" data-i18n="nav-cta">Let's talk</a>
+      <button class="burger" type="button" aria-label="Open menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="home">
+  <canvas id="heroCanvas" class="threads"></canvas>
+  <div class="wrap hero-inner">
+    <div>
+      <span class="eyebrow on-dark" data-i18n="hero-eyebrow">AI-Assisted Digital Solutions</span>
+      <h1 data-i18n-html="hero-h1">Real solutions, built with <span class="pop">intent</span>.</h1>
+      <p class="lead" data-i18n="hero-lead">12+ years of enterprise IT support, service operations and application coordination — now applied as an AI-first builder: shipping websites, booking workflows and internal tools, scoped and risk-assessed with an AI Solution Analyst mindset.</p>
+      <div class="hero-ctas">
+        <a href="#contact" class="btn btn-primary" data-i18n="hero-cta-primary">Start a conversation</a>
+        <a href="#work" class="btn btn-secondary" data-i18n="hero-cta-secondary">See the work</a>
+      </div>
+    </div>
+    <div class="hero-badge" aria-hidden="true">
+      <div class="hero-figure"><img src="photos/zoltan-headshot-cutout.png" alt="" loading="eager"></div>
+      <svg viewBox="0 0 200 200">
+        <circle cx="100" cy="100" r="90" fill="none" stroke="#C6F135" stroke-width="1" stroke-dasharray="3 7"/>
+        <circle cx="100" cy="100" r="65" fill="none" stroke="#FF8468" stroke-width="1" stroke-dasharray="2 6"/>
+        <path id="badgeCircle" d="M 100,100 m -78,0 a 78,78 0 1,1 156,0 a 78,78 0 1,1 -156,0" fill="none"/>
+        <text font-family="Manrope" font-size="7.5" fill="#FAF8F5" letter-spacing="2">
+          <textPath href="#badgeCircle">AI-ASSISTED · REAL RESULTS · AI-ASSISTED · REAL RESULTS · </textPath>
+        </text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="proof">
+  <div class="wrap">
+    <div>
+      <div class="num" id="statYears">0<span>+</span></div>
+      <div class="label" data-i18n="proof-years-label">Years Enterprise IT</div>
+    </div>
+    <div>
+      <div class="num" style="font-size:clamp(1.6rem,4vw,2.4rem)" data-i18n="proof-ai-value">AI-Assisted</div>
+      <div class="label" data-i18n="proof-ai-label">Delivery</div>
+    </div>
+    <div>
+      <div class="num" style="font-size:clamp(1.6rem,4vw,2.4rem)" data-i18n="proof-practical-value">Practical</div>
+      <div class="label" data-i18n="proof-practical-label">Digital Solutions</div>
+    </div>
+  </div>
+</section>
+
+<section class="solutions" id="solutions">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow" data-i18n="solutions-eyebrow">Solutions</span>
+      <h2 data-i18n="solutions-h2">Five ways to fix what's slowing you down.</h2>
+    </div>
+    <div class="bento">
+      <div class="card big reveal">
+        <span class="icon-num">01</span>
+        <h3 data-i18n="card1-title">Business websites</h3>
+        <p data-i18n="card1-desc">Fast, accessible, SEO-ready sites that actually convert — not just look good in a portfolio.</p>
+      </div>
+      <div class="card reveal">
+        <span class="icon-num">02</span>
+        <h3 data-i18n="card2-title">Booking &amp; customer workflows</h3>
+        <p data-i18n="card2-desc">Scheduling and customer-facing flows that remove friction from every step.</p>
+      </div>
+      <div class="card reveal">
+        <span class="icon-num">03</span>
+        <h3 data-i18n="card3-title">Internal tools &amp; ops apps</h3>
+        <p data-i18n="card3-desc">Purpose-built internal software that replaces spreadsheets and manual handoffs.</p>
+      </div>
+      <div class="card reveal">
+        <span class="icon-num">04</span>
+        <h3 data-i18n="card4-title">Solution scope &amp; implementation support</h3>
+        <p data-i18n="card4-desc">Not sure what you need yet? Scoping, architecture and hands-on delivery support, from first conversation to launch.</p>
+      </div>
+      <div class="card reveal">
+        <span class="icon-num">05</span>
+        <h3 data-i18n="card5-title">AI opportunity &amp; risk assessment</h3>
+        <p data-i18n="card5-desc">Where can AI actually help — safely? Use-case scoping, risk mapping and evaluation criteria, grounded in EU AI Act and GDPR awareness.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="work" id="work">
+  <div class="wrap">
+    <div class="head reveal" style="max-width:640px;margin-bottom:48px;">
+      <span class="eyebrow" data-i18n="work-eyebrow">Selected Work</span>
+      <h2 style="font-size:clamp(2rem,4vw,3rem);" data-i18n="work-h2">Shipped, not just planned.</h2>
+    </div>
+
+    <div class="work-item reveal">
+      <div class="work-media">
+        <div class="embargo-tag" data-i18n="work-mona-tag">In final refinement — preview coming soon</div>
+      </div>
+      <div>
+        <div class="work-meta" data-i18n="work-mona-meta">Wedding Dress Salon · Website · In Progress</div>
+        <h3>MONA — Website</h3>
+        <p data-i18n="work-mona-desc">The public side of an integrated digital platform for a wedding dress salon — fitting appointments and customer enquiries, connected into the internal operations system below. Currently in final refinement, not yet public.</p>
+        <span class="work-link" style="opacity:.5;cursor:default;" data-i18n="work-soon">Preview coming soon <span class="dot">→</span></span>
+      </div>
+    </div>
+
+    <div class="work-item alt reveal">
+      <div class="work-media">
+        <div class="embargo-tag" data-i18n="work-mona2-tag">Content and design under review — preview coming soon</div>
+      </div>
+      <div>
+        <div class="work-meta" data-i18n="work-mona2-meta">Wedding Dress Salon · Booking System · In Progress</div>
+        <h3>MONA — Reservation System</h3>
+        <p data-i18n="work-mona2-desc">An internal reservation and operations application coordinating dress inventory, availability and complex rental bookings — website enquiries flow straight in, ready to manage. Sellable on its own for businesses that need booking operations without a public website.</p>
+        <span class="work-link" style="opacity:.5;cursor:default;" data-i18n="work-soon">Preview coming soon <span class="dot">→</span></span>
+      </div>
+    </div>
+
+    <div class="work-item reveal">
+      <div class="work-media carousel" data-carousel>
+        <div class="carousel-track">
+          <img src="photos/daily-verse-screenshot.png" alt="Daily Verse — angol nyelvű nézet" loading="lazy" class="active">
+          <img src="photos/daily-verse-screenshot-hu.png" alt="Daily Verse — magyar nyelvű nézet" loading="lazy">
+        </div>
+        <button type="button" class="car-btn prev" aria-label="Előző kép">‹</button>
+        <button type="button" class="car-btn next" aria-label="Következő kép">›</button>
+        <div class="car-dots">
+          <button type="button" class="car-dot active" data-idx="0" aria-label="1. kép"></button>
+          <button type="button" class="car-dot" data-idx="1" aria-label="2. kép"></button>
+        </div>
+      </div>
+      <div>
+        <div class="work-meta" data-i18n="work-dv-meta">Daily Verse App · Live</div>
+        <h3>Daily Verse</h3>
+        <p data-i18n="work-dv-desc">A multilingual web app built with TanStack Start, React and Supabase — authentication, row-level security, saved verses, notes, themes and language switching. Shipped end to end, from concept to deployment on Vercel.</p>
+        <a class="work-link" href="https://daily-verse-ten.vercel.app/" target="_blank" rel="noopener"><span data-i18n="work-visit">Visit daily-verse-ten.vercel.app</span> <span class="dot">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="approach" id="approach">
+  <div class="wrap">
+    <span class="eyebrow on-dark reveal" data-i18n="approach-eyebrow">Working Approach</span>
+    <h2 class="reveal" data-i18n="approach-h2">A structured process — not a black box.</h2>
+    <div class="steps">
+      <div class="step reveal"><span class="stepnum">01</span><h3 data-i18n="step1-title">Understand the context</h3><p data-i18n="step1-desc">Finding where the real uncertainty lives — and who it's slowing down.</p></div>
+      <div class="step reveal"><span class="stepnum">02</span><h3 data-i18n="step2-title">Define the solution</h3><p data-i18n="step2-desc">Use case, risk and scope defined up front — including where a human stays in the loop.</p></div>
+      <div class="step reveal"><span class="stepnum">03</span><h3 data-i18n="step3-title">Design and build</h3><p data-i18n="step3-desc">Fast, no-code-validated prototypes on real data before a line of production code.</p></div>
+      <div class="step reveal"><span class="stepnum">04</span><h3 data-i18n="step4-title">Test and refine</h3><p data-i18n="step4-desc">Measured against a real evaluation framework — dimensions and thresholds, not just a demo click-through.</p></div>
+      <div class="step reveal"><span class="stepnum">05</span><h3 data-i18n="step5-title">Delivery &amp; maintenance</h3><p data-i18n="step5-desc">Launch, then 2–3 months of warranty-covered maintenance and fine-tuning.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="foundation" id="about">
+  <div class="wrap">
+    <div class="foundation-intro">
+      <div class="pcard-wrap reveal" id="pcardWrap">
+        <div class="pcard-photo"><img id="aboutPhoto" src="photos/zoltan-headshot-cutout.png" alt="Zoltan Botos" width="1254" height="1254" loading="lazy"></div>
+        <div class="pcard" id="pcard">
+          <div class="pcard-duotone" id="pcardDuotone"></div>
+          <div class="pcard-shine" id="pcardShine"></div>
+          <div class="pcard-glow" id="pcardGlow"></div>
+          <div class="pcard-info">
+            <div class="name">Zoltan Botos</div>
+            <div class="role" data-i18n="about-role">AI-Assisted Solutions</div>
+          </div>
+        </div>
+      </div>
+      <div class="holo-toggle">
+        <span>Holo shine:</span>
+        <button type="button" id="holoBtn">Off</button>
+      </div>
+    </div>
+    <div class="reveal">
+      <span class="eyebrow" data-i18n="foundation-eyebrow">Enterprise Foundation</span>
+      <h2 style="font-size:clamp(2rem,4vw,3rem);margin-bottom:20px;" data-i18n="foundation-h2">Built on 12+ years inside real IT operations.</h2>
+      <p data-i18n="foundation-p">My foundation is 12+ years in enterprise IT operations and service management — I know how systems behave in production, under load, and when things break. I build on that in two directions: as an AI-first builder, I design and ship real digital products with modern, agentic workflows (Claude Code); the AI Solution Analyst program adds a risk-conscious layer on top — use-case identification, evaluation frameworks, EU AI Act- and GDPR-aware planning. The result is fast, practical AI-driven delivery that also knows where the risk begins.</p>
+      <div class="foundation-facts reveal">
+        <div class="fact"><span class="fact-num">12+</span><span class="fact-label" data-i18n="fact-years">Years enterprise IT</span></div>
+        <div class="fact"><span class="fact-num">HU · DE · EN</span><span class="fact-label" data-i18n="fact-lang">Languages</span></div>
+        <div class="fact"><span class="fact-num" data-i18n="fact-loc-val">Vienna, Austria</span><span class="fact-label" data-i18n="fact-loc">Based in</span></div>
+      </div>
+      <ul class="skill-tags reveal">
+        <li data-i18n="skill-1">ITIL &amp; ITSM</li>
+        <li data-i18n="skill-2">Requirements analysis</li>
+        <li data-i18n="skill-3">Workflow automation</li>
+        <li data-i18n="skill-4">Claude Code &amp; agentic workflows</li>
+        <li data-i18n="skill-5">Supabase-backed apps</li>
+        <li data-i18n="skill-6">Solution design &amp; scope</li>
+        <li data-i18n="skill-7">Use case &amp; risk mapping</li>
+        <li data-i18n="skill-8">AI evaluation frameworks</li>
+        <li data-i18n="skill-9">EU AI Act &amp; GDPR-aware delivery</li>
+      </ul>
+      <div class="certs-block reveal">
+        <span class="certs-label" data-i18n="certs-label">Training &amp; certifications</span>
+        <div class="certs">
+          <div class="cert-item">
+            <svg class="cert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="M8.5 14.5 L6 21 L12 18 L18 21 L15.5 14.5"/></svg>
+            <div class="cert-text">
+              <span class="cert-title">Designer 2.0: When You Are the Studio</span>
+              <span class="cert-date" data-i18n="cert-1-date">Completed Sep 2026</span>
+            </div>
+          </div>
+          <div class="cert-item">
+            <svg class="cert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="M8.5 14.5 L6 21 L12 18 L18 21 L15.5 14.5"/></svg>
+            <div class="cert-text">
+              <span class="cert-title">AI Solution Analyst Program</span>
+              <span class="cert-date" data-i18n="cert-2-date">Completed Aug 2026</span>
+            </div>
+          </div>
+          <div class="cert-item">
+            <svg class="cert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="M8.5 14.5 L6 21 L12 18 L18 21 L15.5 14.5"/></svg>
+            <div class="cert-text">
+              <span class="cert-title">Claude Code</span>
+              <span class="cert-date" data-i18n="cert-3-date">Completed Aug 2026</span>
+            </div>
+          </div>
+          <div class="cert-item">
+            <svg class="cert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="M8.5 14.5 L6 21 L12 18 L18 21 L15.5 14.5"/></svg>
+            <div class="cert-text">
+              <span class="cert-title">Vibe Coding: Build Your Own App Without Coding</span>
+              <span class="cert-date" data-i18n="cert-4-date">Completed Aug 2026</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <div class="wrap">
+    <div class="k1 reveal" data-i18n="cta-k1">Ready when you are</div>
+    <div class="k2 reveal" data-i18n="cta-k2">Let's fix</div>
+    <h2 class="reveal" data-i18n="cta-h2">what's slowing you down.</h2>
+    <div class="quick reveal" role="group" aria-label="What do you want to improve?">
+      <button type="button" data-sel><b>A</b> <span data-i18n="quick-a">Website</span></button>
+      <button type="button" data-sel><b>B</b> <span data-i18n="quick-b">Booking workflow</span></button>
+      <button type="button" data-sel><b>C</b> <span data-i18n="quick-c">Internal tool</span></button>
+      <button type="button" data-sel><b>D</b> <span data-i18n="quick-d">Not sure, let's talk</span></button>
+    </div>
+    <p class="time-note reveal" data-i18n="time-note">Takes about 1 minute</p>
+    <div class="hero-ctas reveal" style="justify-content:center;margin-bottom:40px;">
+      <a href="mailto:hello@example.com" class="btn btn-primary" data-i18n="cta-button">Start a conversation</a>
+    </div>
+  </div>
+  <div class="marquee-band">
+    <div class="marquee-track" id="ctaMarquee"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-top">
+    <div class="footer-links">
+      <a href="#" target="_blank" rel="noopener" data-i18n="footer-linkedin">LinkedIn</a>
+      <a href="mailto:hello@example.com" data-i18n="footer-email">Email</a>
+    </div>
+    <div class="cv-badge" aria-label="Download CV">
+      <svg viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="46" fill="none" stroke="#C6F135" stroke-width="1" stroke-dasharray="2 5"/>
+        <path id="cvCircle" d="M 50,50 m -38,0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0" fill="none"/>
+        <text font-size="7" fill="#9D93B8" letter-spacing="1.5"><textPath href="#cvCircle">DOWNLOAD · CV · DOWNLOAD · CV · </textPath></text>
+      </svg>
+      <span class="dl">↓</span>
+    </div>
+  </div>
+  <div class="footer-tech">
+    <div class="marquee-band">
+      <div class="marquee-track" id="footerMarquee"></div>
+    </div>
+  </div>
+  <div class="copyright" data-i18n="copyright">© 2026 Zoltan Botos. All rights reserved.</div>
+</footer>
+
+<button type="button" class="to-top" id="toTop" data-i18n-aria="to-top-label" aria-label="Back to top">
+  <svg viewBox="0 0 52 52" aria-hidden="true">
+    <circle class="ring-bg" cx="26" cy="26" r="23"/>
+    <circle class="ring-fg" id="toTopRing" cx="26" cy="26" r="23"/>
+  </svg>
+  <span class="arrow" aria-hidden="true">↑</span>
+</button>
+
+<script>
+(function(){
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  /* ---------- reveal on scroll ---------- */
+  var reveals = document.querySelectorAll('.reveal');
+  if (reduceMotion) {
+    reveals.forEach(function(el){ el.classList.add('in'); });
+  } else if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, {threshold:.15});
+    reveals.forEach(function(el){ io.observe(el); });
+  } else {
+    reveals.forEach(function(el){ el.classList.add('in'); });
+  }
+
+  /* ---------- animated counter ---------- */
+  var yearsEl = document.getElementById('statYears');
+  var counted = false;
+  function countUp(){
+    if (counted) return; counted = true;
+    if (reduceMotion) { yearsEl.innerHTML = '12<span>+</span>'; return; }
+    var start = null, dur = 1100, target = 12;
+    function step(ts){
+      if (!start) start = ts;
+      var p = Math.min(1, (ts - start) / dur);
+      yearsEl.innerHTML = Math.floor(p * target) + '<span>+</span>';
+      if (p < 1) requestAnimationFrame(step); else yearsEl.innerHTML = target + '<span>+</span>';
+    }
+    requestAnimationFrame(step);
+  }
+  var proofEl = document.querySelector('.proof');
+  if ('IntersectionObserver' in window) {
+    var io2 = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if (e.isIntersecting) { countUp(); io2.disconnect(); } });
+    }, {threshold:.5});
+    io2.observe(proofEl);
+  } else { countUp(); }
+
+  /* ---------- marquees ---------- */
+  function fillMarquee(el, items){
+    var html = items.map(function(t){ return '<span>' + t + '</span>'; }).join('');
+    el.innerHTML = html + html;
+  }
+  fillMarquee(document.getElementById('ctaMarquee'), ['Websites','Booking Workflows','Internal Tools','AI-Assisted Delivery']);
+  fillMarquee(document.getElementById('footerMarquee'), ['Claude Code','GPT','GitHub','Supabase','Cloudflare','Vercel','Resend','n8n']);
+
+  /* ---------- quick-select buttons ---------- */
+  document.querySelectorAll('[data-sel]').forEach(function(btn){
+    btn.addEventListener('click', function(){ btn.classList.toggle('sel'); });
+  });
+
+  /* ---------- cursor-following eye mark ---------- */
+  var eyeMarkEl = document.getElementById('eyeMark');
+  var eyesGrp = document.getElementById('eyesGrp');
+  if (!reduceMotion && finePointer) {
+    var curX = 0, curY = 0, targetX = 0, targetY = 0;
+    var MAX = 13;
+    document.addEventListener('mousemove', function(e){
+      var rect = eyeMarkEl.getBoundingClientRect();
+      var cx = rect.left + rect.width / 2, cy = rect.top + rect.height / 2;
+      var dx = e.clientX - cx, dy = e.clientY - cy;
+      var dist = Math.hypot(dx, dy) || 1;
+      var norm = Math.min(1, dist / 260);
+      targetX = (dx / dist) * MAX * norm;
+      targetY = (dy / dist) * MAX * 0.55 * norm;
+    });
+    function easeEyes(){
+      curX += (targetX - curX) * 0.18;
+      curY += (targetY - curY) * 0.18;
+      eyesGrp.setAttribute('transform', 'translate(' + curX.toFixed(2) + ',' + curY.toFixed(2) + ')');
+      requestAnimationFrame(easeEyes);
+    }
+    requestAnimationFrame(easeEyes);
+  }
+
+  /* ---------- profile card tilt ---------- */
+  var pcardWrap = document.getElementById('pcardWrap');
+  var pcard = document.getElementById('pcard');
+  var pcardGlow = document.getElementById('pcardGlow');
+  if (pcardWrap && !reduceMotion && finePointer) {
+    pcardWrap.addEventListener('mousemove', function(e){
+      var rect = pcardWrap.getBoundingClientRect();
+      var px = (e.clientX - rect.left) / rect.width;
+      var py = (e.clientY - rect.top) / rect.height;
+      var rx = (py - 0.5) * -12, ry = (px - 0.5) * 14;
+      pcard.style.transform = 'rotateX(' + rx.toFixed(2) + 'deg) rotateY(' + ry.toFixed(2) + 'deg)';
+      pcardGlow.style.setProperty('--mx', (px*100).toFixed(1) + '%');
+      pcardGlow.style.setProperty('--my', (py*100).toFixed(1) + '%');
+    });
+    pcardWrap.addEventListener('mouseleave', function(){
+      pcard.style.transform = 'rotateX(0deg) rotateY(0deg)';
+    });
+  }
+  var holoBtn = document.getElementById('holoBtn');
+  if (holoBtn && pcardWrap) {
+    holoBtn.addEventListener('click', function(){
+      var on = pcardWrap.classList.toggle('holo-on');
+      holoBtn.textContent = on ? 'On' : 'Off';
+      holoBtn.classList.toggle('on', on);
+    });
+  }
+
+  /* ---------- hero canvas: WebThreads-inspired glow lines ---------- */
+  var heroCanvas = document.getElementById('heroCanvas');
+  if (heroCanvas && !reduceMotion) {
+    var hctx = heroCanvas.getContext('2d');
+    var hw, hh, dpr = Math.min(window.devicePixelRatio || 1, 2);
+    function resizeHero(){
+      hw = heroCanvas.clientWidth; hh = heroCanvas.clientHeight;
+      heroCanvas.width = hw * dpr; heroCanvas.height = hh * dpr;
+      hctx.setTransform(dpr,0,0,dpr,0,0);
+    }
+    window.addEventListener('resize', resizeHero);
+    resizeHero();
+    var ht0 = performance.now();
+    var heroVisible = true;
+    new IntersectionObserver(function(entries){ heroVisible = entries[0].isIntersecting; }, {threshold:0}).observe(heroCanvas);
+    function drawHero(now){
+      if (!document.hidden && heroVisible) {
+        var t = (now - ht0) * 0.00045;
+        hctx.clearRect(0,0,hw,hh);
+        var colors = ['rgba(255,90,60,.55)','rgba(198,241,53,.4)','rgba(255,132,104,.45)'];
+        for (var i=0;i<3;i++){
+          hctx.beginPath();
+          for (var x=0;x<=hw;x+=8){
+            var y = hh*0.55 + Math.sin(x*0.006 + t*3 + i*2) * (40 + i*18) + Math.sin(x*0.002 - t*1.5) * 30;
+            if (x===0) hctx.moveTo(x,y); else hctx.lineTo(x,y);
+          }
+          hctx.strokeStyle = colors[i]; hctx.lineWidth = 2; hctx.shadowColor = colors[i]; hctx.shadowBlur = 18;
+          hctx.stroke();
+        }
+      }
+      requestAnimationFrame(drawHero);
+    }
+    requestAnimationFrame(drawHero);
+  }
+
+  /* ---------- GlowCursor: global glowing trail ---------- */
+  var gc = document.getElementById('glowCursor');
+  if (gc && !reduceMotion && finePointer) {
+    var gctx = gc.getContext('2d');
+    var gw, gh, gdpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    function resizeGlow(){
+      gw = window.innerWidth; gh = window.innerHeight;
+      gc.width = gw * gdpr; gc.height = gh * gdpr;
+      gctx.setTransform(gdpr,0,0,gdpr,0,0);
+    }
+    window.addEventListener('resize', resizeGlow);
+    resizeGlow();
+
+    var mx = -999, my = -999, active = 0, lastMove = performance.now();
+    document.addEventListener('mousemove', function(e){ mx = e.clientX; my = e.clientY; lastMove = performance.now(); });
+    document.addEventListener('mouseleave', function(){ mx = -999; my = -999; });
+
+    var trail = [];
+    function loopGlow(now){
+      var idleFor = now - lastMove;
+      var targetActive = idleFor > 650 ? 0 : 1;
+      active += (targetActive - active) * 0.08;
+
+      gctx.clearRect(0,0,gw,gh);
+      if (mx > -500 && active > 0.01) {
+        trail.unshift({x:mx,y:my});
+        if (trail.length > 22) trail.pop();
+      } else if (trail.length) {
+        trail.pop();
+      }
+
+      gctx.globalCompositeOperation = 'lighter';
+      for (var i=0;i<trail.length;i++){
+        var p = trail[i];
+        var f = 1 - i / trail.length;
+        var r = 26 * f * active;
+        if (r < 0.5) continue;
+        var grad = gctx.createRadialGradient(p.x,p.y,0,p.x,p.y,r);
+        var isEven = i % 2 === 0;
+        var base = isEven ? '255,90,60' : '198,241,53';
+        grad.addColorStop(0, 'rgba(' + base + ',' + (0.32*f*active).toFixed(3) + ')');
+        grad.addColorStop(1, 'rgba(' + base + ',0)');
+        gctx.fillStyle = grad;
+        gctx.beginPath();
+        gctx.arc(p.x,p.y,r,0,Math.PI*2);
+        gctx.fill();
+      }
+      gctx.globalCompositeOperation = 'source-over';
+      requestAnimationFrame(loopGlow);
+    }
+    requestAnimationFrame(loopGlow);
+  }
+
+  /* ---------- active nav link on scroll ---------- */
+  var sections = ['home','solutions','work','approach','about'].map(function(id){ return document.getElementById(id); });
+  var navLinks = document.querySelectorAll('nav.links a');
+  if ('IntersectionObserver' in window) {
+    var io4 = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) {
+          navLinks.forEach(function(a){ a.classList.remove('active'); });
+          var match = document.querySelector('nav.links a[href="#' + e.target.id + '"]');
+          if (match) match.classList.add('active');
+        }
+      });
+    }, {threshold:.5});
+    sections.forEach(function(s){ if (s) io4.observe(s); });
+  }
+
+  /* ---------- theme toggle ---------- */
+  var root = document.documentElement;
+  var themeBtn = document.getElementById('themeBtn');
+  var themeIcon = document.getElementById('themeIcon');
+  var MOON = '<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path>';
+  var SUN = '<circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>';
+  function applyTheme(mode){
+    if (mode === 'dark') { root.setAttribute('data-theme','dark'); themeIcon.innerHTML = MOON; }
+    else { root.removeAttribute('data-theme'); themeIcon.innerHTML = SUN; }
+    try { localStorage.setItem('preview-theme', mode); } catch(e){}
+  }
+  var savedTheme = 'dark';
+  try { savedTheme = localStorage.getItem('preview-theme') || 'dark'; } catch(e){}
+  applyTheme(savedTheme);
+  themeBtn.addEventListener('click', function(){
+    applyTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  });
+
+  /* ---------- language switcher (always-visible segmented control) ---------- */
+  var langSwitch = document.getElementById('langSwitch');
+
+  var i18nEls = document.querySelectorAll('[data-i18n]');
+  var i18nHtmlEls = document.querySelectorAll('[data-i18n-html]');
+  var originalText = {}, originalHtml = {};
+  i18nEls.forEach(function(el){ originalText[el.getAttribute('data-i18n')] = el.textContent; });
+  i18nHtmlEls.forEach(function(el){ originalHtml[el.getAttribute('data-i18n-html')] = el.innerHTML; });
+  var i18nAriaEls = document.querySelectorAll('[data-i18n-aria]');
+  var originalAria = {};
+  i18nAriaEls.forEach(function(el){ originalAria[el.getAttribute('data-i18n-aria')] = el.getAttribute('aria-label'); });
+
+  var T = {
+    hu: {
+      'nav-home':'Kezdőlap','nav-solutions':'Megoldások','nav-work':'Munkáim','nav-approach':'Módszer','nav-about':'Rólam','nav-cta':'Beszéljünk',
+      'hero-eyebrow':'AI-alapú digitális megoldások',
+      'hero-h1':'Valódi megoldások, <span class="pop">céltudatosan</span> megépítve.',
+      'hero-lead':'12+ év enterprise IT support, service operations és application coordination tapasztalat — ma AI-first builderként hasznosítva: weboldalakat, foglalási workflow-kat és belső eszközöket építek, AI Solution Analystként kockázat-tudatosan megtervezve.',
+      'hero-cta-primary':'Indítsunk egy beszélgetést','hero-cta-secondary':'Nézd meg a munkáimat',
+      'proof-years-label':'Év enterprise IT','proof-ai-value':'AI-alapú','proof-ai-label':'Megvalósítás','proof-practical-value':'Gyakorlati','proof-practical-label':'Digitális megoldások',
+      'solutions-eyebrow':'Megoldások','solutions-h2':'Öt módja annak, hogy megoldjuk, ami lassít.',
+      'card1-title':'Céges weboldalak','card1-desc':'Gyors, akadálymentes, SEO-kész oldalak, amik tényleg konvertálnak — nem csak jól néznek ki egy portfólióban.',
+      'card2-title':'Foglalási és ügyfél-workflow-k','card2-desc':'Időpontfoglalás és ügyfél-folyamatok, amik minden lépésnél megszüntetik a súrlódást.',
+      'card3-title':'Belső eszközök és ops appok','card3-desc':'Célzottan épített belső szoftver, ami leváltja az Excel-táblákat és a kézi átadásokat.',
+      'card4-title':'Megoldás-tervezés és kivitelezési támogatás','card4-desc':'Még nem biztos, mire van szükséged? Tervezés, architektúra és gyakorlati kivitelezési támogatás, az első beszélgetéstől az indulásig.',
+      'card5-title':'AI-lehetőség és kockázat-felmérés','card5-desc':'Hol tud az AI ténylegesen, biztonságosan segíteni? Use case-tervezés, kockázat-feltérképezés és kiértékelési kritériumok, EU AI Act- és GDPR-tudatosan.',
+      'work-eyebrow':'Kiemelt munkák','work-h2':'Leszállítva, nem csak megtervezve.',
+      'work-mona-tag':'Végső finomításban — hamarosan előnézet','work-mona-meta':'Esküvői ruhaszalon · Weboldal · Folyamatban','work-mona-desc':'Egy integrált digitális platform nyilvános oldala esküvői ruhaszalonnak — próbaidőpontok és ügyfél-megkeresések, összekötve az alább látható belső üzemeltetési rendszerrel. Jelenleg végső finomítás alatt, még nem publikus.','work-soon':'Előnézet hamarosan →',
+      'work-mona2-tag':'Tartalom és design felülvizsgálat alatt — hamarosan előnézet','work-mona2-meta':'Esküvői ruhaszalon · Foglalási rendszer · Folyamatban','work-mona2-desc':'Belső foglalási és üzemeltetési alkalmazás, ami kezeli a ruhakészletet, az elérhetőséget és a komplex bérlési foglalásokat — a weboldalról érkező megkeresések egyenesen ide futnak be, kezelésre készen. Önmagában is eladható azoknak, akiknek csak foglalási rendszer kell, weboldal nélkül.',
+      'work-dv-tag':'Élő termék','work-dv-meta':'Daily Verse App · Élesben','work-dv-desc':'Többnyelvű webalkalmazás TanStack Starttal, Reacttal és Supabase-zel — bejelentkezés, row-level security, mentett igék, jegyzetek, témák és nyelvváltás. Végig leszállítva, a koncepciótól a Vercel-es éles deploy-ig.','work-visit':'Látogass el: daily-verse-ten.vercel.app',
+      'approach-eyebrow':'Munkamódszer','approach-h2':'Strukturált folyamat — nem fekete doboz.',
+      'step1-title':'A kontextus megértése','step1-desc':'Megtaláljuk, hol van valódi bizonytalanság — és kit lassít.',
+      'step2-title':'A megoldás meghatározása','step2-desc':'Use case, kockázat és scope előre tisztázva — azzal együtt, hol marad ember a döntésben.',
+      'step3-title':'Tervezés és építés','step3-desc':'Gyors, no-code-dal validált prototípus éles adaton, mielőtt egyetlen sor production kód megszületne.',
+      'step4-title':'Tesztelés és finomítás','step4-desc':'Valódi kiértékelési keretrendszerrel mérve — dimenziók és küszöbértékek, nem csak egy demó-bemutató.',
+      'step5-title':'Leszállítás és karbantartás','step5-desc':'Éles indítás, majd 2–3 hónap garanciális karbantartás és finomhangolás.',
+      'about-role':'AI-alapú megoldások',
+      'foundation-eyebrow':'Enterprise alapok','foundation-h2':'12+ év valódi IT‑üzemeltetésre épülve.',
+      'foundation-p':'Az alapom több mint 12 év enterprise IT-üzemeltetés és service management — tudom, hogyan viselkedik egy rendszer éles környezetben, terhelés alatt és hibahelyzetben. Erre két irányban építek tovább: AI-first builderként modern, agentikus workflow-kkal (Claude Code) tervezek és szállítok éles digitális termékeket, az AI Solution Analyst képzés pedig kockázat-tudatos szemléletet ad hozzá — use-case azonosítás, kiértékelési keretrendszerek, EU AI Act- és GDPR-tudatos tervezés. Az eredmény egy gyors, gyakorlatias AI-alapú megvalósítás, ami tudja azt is, hol kezdődik a kockázat.',
+      'fact-years':'Év enterprise IT','fact-lang':'Nyelvek','fact-loc':'Székhely','fact-loc-val':'Bécs, Ausztria',
+      'skill-1':'ITIL és ITSM','skill-2':'Igényfelmérés','skill-3':'Folyamat-automatizálás','skill-4':'Claude Code és agentikus workflow-k','skill-5':'Supabase-alapú alkalmazások','skill-6':'Megoldás-tervezés és scope',
+      'skill-7':'Use case és kockázat-feltérképezés','skill-8':'AI kiértékelési keretrendszerek','skill-9':'EU AI Act és GDPR-tudatos delivery',
+      'certs-label':'Képzések és tanúsítványok','cert-1-date':'Elvégezve: 2026. szeptember','cert-2-date':'Elvégezve: 2026. augusztus','cert-3-date':'Elvégezve: 2026. augusztus','cert-4-date':'Elvégezve: 2026. augusztus',
+      'cta-k1':'Készen állok, amikor te is','cta-k2':'Oldjuk meg,','cta-h2':'ami lassít.',
+      'quick-a':'Weboldal','quick-b':'Foglalási workflow','quick-c':'Belső eszköz','quick-d':'Nem biztos, beszéljünk',
+      'time-note':'Kb. 1 percet vesz igénybe','cta-button':'Indítsunk egy beszélgetést',
+      'footer-linkedin':'LinkedIn','footer-email':'Email','copyright':'© 2026 Botos Zoltán. Minden jog fenntartva.',
+      'to-top-label':'Vissza a tetejére'
+    },
+    de: {
+      'nav-home':'Start','nav-solutions':'Lösungen','nav-work':'Arbeiten','nav-approach':'Vorgehen','nav-about':'Über mich','nav-cta':'Kontakt aufnehmen',
+      'hero-eyebrow':'KI-gestützte digitale Lösungen',
+      'hero-h1':'Echte Lösungen, mit <span class="pop">Absicht</span> gebaut.',
+      'hero-lead':'12+ Jahre Erfahrung in Enterprise-IT-Support, Service Operations und Application Coordination — heute als AI-First-Builder angewendet: Websites, Buchungs-Workflows und interne Tools, geplant und risikobewertet mit einem AI-Solution-Analyst-Mindset.',
+      'hero-cta-primary':'Gespräch starten','hero-cta-secondary':'Arbeiten ansehen',
+      'proof-years-label':'Jahre Enterprise-IT','proof-ai-value':'KI-gestützt','proof-ai-label':'Umsetzung','proof-practical-value':'Praktische','proof-practical-label':'Digitale Lösungen',
+      'solutions-eyebrow':'Lösungen','solutions-h2':'Fünf Wege, das zu lösen, was Sie ausbremst.',
+      'card1-title':'Business-Websites','card1-desc':'Schnelle, barrierefreie, SEO-fertige Seiten, die wirklich konvertieren — nicht nur im Portfolio gut aussehen.',
+      'card2-title':'Buchungs- und Kunden-Workflows','card2-desc':'Terminplanung und kundenseitige Abläufe, die jede Reibung aus dem Prozess nehmen.',
+      'card3-title':'Interne Tools &amp; Ops-Apps','card3-desc':'Maßgeschneiderte interne Software, die Tabellen und manuelle Übergaben ersetzt.',
+      'card4-title':'Lösungsumfang &amp; Umsetzungsbegleitung','card4-desc':'Noch unsicher, was Sie brauchen? Scoping, Architektur und praktische Umsetzungsbegleitung, vom ersten Gespräch bis zum Launch.',
+      'card5-title':'AI-Potenzial- &amp; Risikoanalyse','card5-desc':'Wo kann KI tatsächlich sicher helfen? Use-Case-Scoping, Risikoanalyse und Evaluationskriterien, EU-AI-Act- und DSGVO-bewusst.',
+      'work-eyebrow':'Ausgewählte Arbeiten','work-h2':'Geliefert, nicht nur geplant.',
+      'work-mona-tag':'In finaler Verfeinerung — Vorschau folgt','work-mona-meta':'Brautmodengeschäft · Website · In Arbeit','work-mona-desc':'Die öffentliche Seite einer integrierten digitalen Plattform für ein Brautmodengeschäft — Anprobetermine und Kundenanfragen, verbunden mit dem internen Betriebssystem darunter. Aktuell in finaler Verfeinerung, noch nicht öffentlich.','work-soon':'Vorschau folgt in Kürze →',
+      'work-mona2-tag':'Inhalt und Design in Überarbeitung — Vorschau folgt','work-mona2-meta':'Brautmodengeschäft · Buchungssystem · In Arbeit','work-mona2-desc':'Eine interne Reservierungs- und Betriebsanwendung, die Kleiderbestand, Verfügbarkeit und komplexe Verleihbuchungen koordiniert — Anfragen von der Website laufen direkt ein, bereit zur Bearbeitung. Auch eigenständig verkaufbar für Betriebe, die nur ein Buchungssystem ohne öffentliche Website brauchen.',
+      'work-dv-tag':'Live-Produkt','work-dv-meta':'Daily Verse App · Live','work-dv-desc':'Eine mehrsprachige Web-App mit TanStack Start, React und Supabase — Authentifizierung, Row-Level-Security, gespeicherte Verse, Notizen, Themes und Sprachumschaltung. End-to-End geliefert, vom Konzept bis zum Deployment auf Vercel.','work-visit':'Besuchen Sie daily-verse-ten.vercel.app',
+      'approach-eyebrow':'Vorgehen','approach-h2':'Ein strukturierter Prozess — keine Black Box.',
+      'step1-title':'Kontext verstehen','step1-desc':'Wir finden, wo die eigentliche Unsicherheit liegt — und wen sie ausbremst.',
+      'step2-title':'Lösung definieren','step2-desc':'Use Case, Risiko und Scope vorab geklärt — inklusive der Stelle, an der ein Mensch in der Entscheidung bleibt.',
+      'step3-title':'Design und Umsetzung','step3-desc':'Schneller, no-code-validierter Prototyp auf echten Daten, bevor eine Zeile Produktionscode entsteht.',
+      'step4-title':'Testen und verfeinern','step4-desc':'Gemessen an einem echten Evaluation-Framework — Dimensionen und Schwellenwerte, nicht nur ein Demo-Durchklick.',
+      'step5-title':'Lieferung und Wartung','step5-desc':'Livegang, danach 2–3 Monate Gewährleistung mit Wartung und Feinschliff.',
+      'about-role':'KI-gestützte Lösungen',
+      'foundation-eyebrow':'Enterprise-Fundament','foundation-h2':'Aufgebaut auf 12+ Jahren echtem IT-Betrieb.',
+      'foundation-p':'Meine Grundlage sind über 12 Jahre Enterprise-IT-Betrieb und Service-Management — ich weiß, wie Systeme im Produktivbetrieb, unter Last und im Fehlerfall funktionieren. Darauf baue ich in zwei Richtungen auf: als AI-First-Builder entwerfe und liefere ich echte digitale Produkte mit modernen, agentischen Workflows (Claude Code); das AI Solution Analyst-Programm ergänzt das um einen risikobewussten Ansatz — Use-Case-Identifikation, Evaluationsframeworks, EU-AI-Act- und DSGVO-bewusste Planung. Das Ergebnis ist eine schnelle, praxisnahe KI-gestützte Umsetzung, die auch weiß, wo das Risiko beginnt.',
+      'fact-years':'Jahre Enterprise-IT','fact-lang':'Sprachen','fact-loc':'Standort','fact-loc-val':'Wien, Österreich',
+      'skill-1':'ITIL und ITSM','skill-2':'Anforderungsanalyse','skill-3':'Workflow-Automatisierung','skill-4':'Claude Code und agentische Workflows','skill-5':'Supabase-basierte Anwendungen','skill-6':'Lösungsdesign und Scope',
+      'skill-7':'Use-Case- und Risikoanalyse','skill-8':'AI-Evaluation-Frameworks','skill-9':'EU-AI-Act- und DSGVO-bewusste Umsetzung',
+      'certs-label':'Weiterbildung und Zertifikate','cert-1-date':'Abgeschlossen September 2026','cert-2-date':'Abgeschlossen August 2026','cert-3-date':'Abgeschlossen August 2026','cert-4-date':'Abgeschlossen August 2026',
+      'cta-k1':'Bereit, wenn Sie es sind','cta-k2':'Lösen wir,','cta-h2':'was Sie ausbremst.',
+      'quick-a':'Website','quick-b':'Buchungs-Workflow','quick-c':'Internes Tool','quick-d':'Unsicher, lass uns reden',
+      'time-note':'Dauert etwa 1 Minute','cta-button':'Gespräch starten',
+      'footer-linkedin':'LinkedIn','footer-email':'E-Mail','copyright':'© 2026 Zoltan Botos. Alle Rechte vorbehalten.',
+      'to-top-label':'Nach oben'
+    }
+  };
+
+  function setLang(lang){
+    i18nEls.forEach(function(el){
+      var key = el.getAttribute('data-i18n');
+      el.textContent = (lang === 'en') ? originalText[key] : (T[lang] && T[lang][key]) || originalText[key];
+    });
+    i18nHtmlEls.forEach(function(el){
+      var key = el.getAttribute('data-i18n-html');
+      el.innerHTML = (lang === 'en') ? originalHtml[key] : (T[lang] && T[lang][key]) || originalHtml[key];
+    });
+    i18nAriaEls.forEach(function(el){
+      var key = el.getAttribute('data-i18n-aria');
+      el.setAttribute('aria-label', (lang === 'en') ? originalAria[key] : (T[lang] && T[lang][key]) || originalAria[key]);
+    });
+    document.documentElement.lang = lang;
+    langSwitch.querySelectorAll('button').forEach(function(b){ b.classList.toggle('sel', b.getAttribute('data-lang') === lang); });
+    try { localStorage.setItem('preview-lang', lang); } catch(e){}
+  }
+  langSwitch.querySelectorAll('button').forEach(function(b){
+    b.addEventListener('click', function(){ setLang(b.getAttribute('data-lang')); });
+  });
+  var savedLang = 'hu';
+  try { savedLang = localStorage.getItem('preview-lang') || 'hu'; } catch(e){}
+  setLang(savedLang);
+
+  var toTop = document.getElementById('toTop');
+  var toTopRing = document.getElementById('toTopRing');
+  var ringLen = 2 * Math.PI * 23;
+  toTopRing.style.strokeDasharray = ringLen;
+  toTopRing.style.strokeDashoffset = ringLen;
+  var toTopTicking = false;
+  function updateToTop(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var p = max > 0 ? Math.min(1, window.scrollY / max) : 0;
+    toTopRing.style.strokeDashoffset = ringLen * (1 - p);
+    toTop.classList.toggle('show', window.scrollY > window.innerHeight * 0.6);
+    toTopTicking = false;
+  }
+  window.addEventListener('scroll', function(){
+    if (!toTopTicking) { requestAnimationFrame(updateToTop); toTopTicking = true; }
+  }, { passive: true });
+  updateToTop();
+  toTop.addEventListener('click', function(){
+    window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+  });
+
+  document.querySelectorAll('[data-carousel]').forEach(function(car){
+    var imgs = car.querySelectorAll('.carousel-track img');
+    var dots = car.querySelectorAll('.car-dot');
+    if (imgs.length < 2) return;
+    var idx = 0;
+    function show(i){
+      idx = (i + imgs.length) % imgs.length;
+      imgs.forEach(function(im,j){ im.classList.toggle('active', j === idx); });
+      dots.forEach(function(d,j){ d.classList.toggle('active', j === idx); });
+    }
+    car.querySelector('.prev').addEventListener('click', function(){ show(idx - 1); });
+    car.querySelector('.next').addEventListener('click', function(){ show(idx + 1); });
+    dots.forEach(function(d,j){ d.addEventListener('click', function(){ show(j); }); });
+  });
+})();
+</script>
