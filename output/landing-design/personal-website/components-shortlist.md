@@ -91,6 +91,28 @@ beszélgetésben. Frissítve folyamatosan, a builder fázis ebből dolgozik.
   gyakorlatilag inert); ha globális, visszafogottabb intenzitással,
   mint a demo.
 
+### Proof strip + footer eszközpark: minták a nexus-studio-ból (Vite+React+Tailwind+framer-motion, ugyanaz a stack!)
+
+Forrás: github.com/legendxdevil/nexus-studio — egy kitalált, többfős
+ügynökség sablonja (fiktív csapat, kamu ügyfél-logók/esettanulmányok
+kamu számokkal, kamu árazás/FAQ). **A tartalmat és a Team/Pricing/
+Case Studies/Testimonials/Blog szekciókat NEM vesszük át** — direkt
+ütközik a CLAUDE.md "nincs kitalált testimonial/logó/metrika" és
+"nem ügynökség-pozicionálás" szabályával. Két strukturális mintát
+viszont igen:
+
+- **Proof strip frissítve**: a `StatsSection` mintája alapján teljes
+  szélességű, tömör akcent-színű sáv, **animált felszámoló
+  számlálókkal** (0-ról a célértékre görgetéskor) — erősebb, mint az
+  eredetileg tervezett vékony ivory stat-sor. Átvezetve a `plan.md`
+  3. szekciójába.
+- **Footer eszközpark, alternatíva a `LogoLoop`-hoz**: a `TechStack`
+  minta alapján statikus, kategorizált pirula-lista, hoverre teljesen
+  kitöltődő akcent-színnel — ha a designer inkább ezt választja a
+  végtelen görgetés helyett (Claude Code / GPT / GitHub / Supabase /
+  Cloudflare / Vercel / Resend / n8n, valódi eszközök, nem a sablon
+  kitalált kategóriái).
+
 ## Segéd-infrastruktúra (nem UI-komponens, hanem a builder alapja)
 
 Forrás: DavidHDev (a React Bits alkotója) saját portfólió-sablonja
