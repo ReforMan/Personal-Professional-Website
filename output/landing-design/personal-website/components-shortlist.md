@@ -62,6 +62,35 @@ beszélgetésben. Frissítve folyamatosan, a builder fázis ebből dolgozik.
   használjuk, ezt buildeléskor javítani kell (szemantikus HTML hiba
   lenne). `prefers-reduced-motion` guard is kell.
 
+## Segéd-infrastruktúra (nem UI-komponens, hanem a builder alapja)
+
+Forrás: DavidHDev (a React Bits alkotója) saját portfólió-sablonja
+(github.com/DavidHDev/rbp-portfolio) — Next.js-alapú, NEM vesszük át
+alapnak (CLAUDE.md Vite + egyoldalas horgony-nav struktúrát ír elő,
+ez a sablon Next.js + több route). Két mintát viszont kiemeltünk és
+Vite/framer-motion-re adaptáltunk:
+
+- **`reference-snippets/useReducedMotion.tsx`** — egy `useReducedMotion()`
+  hook + kész `MotionDiv`/`StaggerContainer`/`StaggerItem` komponensek,
+  amik automatikusan csökkentett-mozgásra váltanak. **Ez legyen a
+  közös alap minden ma jóváhagyott komponens `prefers-reduced-motion`
+  hiányosságának javításához** (WebThreads, TrueFocus, ScrollReveal,
+  GooeyNav, StaggeredMenu, Stepper) — nem kell mindegyikbe külön
+  matchMedia-logikát írni, ez a wrapper-készlet adja.
+- **`reference-snippets/SmoothScroll.tsx`** — opcionális, oldal-szintű
+  Lenis smooth-scroll, ami csökkentett mozgásnál automatikusan ki sem
+  indul, és az `href="#szekcio"` horgony-linkeket helyesen köti össze
+  a sima görgetéssel. Csak akkor kell bekötni, ha végül globális
+  smooth-scroll mellett döntünk — alapból nincs aktiválva.
+
+## Elvetve (kliséveszély)
+
+- **ScrambledText** (React Bits, GSAP `ScrambleTextPlugin`+`SplitText`)
+  — egérközelségre "dekódolódó" monospace szöveg-effekt. A designer
+  megnézte és elengedte: túl közel van a "hacker terminál / mesterséges
+  intelligencia gondolkodik" vizuális klisékhez, amiket kifejezetten
+  el akarunk kerülni.
+
 ## Fotóra vár
 
 - **ProfileCard** (React Bits, nincs extra npm-függőség) — holografikus,
