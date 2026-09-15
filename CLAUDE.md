@@ -106,7 +106,8 @@ készült, jóváhagyásra vár.
   szekcióra — demo/preview célra részleges fordítás elfogadható, éles
   oldalra nem.
 - **Világos/sötét mód váltó**: a látogató válthat a két módban a nav-ban.
-  A szekció-szintű szín-ritmus (Hero/Approach/Contact sötét sáv,
+  Alapértelmezett mód: dark (a designer explicit döntése) — világos
+  választható. A szekció-szintű szín-ritmus (Hero/Approach/Contact sötét sáv,
   Solutions/Work/Foundation világos) marad tervezési elemként mindkét
   módban — dark módban a világos szekciók alap-tónusa vált sötétre,
   nem az egész oldal invertálódik egyszerűen.
