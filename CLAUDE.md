@@ -30,9 +30,20 @@ Szekciók:
   Practical Digital Solutions
 - Négy solution card: business websites; booking/customer workflows;
   internal tools/ops apps; solution scope & implementation support
-- Selected work:
-  - MONA Wedding Dress Salon — végső finomításban, MÉG NEM publikus,
-    semmilyen érzékeny adat/screenshot nem kerülhet fel
+- Selected work (3 elem, külön kártyaként — nem egy projekt, hiába
+  kapcsolódnak össze):
+  - MONA Wedding Dress Salon — weboldal, végső finomításban, MÉG NEM
+    publikus, semmilyen érzékeny adat/screenshot nem kerülhet fel
+  - MONA foglalási rendszer (reservation app) — funkcionálisan külön
+    projekt, előbb készült el, mint a weboldal, utólag lett összekötve
+    vele. MÉG NEM publikus: hiányos a feltöltött tartalom (csak pár
+    ruha van fent), és a design is felülvizsgálatra szorulhat. Ugyanúgy
+    embargó-placeholderként kezelendő, mint a weboldal — semmilyen
+    screenshot/részlet nem mehet ki. Külön esettanulmányként azért
+    hasznos, mert önmagában is eladható szolgáltatás (van kliens, akinek
+    csak foglalási rendszer kell, weboldal nélkül) — a "booking/customer
+    workflows" szolgáltatás-kategóriát bizonyítja, míg a weboldal a
+    "business websites" kategóriát.
   - Daily Verse — élesben: https://daily-verse-ten.vercel.app/
 - Négylépéses working approach: Understand the context / Define the
   solution / Design and build / Test and refine

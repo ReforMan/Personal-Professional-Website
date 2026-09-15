@@ -73,18 +73,24 @@ súrlódásmentes felhívás a beszélgetésre, minimál, bizalom-építő foote
   belépő ajánlat) + három kisebb. Világos alap, gold akcent a hover-
   állapoton. Különbözik az előző stat-sortól és a következő split-től.
 
-### 4. Selected work (MONA + Daily Verse)
+### 4. Selected work (MONA weboldal + MONA foglalási app + Daily Verse — 3 külön kártya)
 - **Job:** bizonyíték, hogy nem csak terv, hanem szállított munka.
-- **Kulcsüzenet:** valódi, működő rendszerek.
+- **Kulcsüzenet:** valódi, működő rendszerek — és két külön szolgáltatás-
+  kategória (weboldal ÉS foglalási rendszer) bizonyítéka egy klienstől.
 - **Perszóna:** minden célcsoport, különösen a döntéshozók.
-- **Art direction:** **editorial 60/40 aszimmetrikus split**, projektenként
-  váltakozó oldal (Daily Verse: kép balra/szöveg jobbra; MONA: szöveg
-  balra/kép jobbra — de MONA-nál a "kép" helyén egy diszkrét, embargó-
+- **Art direction:** **editorial 60/40 aszimmetrikus split**, kártyánként
+  váltakozó oldal (Daily Verse: kép balra/szöveg jobbra; MONA weboldal:
+  szöveg balra/kép jobbra; MONA foglalási app: kép balra/szöveg jobbra —
+  vissza a Daily Verse mintájához, hogy a 3. kártya ne ismételje közvetlenül
+  a 2.-at). MONA mindkét kártyájánál a "kép" helyén egy diszkrét, embargó-
   jelölt absztrakt placeholder-vizuál, SOHA nem üres szürke doboz — lásd
-  `HIANYZO-ADATOK.md`). Jobbra igazított metaadat-oszlop (szerep / stack /
-  státusz), kör alakú "Megnézem" gomb Magic UI `magic-card` spotlight-tal
-  a kártyán. Full-bleed képszél. Különbözik a bento-tól és a következő
-  dark band-től.
+  `HIANYZO-ADATOK.md` (ok külön jelölve: weboldalnál "végső finomítás",
+  foglalási appnál "hiányos tartalom + design felülvizsgálat alatt").
+  Jobbra igazított metaadat-oszlop (szerep / stack / státusz), kör alakú
+  "Megnézem" gomb Magic UI `magic-card` spotlight-tal a kártyán.
+  Full-bleed képszél. Különbözik a bento-tól és a következő dark band-től.
+  A metaadat-oszlopban a MONA két kártyájánál eltérő "szerep" címke
+  (Website / Booking System), hogy egyértelmű legyen: két külön munka.
 
 ### 5. Working approach (Understand / Define / Design & build / Test & refine)
 - **Job:** folyamat-átláthatóság — nem "fekete doboz" AI-munka.
