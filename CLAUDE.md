@@ -91,6 +91,17 @@ készült, jóváhagyásra vár.
 - Teljesen reszponzív, mobile-first, akadálymentes (szemantikus HTML,
   billentyű-navigáció, focus state-ek, kontraszt), erős SEO metaadatok
 - Deploy: Cloudflare Pages (main = éles, dev = fejlesztés)
+- **Nyelvváltó**: EN / HU / DE, nav-ban egy high-tech ikonos (nem zászló)
+  switch. Alapértelmezett nyelv: EN (a nemzetközi célközönség miatt) —
+  [ASSUMPTION: felülírható, ha a designer inkább HU-t akar alapnak].
+  A teljes, végleges fordítás a copywriter-fázis feladata minden
+  szekcióra — demo/preview célra részleges fordítás elfogadható, éles
+  oldalra nem.
+- **Világos/sötét mód váltó**: a látogató válthat a két módban a nav-ban.
+  A szekció-szintű szín-ritmus (Hero/Approach/Contact sötét sáv,
+  Solutions/Work/Foundation világos) marad tervezési elemként mindkét
+  módban — dark módban a világos szekciók alap-tónusa vált sötétre,
+  nem az egész oldal invertálódik egyszerűen.
 
 ## Működési szabályok
 

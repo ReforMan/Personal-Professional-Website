@@ -80,16 +80,15 @@ beszélgetésben. Frissítve folyamatosan, a builder fázis ebből dolgozik.
 - GlowCursor (lásd lent) és a valódi logós opció (korábbi munkáltatók/
   ügyfelek) egyelőre nem került be — nincs hozzá kép-anyag/engedély.
 
-### Kurzor-aláírás vagy Hero-effekt: **GlowCursor** (React Bits, OGL/WebGL2)
+### Kurzor-aláírás: **GlowCursor** (React Bits, OGL/WebGL2) — ELDÖNTVE: globális
+
 - Fénylő, pulzáló nyomvonal a kurzor mögött, idle-fade beépítve.
-- Ugyanabból a családból, mint a már kiválasztott `WebThreads` — **nyitott
-  kérdés, melyik szerepet kapja** (globális, végigkísérő kurzor-aláírás
-  VAGY Hero-effekt, nem mindkettő egyszerre, hogy ne duplázódjon a
-  GPU-terhelés és a vizuális motívum). A designer még nem döntött.
-- **TEENDŐ, ha bekerül**: `prefers-reduced-motion` guard; csak
+- **Eldőlt**: globális, végigkísérő kurzor-aláírás lesz, a `WebThreads`
+  marad a Hero saját effektje — nem ugyanaz a szerep, nem duplázódik.
+- **TEENDŐ**: `prefers-reduced-motion` guard; csak
   `(hover: hover) and (pointer: fine)` eszközökön fusson (érintőn
-  gyakorlatilag inert); ha globális, visszafogottabb intenzitással,
-  mint a demo.
+  gyakorlatilag inert); visszafogott intenzitással, mint a demo (nem
+  vonhatja el a figyelmet a tartalomról).
 
 ### Proof strip + footer eszközpark: minták a nexus-studio-ból (Vite+React+Tailwind+framer-motion, ugyanaz a stack!)
 
