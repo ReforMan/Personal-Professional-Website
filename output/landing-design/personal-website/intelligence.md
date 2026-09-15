@@ -173,6 +173,26 @@ NEM vesszük át:
   ("DOWNLOAD · CV · DOWNLOAD · CV" körbefutva) + középen egy letöltés-
   ikon, graphite/gold színben, hover-en felgyorsuló forgással.
 
+### Contact / "Let's Talk" blokk (7. képkör)
+
+- Külön, playful belépő-képernyő ("Bonjour / Hola / Hello" kézírásos
+  betűkkel, színes hullám-gradiens háttér) — ez NEM a mi irányunk
+  (túl játékos/színes), nem vesszük át.
+- A tényleges form **Typeform-stílusú, lépésenkénti kérdőív**: egy
+  kérdés képernyőnként, **letterelt (A/B/C…) gyors-választó gombok**
+  ("Choose as many as you like" — több is választható), "OK" gomb a
+  továbblépéshez.
+- Mikroszöveg a CTA gomb alatt: **"Takes 45 sec"** — idő-becslés, ami
+  csökkenti a súrlódást a form kitöltése előtt.
+- **Átvehető minta**: a mi Contact CTA szekciónk (CLAUDE.md: név, cég,
+  email, mit szeretnének javítani, időkeret) az "mit szeretnél javítani"
+  mezőt gyors, letterelt választógombokként is felkínálhatja (pl. A)
+  Weboldal · B) Booking/ügyfél-workflow · C) Belső eszköz · D) Nem
+  biztos, beszéljünk), a hagyományos mezők (név/cég/email/időkeret)
+  mellett. Az űrlap fölé/alá egy "kb. 1 perc" idő-becslés mikroszöveg
+  kerül — ugyanaz a súrlódás-csökkentő elv, architektúrális, egyszínű
+  gomb-stílusban (nem színes Typeform-dizájnnal).
+
 ## Kategória-kutatás (saját, a designer beleegyezésével — "kutass magad")
 
 A designer az inspiráció-kapunál a "Nem, kutass magad" opciót választotta

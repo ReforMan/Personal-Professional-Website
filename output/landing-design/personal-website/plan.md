@@ -118,7 +118,12 @@ súrlódásmentes felhívás a beszélgetésre, minimál, bizalom-építő foote
   lassan úszó, halvány — az inspiráció szivárvány-marquee-jének
   visszafogott, egyszínű verziója, mint vizuális horgony a footer előtt.
   Ez az egyetlen másik center-aligned szekció a hero mellett (max 2,
-  szabály szerint).
+  szabály szerint). Az űrlap "mit szeretnél javítani?" mezője **gyors,
+  letterelt választógombokként** jelenik meg (A/B/C/D — Weboldal /
+  Booking-workflow / Belső eszköz / Nem biztos), a név/cég/email/
+  időkeret mezők mellett, "kb. 1 perc" idő-becslés mikroszöveggel a
+  gomb fölött (ld. intelligence.md Typeform-minta — architektúrális,
+  egyszínű kivitelben, NEM a Typeform színes stílusában).
 
 ### 8. Footer
 - **Job:** minimál lezárás, elérhetőségek.
