@@ -113,7 +113,9 @@ súrlódásmentes felhívás a beszélgetésre, minimál, bizalom-építő foote
   lépcsőzetes tipó-hierarchia (kicker → alcím gold → nagy bold záró-
   mondat — az inspiráció "Creative / ... / STORYTELLING." mintájának
   architektúrális, egyszínű megfelelője). Közvetlenül alatta egy **finom,
-  egyszínű Magic UI `marquee`-sáv** a szolgáltatás-kulcsszavakból
+  egyszínű `LogoLoop`-sáv** (React Bits — a Magic UI marquee helyett ezt
+  választottuk, mert alapból helyesen kezeli a `prefers-reduced-motion`-t)
+  a szolgáltatás-kulcsszavakból
   (Websites · Booking Workflows · Internal Tools · AI-Assisted Delivery),
   lassan úszó, halvány — az inspiráció szivárvány-marquee-jének
   visszafogott, egyszínű verziója, mint vizuális horgony a footer előtt.
@@ -133,8 +135,11 @@ súrlódásmentes felhívás a beszélgetésre, minimál, bizalom-építő foote
   placeholder" egy **körkörös, lassan forgó szöveg-gyűrű jelvény**
   ("DOWNLOAD · CV" körbefutva, letöltés-ikon középen, graphite/gold),
   hover-en felgyorsuló forgással — konkrét, átvett komponens-ötlet (ld.
-  intelligence.md Resume-fül). Nincs rács-törés — ez szándékosan a
-  "leengedés" a nagy CTA után.
+  intelligence.md Resume-fül). A copyright-sor fölött egy nagyon
+  visszafogott **`LogoLoop` tech-stack sáv** (React · TypeScript · Vite ·
+  Tailwind · Cloudflare ikonok, kicsi, halvány, lassú) — diszkrét "built
+  with" hitelesség-jel, nem versenyez a fő tartalommal. Nincs rács-törés
+  — ez szándékosan a "leengedés" a nagy CTA után.
 
 ## Amit NEM veszünk át (ld. intelligence.md)
 
