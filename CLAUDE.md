@@ -42,12 +42,26 @@ Szekciók:
 
 ## Vizuális irány
 
-Prémium, modern, architektúrális (nem sci-fi). Közel-fekete
-graphite/charcoal alap, meleg sand/champagne-gold/ivory akcentusok.
-TILOS: corporate blue, neon cyberpunk, robotok/AI-agyak/code rain/
-generikus áramköri minták/stock fotók. Absztrakt rétegzett síkok,
-finom perspektíva-vonalak, visszafogott fénymozgás. Visszafogott
-animáció, `prefers-reduced-motion` tiszteletben tartása.
+Prémium, modern — de MEG NEM visszafogott vagy diszkrét. A designer
+kifejezetten unalmasnak/vaníliásnak/kockának minősítette a túl visszafogott
+első irányt: merész, magabiztos, energikus, futurisztikus/high-tech vizuál
+kell, ami nemzetközi közönség előtt is üt (a cél nemzetközi kliens-kör,
+nem csak helyi). Telített színek, erős kontraszt, kifejező mozgás/animáció
+mind mehet — a "kevesebb szín, lassabb mozgás" alapállás itt NEM érvényes,
+ezt a designer explicit felülírta.
+
+Egyetlen kőbe vésett tiltólista van (ezek klisék, nem energia-kérdés):
+corporate blue, neon cyberpunk, robotok/AI-agyak/code rain/generikus
+áramköri minták, stock fotók. Fake testimonial/logó/metrika sem kitalálható
+(ld. "Amit kerülj").
+
+Kötelező marad — ez nem stílus, hanem akadálymentességi alapkövetelmény:
+minden animáció leáll `@media (prefers-reduced-motion: reduce)` alatt,
+akármilyen energikus egyébként a mozgásnyelv.
+
+A konkrét paletta/tipó/formanyelv a landing-design fázisban dől el
+(ld. output/landing-design/personal-website/) — ott A és B irány is
+készült, jóváhagyásra vár.
 
 ## Tech stack és workflow
 
