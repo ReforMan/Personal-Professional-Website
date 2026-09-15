@@ -62,6 +62,31 @@ beszélgetésben. Frissítve folyamatosan, a builder fázis ebből dolgozik.
   használjuk, ezt buildeléskor javítani kell (szemantikus HTML hiba
   lenne). `prefers-reduced-motion` guard is kell.
 
+### Marquee-sávok: **LogoLoop** (React Bits, nincs extra függőség)
+- Végtelen görgő logó/ikon-sáv, szél-elhalványítással, hover-lassítással.
+- **Alapból helyesen kezeli a `prefers-reduced-motion`-t** — ritka
+  pozitív kivétel a mai listában.
+- Két helyen, két tartalommal (a designer döntése):
+  1. **Contact CTA alatt**: szolgáltatás-kulcsszavak szövegként
+     (Websites · Booking Workflows · Internal Tools · AI-Assisted
+     Delivery) — felváltja a plan.md-ben korábban Magic UI `marquee`-ként
+     szereplő helyet.
+  2. **Footerben**: tech-stack ikonok (React/TypeScript/Vite/Tailwind/
+     Cloudflare), kicsi és halvány, diszkrét "built with" hitelesség-jel.
+- GlowCursor (lásd lent) és a valódi logós opció (korábbi munkáltatók/
+  ügyfelek) egyelőre nem került be — nincs hozzá kép-anyag/engedély.
+
+### Kurzor-aláírás vagy Hero-effekt: **GlowCursor** (React Bits, OGL/WebGL2)
+- Fénylő, pulzáló nyomvonal a kurzor mögött, idle-fade beépítve.
+- Ugyanabból a családból, mint a már kiválasztott `WebThreads` — **nyitott
+  kérdés, melyik szerepet kapja** (globális, végigkísérő kurzor-aláírás
+  VAGY Hero-effekt, nem mindkettő egyszerre, hogy ne duplázódjon a
+  GPU-terhelés és a vizuális motívum). A designer még nem döntött.
+- **TEENDŐ, ha bekerül**: `prefers-reduced-motion` guard; csak
+  `(hover: hover) and (pointer: fine)` eszközökön fusson (érintőn
+  gyakorlatilag inert); ha globális, visszafogottabb intenzitással,
+  mint a demo.
+
 ## Segéd-infrastruktúra (nem UI-komponens, hanem a builder alapja)
 
 Forrás: DavidHDev (a React Bits alkotója) saját portfólió-sablonja
