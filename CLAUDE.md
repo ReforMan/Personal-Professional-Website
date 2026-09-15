@@ -55,6 +55,15 @@ corporate blue, neon cyberpunk, robotok/AI-agyak/code rain/generikus
 áramköri minták, stock fotók. Fake testimonial/logó/metrika sem kitalálható
 (ld. "Amit kerülj").
 
+**Egy explicit kivétel a tiltólista alól**: egy kicsi, visszafogott,
+absztrakt szem-jel (kör + két "szem", ami finoman a kurzor felé mozdul)
+a nav-logó/márka-jel szerepében engedélyezett — a designer megnézte
+élőben, és nem a tiltott "robot/AI-agy" kategóriának minősítette
+(statikus, nem giccses, nem hero-központi). Ld.
+output/landing-design/personal-website/components-shortlist.md
+részletekért. Ez NEM nyitja meg az utat más robot/AI-ikonográfiának —
+kifejezetten csak erre az egy, jóváhagyott elemre vonatkozik.
+
 Kötelező marad — ez nem stílus, hanem akadálymentességi alapkövetelmény:
 minden animáció leáll `@media (prefers-reduced-motion: reduce)` alatt,
 akármilyen energikus egyébként a mozgásnyelv.

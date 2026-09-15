@@ -113,6 +113,30 @@ viszont igen:
   Cloudflare / Vercel / Resend / n8n, valódi eszközök, nem a sablon
   kitalált kategóriái).
 
+### Nav-logó / márka-jel: **szem-jel, kurzort követő verzió** (miurla/morphic ihlette, saját implementáció)
+
+Forrás: github.com/miurla/morphic `components/ui/animated-logo.tsx` — egy
+egyszerű SVG-jel (kör + két "szem"). Az eredeti kódban NEM kurzort követ,
+hanem előre animált "körülnéz" mozgást csinál (`lookAround` keyframe) +
+idle pislogást. A designer ezt megnézte, és a kurzort ténylegesen követő
+saját variánst (élő demóként megnézve, ld. artifact) találta jónak —
+**nem robot-klisének minősítette**, mert absztrakt, statikus, visszafogott,
+és nem csinál mást, csak "figyel". Kivétel a CLAUDE.md robot/AI-ikon
+tiltása alól, a designer explicit döntése alapján, saját mérlegeléssel.
+
+- **Hol**: kicsi, visszafogott **nav-logó/márka-jel** — NEM hero-központi
+  elem, csak egy diszkrét, aláírás-szintű detail a fejlécben.
+- **Viselkedés**: a "szemek" az egér irányába mozdulnak el kis
+  amplitúdóval (nem szó szerinti pupilla-követés, inkább finom parallax-
+  elmozdulás) — saját, egyszerű implementáció, nem a Morphic kódjának
+  másolása (az MIT licenc alatt van, de a saját verzió amúgy is
+  egyszerűbb: nincs benne a Morphic-specifikus blink-logika).
+- **TEENDŐ**: `prefers-reduced-motion`-nél a szemek középen maradnak,
+  nem mozdulnak; érintőképernyőn (nincs egér) statikus, középre néző
+  állapot.
+- Színezés: a végleges design-tokens szerint (kör = graphite/indigo
+  alap, szemek = ivory/fehér, esetleg akcent-szín pupilla).
+
 ## Segéd-infrastruktúra (nem UI-komponens, hanem a builder alapja)
 
 Forrás: DavidHDev (a React Bits alkotója) saját portfólió-sablonja
