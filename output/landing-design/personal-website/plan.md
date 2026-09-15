@@ -54,12 +54,15 @@ súrlódásmentes felhívás a beszélgetésre, minimál, bizalom-építő foote
 - **Job:** azonnali hitelesítés, mielőtt bármi mást állítanánk.
 - **Kulcsüzenet:** nem üres marketing — mérhető alap.
 - **Perszóna:** cégvezetők, recruiterek — gyors szkennelés.
-- **Art direction:** vékony, **világos ivory** sáv közvetlenül a sötét
-  hero alatt (azonnali kontrasztváltás = vizuális horgony). NEM 3 egyforma
-  ikon-kártya — editorial stat-sor: három elem elválasztó vékony
-  vonalakkal, az egyik (12+ Years) vizuálisan dominánsabb (nagyobb szám,
-  display tipó). Különbözik a hero split mintától és a következő
-  bento-tól.
+- **Art direction:** **teljes szélességű, tömör akcent-színű sáv**
+  (gold vagy coral, az irány szerint) közvetlenül a sötét hero alatt —
+  erős kontrasztváltás, nem visszafogott ivory csík. A számok
+  **animáltan felszámolnak** 0-ról a célértékre, amikor a szekció
+  görgetésre a képernyőre ér (pl. "12+ Years", "4+ Delivered Projects"
+  stb.) — konkrét, átvett minta (ld. components-shortlist.md
+  `StatsSection`/`AnimatedCounter`). NEM 3 egyforma ikon-kártya — a
+  számok maguk a hangsúly, nagy display tipóval. Különbözik a hero
+  split mintától és a következő bento-tól.
 
 ### 3. Solution cards (négy: websites / booking-workflows / internal tools / scope & support)
 - **Job:** konkrét szolgáltatás-kínálat, azonnal átlátható.
