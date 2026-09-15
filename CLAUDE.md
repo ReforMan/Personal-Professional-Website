@@ -28,8 +28,11 @@ Szekciók:
 - Hero
 - Proof strip: 12+ Years Enterprise IT / AI-Assisted Delivery /
   Practical Digital Solutions
-- Négy solution card: business websites; booking/customer workflows;
-  internal tools/ops apps; solution scope & implementation support
+- Öt solution card: business websites; booking/customer workflows;
+  internal tools/ops apps; solution scope & implementation support;
+  AI opportunity & risk assessment (use-case scoping, kockázat-
+  feltérképezés, EU AI Act/GDPR-tudatos tervezés — az AI Solution
+  Analyst végzettségből eredő, önálló szolgáltatás-kategória)
 - Selected work (3 elem, külön kártyaként — nem egy projekt, hiába
   kapcsolódnak össze):
   - MONA Wedding Dress Salon — weboldal, végső finomításban, MÉG NEM
@@ -45,9 +48,14 @@ Szekciók:
     workflows" szolgáltatás-kategóriát bizonyítja, míg a weboldal a
     "business websites" kategóriát.
   - Daily Verse — élesben: https://daily-verse-ten.vercel.app/
-- Négylépéses working approach: Understand the context / Define the
-  solution / Design and build / Test and refine
-- Enterprise foundation szekció
+- Ötlépéses working approach: Understand the context / Define the
+  solution / Design and build / Test and refine / Delivery & maintenance
+  (2-3 hónap garanciális karbantartással)
+- Enterprise foundation szekció — kompetencia-cimkék (a valódi CV
+  alapján, ld. knowledge-base/briefs/personal-website/) és egy kompakt
+  Training & Certifications jelvény-sor (Designer 2.0, AI Solution
+  Analyst Program, Claude Code, Vibe Coding — dátumokkal), ami a tényleges
+  elvégzett képzéseket bizonyítja
 - Contact CTA
 - Minimál footer: LinkedIn, email, CV placeholder
 
