@@ -71,8 +71,12 @@ beszélgetésben. Frissítve folyamatosan, a builder fázis ebből dolgozik.
      (Websites · Booking Workflows · Internal Tools · AI-Assisted
      Delivery) — felváltja a plan.md-ben korábban Magic UI `marquee`-ként
      szereplő helyet.
-  2. **Footerben**: tech-stack ikonok (React/TypeScript/Vite/Tailwind/
-     Cloudflare), kicsi és halvány, diszkrét "built with" hitelesség-jel.
+  2. **Footerben**: NEM a site saját frontend-stackje, hanem a designer
+     valódi, projektekben használt eszközparkja (ehhez ÉS a MONA
+     projekthez): **Claude Code, GPT, GitHub, Supabase, Cloudflare,
+     Vercel, Resend** + amit még megad — kicsi, halvány, lassú sáv,
+     diszkrét, de konkrét hitelesség-jel az "AI-assisted delivery"
+     pozicionáláshoz.
 - GlowCursor (lásd lent) és a valódi logós opció (korábbi munkáltatók/
   ügyfelek) egyelőre nem került be — nincs hozzá kép-anyag/engedély.
 

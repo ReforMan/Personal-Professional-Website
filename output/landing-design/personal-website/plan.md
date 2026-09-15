@@ -136,10 +136,14 @@ súrlódásmentes felhívás a beszélgetésre, minimál, bizalom-építő foote
   ("DOWNLOAD · CV" körbefutva, letöltés-ikon középen, graphite/gold),
   hover-en felgyorsuló forgással — konkrét, átvett komponens-ötlet (ld.
   intelligence.md Resume-fül). A copyright-sor fölött egy nagyon
-  visszafogott **`LogoLoop` tech-stack sáv** (React · TypeScript · Vite ·
-  Tailwind · Cloudflare ikonok, kicsi, halvány, lassú) — diszkrét "built
-  with" hitelesség-jel, nem versenyez a fő tartalommal. Nincs rács-törés
-  — ez szándékosan a "leengedés" a nagy CTA után.
+  visszafogott **`LogoLoop` tech-stack sáv**, kicsi, halvány, lassú —
+  de NEM a site saját frontend-stackje, hanem a **valódi eszközpark**,
+  amit a designer ehhez ÉS a MONA projekthez ténylegesen használ:
+  Claude Code, GPT, GitHub, Supabase, Cloudflare, Vercel, Resend +
+  amit még megad. Ez erősebb hitelesség-jel, mint egy sima "built with
+  React" sáv — konkrétan az "AI-assisted delivery" pozicionálást
+  támasztja alá valós eszközökkel. Nincs rács-törés — ez szándékosan a
+  "leengedés" a nagy CTA után.
 
 ## Amit NEM veszünk át (ld. intelligence.md)
 
