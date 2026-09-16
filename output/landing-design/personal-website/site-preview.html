@@ -543,7 +543,7 @@
         </div>
       </div>
       <div class="holo-toggle">
-        <span>Holo shine:</span>
+        <span data-i18n="holo-label">Holo shine:</span>
         <button type="button" id="holoBtn">Off</button>
       </div>
     </div>
@@ -823,11 +823,20 @@
     });
   }
   var holoBtn = document.getElementById('holoBtn');
+  var holoLabelsEn = { on: 'On', off: 'Off' };
+  function updateHoloLabel(){
+    if (!holoBtn) return;
+    var lang = document.documentElement.lang || 'hu';
+    var state = holoBtn.classList.contains('on') ? 'on' : 'off';
+    if (lang === 'en') { holoBtn.textContent = holoLabelsEn[state]; return; }
+    var key = state === 'on' ? 'holo-on-label' : 'holo-off-label';
+    holoBtn.textContent = (T[lang] && T[lang][key]) || holoLabelsEn[state];
+  }
   if (holoBtn && pcardWrap) {
     holoBtn.addEventListener('click', function(){
       var on = pcardWrap.classList.toggle('holo-on');
-      holoBtn.textContent = on ? 'On' : 'Off';
       holoBtn.classList.toggle('on', on);
+      updateHoloLabel();
     });
   }
 
@@ -990,6 +999,7 @@
       'step4-title':'Tesztelés és finomítás','step4-desc':'A működést, a reszponzivitást, a fő felhasználói folyamatokat és a meghatározott elfogadási szempontokat valós használati helyzetek alapján ellenőrizzük.',
       'step5-title':'Átadás és támogatás','step5-desc':'Az átadás dokumentált és átlátható. A bevezetés utáni támogatás és karbantartás pontos kereteit az adott projekt ajánlata és megállapodása rögzíti.',
       'about-role':'AI-alapú megoldások',
+      'holo-label':'Holo fény:','holo-on-label':'Be','holo-off-label':'Ki',
       'foundation-eyebrow':'ENTERPRISE ALAPOK','foundation-h2':'12+ év valódi IT-üzemeltetésre építve.',
       'foundation-p':'Több mint 12 éve dolgozom enterprise IT-környezetekben, elsősorban IT support, system support, application support és service operations területen. Ez megtanított arra, hogyan kapcsolódnak egymáshoz a rendszerek, a felhasználók és az üzleti folyamatok — és arra is, hogy egy megoldásnak nemcsak működnie kell, hanem érthetőnek, kezelhetőnek és fenntarthatónak is kell lennie.','foundation-p2':'Erre az alapra építettem rá az AI Solution Analyst, Claude Code, Vibe Coding és Designer 2.0 képzéseken megszerzett tudást. Az AI Solution Analyst szemléletet ad az üzleti lehetőségek, use case-ek, kockázatok, értékelési szempontok és emberi kontrollpontok meghatározásához. A Claude Code és a Vibe Coding gyakorlati alapot adott az AI-asszisztált megvalósításhoz.','foundation-p3':'A Designer 2.0 egy intenzív, nyolchetes AI-first solution design és delivery program volt, amely az UX- és UI-folyamatoktól az agentikus munkafolyamatokon, technikai integrációkon és minőségbiztosításon át a production readinessig, dokumentációig és ügyfélátadásig vezette végig a teljes megvalósítási folyamatot.','foundation-p4':'Ma ezt a három nézőpontot kapcsolom össze: enterprise működési tapasztalatot, strukturált megoldástervezést és AI-asszisztált kivitelezést. Elsősorban kisvállalati weboldalakon, foglalási workflow-kon, belső eszközökön és Supabase-alapú MVP-ken dolgozom.','foundation-p5':'Nem az AI használata önmagában a cél. A cél egy olyan gyakorlatban használható digitális megoldás, amely egy valós problémát old meg, illeszkedik a működéshez, és világossá teszi, hol marad szükség emberi döntésre.',
       'fact-years':'Év enterprise IT','fact-lang':'Nyelvek','fact-loc':'Projektek Európa-szerte','fact-loc-val':'Remote',
@@ -1032,6 +1042,7 @@
       'step4-title':'Testen und optimieren','step4-desc':'Funktionalität, Responsivität, zentrale Nutzerabläufe und die vereinbarten Abnahmekriterien werden anhand realistischer Anwendungsszenarien überprüft.',
       'step5-title':'Übergabe und Betreuung','step5-desc':'Die Übergabe erfolgt dokumentiert und transparent. Der genaue Umfang der Unterstützung und Wartung nach dem Go-live wird für jedes Projekt im Angebot und in der Vereinbarung festgelegt.',
       'about-role':'KI-gestützte Lösungen',
+      'holo-label':'Holo-Schimmer:','holo-on-label':'An','holo-off-label':'Aus',
       'foundation-eyebrow':'ENTERPRISE-FUNDAMENT','foundation-h2':'Aufgebaut auf mehr als 12 Jahren echter IT-Betriebserfahrung.',
       'foundation-p':'Seit mehr als zwölf Jahren arbeite ich in Enterprise-IT-Umgebungen, vor allem in den Bereichen IT-Support, System Support, Application Support und Service Operations. Dabei habe ich gelernt, wie Systeme, Anwender und Geschäftsprozesse zusammenspielen — und dass eine Lösung nicht nur funktionieren, sondern auch verständlich, handhabbar und wartbar bleiben muss.','foundation-p2':'Dieses Fundament habe ich durch die Programme AI Solution Analyst, Claude Code, Vibe Coding und Designer 2.0 erweitert. AI Solution Analysis bietet einen strukturierten Ansatz zur Identifikation von Geschäftsmöglichkeiten, Use Cases, Risiken, Bewertungskriterien und den Punkten, an denen menschliche Kontrolle erforderlich ist. Claude Code und Vibe Coding bilden die praktische Grundlage für die KI-unterstützte Umsetzung.','foundation-p3':'Designer 2.0 war ein intensives, achtwöchiges Programm für AI-first Solution Design und Delivery, das den vollständigen Umsetzungsprozess abdeckte: von UX- und UI-Workflows über agentische Arbeitsabläufe, technische Integrationen und Qualitätssicherung bis hin zu Production Readiness, Dokumentation und Kundenübergabe.','foundation-p4':'Heute verbinde ich diese drei Perspektiven: operative Enterprise-Erfahrung, strukturierte Lösungskonzeption und KI-unterstützte Umsetzung. Mein aktueller Schwerpunkt liegt auf Websites für kleinere Unternehmen, Buchungsprozessen, internen Tools und Supabase-basierten MVPs.','foundation-p5':'Das Ziel ist nicht, KI um ihrer selbst willen einzusetzen. Das Ziel ist eine praxistaugliche digitale Lösung, die ein reales Problem löst, zu den betrieblichen Abläufen passt und klar definiert, an welchen Stellen menschliches Urteilsvermögen Teil des Prozesses bleiben muss.',
       'fact-years':'Jahre Enterprise-IT','fact-lang':'Sprachen','fact-loc':'Projekte europaweit','fact-loc-val':'Remote',
@@ -1069,6 +1080,7 @@
     langSwitch.querySelectorAll('button').forEach(function(b){ b.classList.toggle('sel', b.getAttribute('data-lang') === lang); });
     try { localStorage.setItem('preview-lang', lang); } catch(e){}
     updateMailLink();
+    updateHoloLabel();
   }
   langSwitch.querySelectorAll('button').forEach(function(b){
     b.addEventListener('click', function(){ setLang(b.getAttribute('data-lang')); updateBurgerAria(); });
