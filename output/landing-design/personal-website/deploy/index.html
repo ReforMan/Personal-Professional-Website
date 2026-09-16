@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Zoltan Botos | AI-Assisted Digital Solutions</title>
@@ -318,6 +321,8 @@
   .footer-tech .marquee-track span{font-size:.72rem;opacity:.7;}
   .copyright{text-align:center;font-size:.75rem;padding:18px 0;color:var(--onDarkMuted);opacity:.7;}
 </style>
+</head>
+<body>
 
 <canvas id="glowCursor" aria-hidden="true"></canvas>
 
@@ -620,14 +625,14 @@
     <div class="k2 reveal" data-i18n="cta-k2">Let's solve</div>
     <h2 class="reveal" data-i18n="cta-h2">what slows you down.</h2>
     <div class="quick reveal" role="group" aria-label="What do you want to improve?">
-      <button type="button" data-sel><b>A</b> <span data-i18n="quick-a">Website</span></button>
-      <button type="button" data-sel><b>B</b> <span data-i18n="quick-b">Booking workflow</span></button>
-      <button type="button" data-sel><b>C</b> <span data-i18n="quick-c">Internal tool</span></button>
-      <button type="button" data-sel><b>D</b> <span data-i18n="quick-d">Not sure — let's talk</span></button>
+      <button type="button" data-sel aria-pressed="false"><b>A</b> <span data-i18n="quick-a">Website</span></button>
+      <button type="button" data-sel aria-pressed="false"><b>B</b> <span data-i18n="quick-b">Booking workflow</span></button>
+      <button type="button" data-sel aria-pressed="false"><b>C</b> <span data-i18n="quick-c">Internal tool</span></button>
+      <button type="button" data-sel aria-pressed="false"><b>D</b> <span data-i18n="quick-d">Not sure — let's talk</span></button>
     </div>
     <p class="time-note reveal" data-i18n="time-note">Takes about one minute</p>
     <div class="hero-ctas reveal" style="justify-content:center;margin-bottom:40px;">
-      <a href="mailto:z_botos@hotmail.com" class="btn btn-primary" data-i18n="cta-button">Start a conversation</a>
+      <a href="mailto:z_botos@hotmail.com" class="btn btn-primary" data-i18n="cta-button" id="ctaMailLink">Start a conversation</a>
     </div>
   </div>
   <div class="marquee-band">
@@ -707,9 +712,43 @@
   fillMarquee(document.getElementById('ctaMarquee'), ['Websites','Booking Workflows','Internal Tools','AI-Assisted Delivery']);
   fillMarquee(document.getElementById('footerMarquee'), ['Claude Code','GPT','GitHub','Supabase','Cloudflare','Vercel','Resend','n8n']);
 
-  /* ---------- quick-select buttons ---------- */
-  document.querySelectorAll('[data-sel]').forEach(function(btn){
-    btn.addEventListener('click', function(){ btn.classList.toggle('sel'); });
+  /* ---------- quick-select buttons + contact mailto ---------- */
+  var CONTACT_EMAIL = 'z_botos@hotmail.com';
+  var quickBtns = document.querySelectorAll('[data-sel]');
+  var ctaMailLink = document.getElementById('ctaMailLink');
+  var MAIL_COPY = {
+    en: { subjectGeneral:'Project inquiry from the portfolio site', subjectTopics:'Project inquiry — {topics}', greeting:'Hi Zoltan,', bodyGeneral:'I’d like to talk about a potential project.', bodyTopicsIntro:'I’d like to talk about the following:', signOff:'Thanks,' },
+    hu: { subjectGeneral:'Kapcsolatfelvétel a portfólió oldalról', subjectTopics:'Kapcsolatfelvétel — {topics}', greeting:'Szia Zoltán,', bodyGeneral:'Szeretnék beszélni egy lehetséges projektről.', bodyTopicsIntro:'Az alábbiakról szeretnék beszélni:', signOff:'Üdvözlettel,' },
+    de: { subjectGeneral:'Kontaktanfrage von der Portfolio-Website', subjectTopics:'Kontaktanfrage — {topics}', greeting:'Hallo Zoltan,', bodyGeneral:'Ich möchte gerne über ein mögliches Projekt sprechen.', bodyTopicsIntro:'Ich möchte gerne über Folgendes sprechen:', signOff:'Viele Grüße,' }
+  };
+  function topicLabel(btn, lang){
+    var span = btn.querySelector('[data-i18n]');
+    var key = span.getAttribute('data-i18n');
+    if (lang === 'en') return originalText[key];
+    return (T[lang] && T[lang][key]) || originalText[key];
+  }
+  function updateMailLink(){
+    if (!ctaMailLink) return;
+    var lang = document.documentElement.lang || 'hu';
+    var copy = MAIL_COPY[lang] || MAIL_COPY.en;
+    var selected = Array.prototype.filter.call(quickBtns, function(b){ return b.classList.contains('sel'); });
+    var topics = selected.map(function(b){ return topicLabel(b, lang); });
+    var subject, body;
+    if (topics.length) {
+      subject = copy.subjectTopics.replace('{topics}', topics.join(', '));
+      body = copy.greeting + '\n\n' + copy.bodyTopicsIntro + '\n- ' + topics.join('\n- ') + '\n\n' + copy.signOff;
+    } else {
+      subject = copy.subjectGeneral;
+      body = copy.greeting + '\n\n' + copy.bodyGeneral + '\n\n' + copy.signOff;
+    }
+    ctaMailLink.setAttribute('href', 'mailto:' + CONTACT_EMAIL + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body));
+  }
+  quickBtns.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var pressed = btn.classList.toggle('sel');
+      btn.setAttribute('aria-pressed', pressed ? 'true' : 'false');
+      updateMailLink();
+    });
   });
 
   /* ---------- cursor-following eye mark ---------- */
@@ -1000,6 +1039,7 @@
     document.documentElement.lang = lang;
     langSwitch.querySelectorAll('button').forEach(function(b){ b.classList.toggle('sel', b.getAttribute('data-lang') === lang); });
     try { localStorage.setItem('preview-lang', lang); } catch(e){}
+    updateMailLink();
   }
   langSwitch.querySelectorAll('button').forEach(function(b){
     b.addEventListener('click', function(){ setLang(b.getAttribute('data-lang')); updateBurgerAria(); });
@@ -1138,3 +1178,5 @@
   });
 })();
 </script>
+</body>
+</html>
