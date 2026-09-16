@@ -675,6 +675,25 @@
 
 <script>
 (function(){
+  /* ---------- strip known tracking params from the visible URL ---------- */
+  (function(){
+    if (!window.history || !history.replaceState || !window.URL) return;
+    var url;
+    try { url = new URL(window.location.href); } catch (e) { return; }
+    var EXACT = ['fbclid','gclid','dclid','msclkid','mc_cid','mc_eid'];
+    var drop = [];
+    url.searchParams.forEach(function(value, key){
+      var k = key.toLowerCase();
+      if (k.indexOf('utm_') === 0 || EXACT.indexOf(k) !== -1) drop.push(key);
+    });
+    if (!drop.length) return;
+    drop.forEach(function(key){ url.searchParams.delete(key); });
+    var qs = url.searchParams.toString();
+    try {
+      history.replaceState(history.state, '', url.pathname + (qs ? '?' + qs : '') + url.hash);
+    } catch (e) {}
+  })();
+
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
