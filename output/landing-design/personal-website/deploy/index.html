@@ -4,7 +4,7 @@
 <style>
   :root{
     --indigo900:#17132A; --indigo700:#221C3D; --indigo500:#3B3163;
-    --coral500:#FF5A3C; --coral300:#FF8468; --lime400:#C6F135;
+    --coral500:#FF5A3C; --coral300:#FF8468; --lime400:#C6F135; --coral-text:#DC2200;
     --ivory:#FAF8F5; --ivory-raised:#FFFFFF;
     --onDark:#FAF8F5; --onDarkMuted:#9D93B8;
     --onLight:#19141F; --onLightMuted:#6B6478;
@@ -20,6 +20,7 @@
   :root[data-theme="dark"]{
     --ivory:#17171A; --ivory-raised:#212124;
     --onLight:#F1F0F0; --onLightMuted:#9C9CA3;
+    --coral-text:var(--coral500);
     --shadow-sm:0 2px 10px rgba(0,0,0,.5);
     /* dark-mode: graphite/grey-black, not indigo — csak a coral marad
        végig színes akcentként (proof strip, CTA gombok) */
@@ -33,7 +34,7 @@
   h1,h2,h3{font-family:var(--font-display);font-weight:800;letter-spacing:-0.02em;margin:0;text-wrap:balance;}
   section{padding-block:96px;}
   @media (min-width:900px){section{padding-block:140px;}}
-  .eyebrow{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--coral500);display:block;margin-bottom:14px;}
+  .eyebrow{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--coral-text);display:block;margin-bottom:14px;}
   .eyebrow.on-dark{color:var(--lime400);}
   a{color:inherit;}
   img{max-width:100%;}
@@ -87,7 +88,27 @@
   .nav-cta:hover{background:var(--coral300);transform:translateY(-2px);}
   .burger{display:flex;background:none;border:none;color:var(--onDark);padding:8px;cursor:pointer;flex-shrink:0;}
   @media (min-width:900px){.burger{display:none;}}
-  @media (max-width:640px){.nav-cta{display:none;} .brand-name{font-size:.78rem;} #eyeMark{width:36px;height:36px;}}
+  @media (max-width:640px){.nav-cta{display:none;} .brand-name{font-size:.78rem;} #eyeMark{width:36px;height:36px;}
+    .nav-inner{grid-template-columns:auto 1fr;}
+    .right-cluster{gap:6px;}
+    .lang-switch{padding:2px;}
+    .lang-switch button{padding:5px 7px;}
+    .burger{padding:6px;}}
+
+  /* ---------- MOBILE MENU ---------- */
+  .mobile-menu-backdrop{position:fixed;inset:0;background:rgba(10,8,16,.55);z-index:48;opacity:0;transition:opacity .25s var(--ease-reveal);}
+  .mobile-menu-backdrop.show{opacity:1;}
+  .mobile-menu{position:fixed;top:0;right:0;bottom:0;width:min(300px,84vw);background:var(--indigo900);z-index:49;transform:translateX(100%);transition:transform .3s var(--ease-reveal);box-shadow:-10px 0 40px rgba(0,0,0,.4);padding:88px 24px 28px;overflow-y:auto;}
+  .mobile-menu.show{transform:translateX(0);}
+  @media (min-width:900px){.mobile-menu,.mobile-menu-backdrop{display:none;}}
+  .mobile-menu-nav{display:flex;flex-direction:column;gap:6px;}
+  .mobile-menu-nav a{color:var(--onDark);text-decoration:none;font-family:var(--font-display);font-weight:700;font-size:1.1rem;padding:14px 16px;border-radius:14px;transition:background .2s,color .2s;}
+  .mobile-menu-nav a:hover,.mobile-menu-nav a:focus-visible{background:rgba(255,255,255,.08);}
+  .mobile-menu-nav a.mobile-menu-cta{margin-top:10px;background:var(--coral500);color:#fff;text-align:center;}
+  .mobile-menu-nav a.mobile-menu-cta:hover{background:var(--coral300);}
+  .mobile-menu-nav a:focus-visible{outline:3px solid var(--lime400);outline-offset:2px;}
+  body.mobile-menu-open .to-top{opacity:0!important;visibility:hidden!important;pointer-events:none;}
+  @media (prefers-reduced-motion:reduce){.mobile-menu,.mobile-menu-backdrop{transition:none;}}
 
   /* ---------- HERO ---------- */
   .hero{position:relative;background:linear-gradient(150deg,var(--indigo900) 0%,var(--indigo500) 55%,var(--indigo700) 100%);color:var(--onDark);padding-top:88px;padding-bottom:96px;overflow:hidden;}
@@ -130,9 +151,13 @@
   .bento .card:hover{transform:translateY(-5px) rotate(-.4deg);box-shadow:var(--shadow-lg);}
   .bento .card.big{grid-column:span 2;}
   @media (max-width:759px){.bento .card.big{grid-column:span 1;}}
-  .card .icon-num{font-family:var(--font-display);font-weight:800;font-size:.85rem;color:var(--coral500);}
-  .card h3{font-size:1.3rem;}
+  .card .icon-num{font-family:var(--font-display);font-weight:800;font-size:.85rem;color:var(--coral-text);}
+  .card h3{font-size:1.3rem;overflow-wrap:break-word;hyphens:auto;}
   .card p{color:var(--onLightMuted);font-size:.95rem;margin:0;}
+  @media (min-width:760px) and (max-width:1023px){
+    .bento .card{padding:22px;}
+    .card h3{font-size:1.1rem;}
+  }
 
   /* ---------- SELECTED WORK ---------- */
   .work-item{display:grid;gap:28px;align-items:center;margin-bottom:56px;}
@@ -161,7 +186,7 @@
      screenshot/tartalom nélkül, amíg fel nem oldódik az embargó */
   .work-media.logo-media img{width:100%;height:100%;object-fit:cover;object-position:center 42%;}
   .work-media.logo-media .embargo-tag{position:absolute;left:14px;right:14px;bottom:14px;background:rgba(20,17,30,.78);backdrop-filter:blur(6px);color:var(--onDark);font-size:.76rem;font-weight:700;letter-spacing:.01em;padding:10px 14px;border-radius:12px;text-align:center;}
-  .work-meta{font-family:var(--font-body);font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--coral500);font-weight:700;margin-bottom:10px;}
+  .work-meta{font-family:var(--font-body);font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--coral-text);font-weight:700;margin-bottom:10px;}
   .work-item h3{font-size:1.7rem;margin-bottom:10px;}
   .work-item p{color:var(--onLightMuted);margin:0 0 18px;max-width:48ch;}
   .work-link{display:inline-flex;align-items:center;gap:10px;font-weight:700;text-decoration:none;color:var(--onLight);}
@@ -222,20 +247,23 @@
   .certs-block{margin-top:32px;}
   .certs-label{display:block;font-size:.74rem;color:var(--onLightMuted);text-transform:uppercase;letter-spacing:.06em;font-weight:700;margin-bottom:12px;}
   .certs{display:flex;flex-wrap:wrap;gap:12px;}
-  .cert-item{position:relative;display:flex;align-items:center;gap:12px;padding:14px 18px 14px 14px;border-radius:12px;background:var(--ivory-raised);border:1px solid rgba(59,49,99,.14);box-shadow:var(--shadow-sm);max-width:290px;text-decoration:none;cursor:pointer;overflow:hidden;transition:border-color .24s var(--ease-bounce),transform .24s var(--ease-bounce),box-shadow .24s var(--ease-bounce);}
-  .cert-item::before,.cert-item::after{content:'';position:absolute;width:14px;height:14px;border-color:var(--coral500);opacity:.4;transition:opacity .24s,width .24s,height .24s;}
+  .cert-item{position:relative;display:flex;align-items:flex-start;gap:12px;padding:14px 18px 14px 14px;border-radius:12px;background:var(--ivory-raised);border:1px solid rgba(59,49,99,.14);box-shadow:var(--shadow-sm);max-width:290px;overflow:hidden;transition:border-color .24s var(--ease-bounce),transform .24s var(--ease-bounce),box-shadow .24s var(--ease-bounce);}
+  .cert-item::before,.cert-item::after{content:'';position:absolute;width:14px;height:14px;border-color:var(--coral500);opacity:.4;transition:opacity .24s,width .24s,height .24s;pointer-events:none;}
   .cert-item::before{top:6px;left:6px;border-top:2px solid;border-left:2px solid;}
   .cert-item::after{bottom:6px;right:6px;border-bottom:2px solid;border-right:2px solid;}
   .cert-item:hover{border-color:var(--coral500);transform:translateY(-3px) scale(1.015);box-shadow:var(--shadow-lg);}
   .cert-item:hover::before,.cert-item:hover::after{opacity:1;width:18px;height:18px;}
-  .cert-item:focus-visible{outline:3px solid var(--lime400);outline-offset:2px;}
   .cert-icon{width:30px;height:30px;flex-shrink:0;color:var(--coral500);}
   .cert-text{display:flex;flex-direction:column;gap:3px;min-width:0;}
   .cert-verified{display:flex;align-items:center;gap:5px;font-family:var(--font-body);font-size:.6rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--onLightMuted);}
   .cert-verified .dot{width:5px;height:5px;border-radius:50%;background:var(--lime400);box-shadow:0 0 0 2px rgba(198,241,53,.25);flex-shrink:0;}
   .cert-title{font-size:.82rem;font-weight:700;color:var(--onLight);line-height:1.3;}
   .cert-date{font-family:ui-monospace,'SFMono-Regular',Menlo,Consolas,monospace;font-size:.68rem;letter-spacing:.02em;color:var(--onLightMuted);}
-  .cert-connect{font-size:.68rem;color:var(--coral500);font-weight:700;margin-top:1px;}
+  .cert-connect{font-size:.68rem;color:var(--coral-text);font-weight:700;margin-top:1px;}
+  .cert-links{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:6px;}
+  .cert-view-link,.cert-verify-link{font-size:.7rem;font-weight:700;text-decoration:underline;text-underline-offset:2px;color:var(--coral-text);padding:5px 2px;margin:-5px -2px;border-radius:4px;}
+  .cert-view-link:hover,.cert-verify-link:hover{color:var(--coral500);}
+  .cert-item a:focus-visible{outline:3px solid var(--lime400);outline-offset:2px;}
   @media (prefers-reduced-motion:reduce){.cert-item{transition:none;} .cert-item:hover{transform:none;}}
 
   /* ---------- CONTACT CTA ---------- */
@@ -263,10 +291,6 @@
   .footer-links{display:flex;gap:20px;flex-wrap:wrap;font-size:.85rem;}
   .footer-links a{text-decoration:none;color:var(--onDarkMuted);transition:color .2s;}
   .footer-links a:hover{color:var(--onDark);}
-  .cv-badge{width:64px;height:64px;position:relative;flex-shrink:0;}
-  .cv-badge svg{width:100%;height:100%;animation:spin 14s linear infinite;}
-  @media (prefers-reduced-motion:reduce){.cv-badge svg{animation:none;}}
-  .cv-badge .dl{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--lime400);font-size:1.1rem;}
   .footer-tech .marquee-band{border-top:1px solid rgba(255,255,255,.06);margin-top:0;padding-block:16px;}
   .footer-tech .marquee-track span{font-size:.72rem;opacity:.7;}
   .copyright{text-align:center;font-size:.75rem;padding:18px 0;color:var(--onDarkMuted);opacity:.7;}
@@ -295,16 +319,28 @@
         <button type="button" data-lang="en">EN</button>
         <button type="button" data-lang="de">DE</button>
       </div>
-      <button class="icon-btn" id="themeBtn" type="button" aria-label="Toggle light / dark mode">
+      <button class="icon-btn" id="themeBtn" type="button" data-i18n-aria="theme-toggle-label" aria-label="Toggle light / dark mode">
         <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg>
       </button>
       <a href="#contact" class="nav-cta" data-i18n="nav-cta">Let's talk</a>
-      <button class="burger" type="button" aria-label="Open menu">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      <button class="burger" type="button" id="burgerBtn" aria-controls="mobileMenu" aria-expanded="false" aria-label="Open menu">
+        <svg id="burgerIcon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
       </button>
     </div>
   </div>
 </header>
+
+<div class="mobile-menu-backdrop" id="mobileMenuBackdrop" hidden></div>
+<div class="mobile-menu" id="mobileMenu" hidden>
+  <nav class="mobile-menu-nav" aria-label="Mobile navigation">
+    <a href="#home" data-i18n="nav-home">Home</a>
+    <a href="#solutions" data-i18n="nav-solutions">Solutions</a>
+    <a href="#work" data-i18n="nav-work">Work</a>
+    <a href="#approach" data-i18n="nav-approach">Approach</a>
+    <a href="#about" data-i18n="nav-about">About</a>
+    <a href="#contact" class="mobile-menu-cta" data-i18n="nav-cta">Let's talk</a>
+  </nav>
+</div>
 
 <section class="hero" id="home">
   <canvas id="heroCanvas" class="threads"></canvas>
@@ -400,7 +436,7 @@
         <div class="work-meta" data-i18n="work-mona-meta">BRIDAL SALON · WEBSITE · IN FINAL REFINEMENT</div>
         <h3>MONA — Website</h3>
         <p data-i18n="work-mona-desc">The public website of a bridal salon, presenting the brand and its services while connecting fitting appointments with the internal operational workflow. It is currently undergoing final content and visual refinement and is not yet public.</p>
-        <span class="work-link" style="opacity:.5;cursor:default;" data-i18n="work-soon">Preview coming soon <span class="dot">→</span></span>
+        <span class="work-link" style="opacity:.5;cursor:default;"><span data-i18n="work-soon">Preview coming soon</span> <span class="dot" aria-hidden="true">→</span></span>
       </div>
     </div>
 
@@ -412,7 +448,7 @@
         <div class="work-meta" data-i18n="work-mona2-meta">BRIDAL SALON · RESERVATION SYSTEM · IN FINAL REFINEMENT</div>
         <h3>MONA — Reservation System</h3>
         <p data-i18n="work-mona2-desc">An internal reservation and operations application for managing dress inventory, availability, related customer information and more complex rental bookings. Fitting appointments submitted through the website also enter this operational environment.</p>
-        <span class="work-link" style="opacity:.5;cursor:default;" data-i18n="work-soon">Preview coming soon <span class="dot">→</span></span>
+        <span class="work-link" style="opacity:.5;cursor:default;"><span data-i18n="work-soon">Preview coming soon</span> <span class="dot" aria-hidden="true">→</span></span>
       </div>
     </div>
 
@@ -422,18 +458,18 @@
           <img src="photos/daily-verse-screenshot.png" alt="Daily Verse — angol nyelvű nézet" loading="lazy" class="active">
           <img src="photos/daily-verse-screenshot-hu.png" alt="Daily Verse — magyar nyelvű nézet" loading="lazy">
         </div>
-        <button type="button" class="car-btn prev" aria-label="Előző kép">‹</button>
-        <button type="button" class="car-btn next" aria-label="Következő kép">›</button>
+        <button type="button" class="car-btn prev" data-i18n-aria="carousel-prev-label" aria-label="Previous image">‹</button>
+        <button type="button" class="car-btn next" data-i18n-aria="carousel-next-label" aria-label="Next image">›</button>
         <div class="car-dots">
-          <button type="button" class="car-dot active" data-idx="0" aria-label="1. kép"></button>
-          <button type="button" class="car-dot" data-idx="1" aria-label="2. kép"></button>
+          <button type="button" class="car-dot active" data-idx="0" data-i18n-aria="car-dot-1-label" aria-label="Image 1"></button>
+          <button type="button" class="car-dot" data-idx="1" data-i18n-aria="car-dot-2-label" aria-label="Image 2"></button>
         </div>
       </div>
       <div>
         <div class="work-meta" data-i18n="work-dv-meta">MULTILINGUAL WEB APPLICATION · LIVE</div>
         <h3>Daily Verse</h3>
         <p data-i18n="work-dv-desc">A multilingual web application built with TanStack Start, React and Supabase. It includes authentication, saved Bible verses, personal notes, theme and language switching, and database-level access control. Delivered from initial concept through live deployment on Vercel.</p>
-        <a class="work-link" href="https://daily-verse-ten.vercel.app/" target="_blank" rel="noopener"><span data-i18n="work-visit">Visit the web application</span> <span class="dot">→</span></a>
+        <a class="work-link" href="https://daily-verse-ten.vercel.app/" target="_blank" rel="noopener"><span data-i18n="work-visit">Visit the web application</span> <span class="dot" aria-hidden="true">→</span></a>
       </div>
     </div>
   </div>
@@ -501,42 +537,54 @@
       <div class="certs-block reveal">
         <span class="certs-label" data-i18n="certs-label">Training and certifications</span>
         <div class="certs">
-          <a class="cert-item" href="certs/ai-solution-analyst-program.pdf" target="_blank" rel="noopener">
+          <div class="cert-item">
             <svg class="cert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 2.5 L20.5 7.25 V16.75 L12 21.5 L3.5 16.75 V7.25 Z"/><path d="M8 12.2 L10.6 14.8 L16 9.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             <div class="cert-text">
               <span class="cert-verified"><span class="dot"></span><span data-i18n="cert-verified-label">VERIFIED CREDENTIAL</span></span>
               <span class="cert-title">AI Solution Analyst Program</span>
               <span class="cert-date" data-i18n="cert-1-date">Issued Aug 8, 2026 · GMK 175342</span>
               <span class="cert-connect" data-i18n="cert-1-connect">A foundation for the structured assessment of AI opportunities, use cases, business value, risks and human oversight points.</span>
+              <span class="cert-links">
+                <a class="cert-verify-link" href="https://mentorklub.gerillaoneletrajz.hu/gmk-certificate/175342/" target="_blank" rel="noopener noreferrer"><span data-i18n="cert-verify-label">Verify credential</span></a>
+              </span>
             </div>
-          </a>
-          <a class="cert-item" href="certs/claude-code.pdf" target="_blank" rel="noopener">
+          </div>
+          <div class="cert-item">
             <svg class="cert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 2.5 L20.5 7.25 V16.75 L12 21.5 L3.5 16.75 V7.25 Z"/><path d="M8 12.2 L10.6 14.8 L16 9.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             <div class="cert-text">
               <span class="cert-verified"><span class="dot"></span><span data-i18n="cert-verified-label">VERIFIED CREDENTIAL</span></span>
               <span class="cert-title">Claude Code</span>
               <span class="cert-date" data-i18n="cert-2-date">Issued Aug 10, 2026 · GMK 175634</span>
               <span class="cert-connect" data-i18n="cert-2-connect">Practical AI-assisted implementation with Claude Code, structured context and agentic workflows.</span>
+              <span class="cert-links">
+                <a class="cert-verify-link" href="https://mentorklub.gerillaoneletrajz.hu/gmk-certificate/175634/" target="_blank" rel="noopener noreferrer"><span data-i18n="cert-verify-label">Verify credential</span></a>
+              </span>
             </div>
-          </a>
-          <a class="cert-item" href="certs/vibe-coding.pdf" target="_blank" rel="noopener">
+          </div>
+          <div class="cert-item">
             <svg class="cert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 2.5 L20.5 7.25 V16.75 L12 21.5 L3.5 16.75 V7.25 Z"/><path d="M8 12.2 L10.6 14.8 L16 9.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             <div class="cert-text">
               <span class="cert-verified"><span class="dot"></span><span data-i18n="cert-verified-label">VERIFIED CREDENTIAL</span></span>
               <span class="cert-title">Vibe Coding: Build Your Own App Without Coding</span>
               <span class="cert-date" data-i18n="cert-3-date">Issued Aug 11, 2026 · GMK 175855</span>
               <span class="cert-connect" data-i18n="cert-3-connect">Rapid prototyping and application development through an AI-assisted delivery approach.</span>
+              <span class="cert-links">
+                <a class="cert-verify-link" href="https://mentorklub.gerillaoneletrajz.hu/gmk-certificate/175855/" target="_blank" rel="noopener noreferrer"><span data-i18n="cert-verify-label">Verify credential</span></a>
+              </span>
             </div>
-          </a>
-          <a class="cert-item" href="certs/designer-2-0.pdf" target="_blank" rel="noopener">
+          </div>
+          <div class="cert-item">
             <svg class="cert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 2.5 L20.5 7.25 V16.75 L12 21.5 L3.5 16.75 V7.25 Z"/><path d="M8 12.2 L10.6 14.8 L16 9.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             <div class="cert-text">
               <span class="cert-verified"><span class="dot"></span><span data-i18n="cert-verified-label">VERIFIED CREDENTIAL</span></span>
               <span class="cert-title">Designer 2.0: When You Are the Studio</span>
               <span class="cert-date" data-i18n="cert-4-date">Issued Sep 12, 2026 · GMK 178536</span>
               <span class="cert-connect" data-i18n="cert-4-connect">An eight-week AI-first solution design and delivery programme covering UX/UI, agentic workflows, technical integration, QA, production readiness and client handover.</span>
+              <span class="cert-links">
+                <a class="cert-verify-link" href="https://mentorklub.gerillaoneletrajz.hu/gmk-certificate/178536/" target="_blank" rel="noopener noreferrer"><span data-i18n="cert-verify-label">Verify credential</span></a>
+              </span>
             </div>
-          </a>
+          </div>
         </div>
       </div>
     </div>
@@ -569,14 +617,6 @@
     <div class="footer-links">
       <a href="#" target="_blank" rel="noopener" data-i18n="footer-linkedin">LinkedIn</a>
       <a href="mailto:hello@example.com" data-i18n="footer-email">Email</a>
-    </div>
-    <div class="cv-badge" aria-label="Download CV">
-      <svg viewBox="0 0 100 100">
-        <circle cx="50" cy="50" r="46" fill="none" stroke="#C6F135" stroke-width="1" stroke-dasharray="2 5"/>
-        <path id="cvCircle" d="M 50,50 m -38,0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0" fill="none"/>
-        <text font-size="7" fill="#9D93B8" letter-spacing="1.5"><textPath href="#cvCircle">DOWNLOAD · CV · DOWNLOAD · CV · </textPath></text>
-      </svg>
-      <span class="dl">↓</span>
     </div>
   </div>
   <div class="footer-tech">
@@ -849,7 +889,7 @@
       'card4-title':'Megoldástervezés és megvalósítási támogatás','card4-desc':'Az igények tisztázásától a scope, az architektúra és a megvalósítási irány meghatározásán át a működő megoldásig.',
       'card5-title':'AI-lehetőség- és kockázatfelmérés','card5-desc':'Annak strukturált felmérése, hogy hol teremthet valódi értéket az AI, milyen kockázatokkal kell számolni, és mely döntési pontokon szükséges emberi kontroll.',
       'work-eyebrow':'Kiemelt munkák','work-h2':'Leszállítva, nem csak megtervezve.',
-      'work-mona-tag':'Végső finomításban — hamarosan előnézet','work-mona-meta':'ESKÜVŐI RUHASZALON · WEBOLDAL · VÉGSŐ FINOMÍTÁS ALATT','work-mona-desc':'Egy esküvői ruhaszalon nyilvános weboldala, amely bemutatja a márkát és a szolgáltatásokat, valamint összekapcsolódik a próbaidőpontok kezelésével és a belső üzemeltetési folyamattal. Jelenleg végső tartalmi és vizuális finomítás alatt, még nem publikus.','work-soon':'Előnézet hamarosan →',
+      'work-mona-tag':'Végső finomításban — hamarosan előnézet','work-mona-meta':'ESKÜVŐI RUHASZALON · WEBOLDAL · VÉGSŐ FINOMÍTÁS ALATT','work-mona-desc':'Egy esküvői ruhaszalon nyilvános weboldala, amely bemutatja a márkát és a szolgáltatásokat, valamint összekapcsolódik a próbaidőpontok kezelésével és a belső üzemeltetési folyamattal. Jelenleg végső tartalmi és vizuális finomítás alatt, még nem publikus.','work-soon':'Előnézet hamarosan',
       'work-mona2-tag':'Tartalom és design felülvizsgálat alatt — hamarosan előnézet','work-mona2-meta':'ESKÜVŐI RUHASZALON · FOGLALÁSI RENDSZER · VÉGSŐ FINOMÍTÁS ALATT','work-mona2-desc':'Belső foglalási és üzemeltetési alkalmazás a ruhakészlet, az elérhetőség, a kapcsolódó ügyféladatok és az összetettebb bérlési foglalások kezelésére. A weboldalról érkező próbaidőpontok szintén ebbe a működési környezetbe futnak be.',
       'work-dv-tag':'Élő termék','work-dv-meta':'TÖBBNYELVŰ WEBALKALMAZÁS · ÉLESBEN','work-dv-desc':'Többnyelvű webalkalmazás TanStack Starttal, Reacttal és Supabase-zel. Bejelentkezést, mentett igeverseket, személyes jegyzeteket, témaváltást, nyelvváltást és adatbázis-szintű hozzáférés-szabályozást tartalmaz. A koncepciótól az éles Vercel-deploymentig megvalósítva.','work-visit':'Látogasd meg a webalkalmazást',
       'approach-eyebrow':'Munkamódszer','approach-h2':'Strukturált folyamat — nem fekete doboz.',
@@ -866,6 +906,7 @@
       'skill-1':'ITIL és ITSM','skill-2':'Igényfelmérés és követelmények tisztázása','skill-3':'Folyamatdigitalizáció és automatizálás','skill-4':'Claude Code és agentikus workflow-k','skill-5':'Supabase-alapú alkalmazások és MVP-k','skill-6':'Megoldástervezés és scope-meghatározás',
       'skill-7':'Use case- és kockázatfeltérképezés','skill-8':'AI-értékelési keretrendszerek','skill-9':'EU AI Act- és GDPR-tudatos tervezés',
       'certs-label':'KÉPZÉSEK ÉS TANÚSÍTVÁNYOK','cert-verified-label':'HITELESÍTETT TANÚSÍTVÁNY',
+      'cert-verify-label':'Tanúsítvány ellenőrzése',
       'cert-1-date':'Kiállítva: 2026.08.08 · GMK 175342','cert-1-connect':'Az AI-lehetőségek, use case-ek, üzleti érték, kockázatok és emberi kontrollpontok strukturált felmérésének alapja.',
       'cert-2-date':'Kiállítva: 2026.08.10 · GMK 175634','cert-2-connect':'Gyakorlati AI-asszisztált megvalósítás Claude Code-dal, strukturált kontextussal és agentikus munkafolyamatokkal.',
       'cert-3-date':'Kiállítva: 2026.08.11 · GMK 175855','cert-3-connect':'Gyors prototípuskészítés és alkalmazásfejlesztés AI-asszisztált munkamódszerrel.',
@@ -874,7 +915,7 @@
       'quick-a':'Weboldal','quick-b':'Foglalási workflow','quick-c':'Belső eszköz','quick-d':'Nem biztos, beszéljünk',
       'time-note':'Kb. 1 percet vesz igénybe','cta-button':'Indítsunk egy beszélgetést',
       'footer-linkedin':'LinkedIn','footer-email':'Email','copyright':'© 2026 Botos Zoltán. Minden jog fenntartva.',
-      'to-top-label':'Vissza a tetejére'
+      'to-top-label':'Vissza a tetejére','theme-toggle-label':'Világos/sötét mód váltása','menu-toggle-label':'Menü megnyitása','menu-close-label':'Menü bezárása','carousel-prev-label':'Előző kép','carousel-next-label':'Következő kép','car-dot-1-label':'1. kép','car-dot-2-label':'2. kép'
     },
     de: {
       'nav-home':'Start','nav-solutions':'Lösungen','nav-work':'Arbeiten','nav-approach':'Vorgehen','nav-about':'Über mich','nav-cta':'Kontakt aufnehmen',
@@ -890,7 +931,7 @@
       'card4-title':'Lösungskonzeption und Umsetzungsbegleitung','card4-desc':'Unterstützung von der Klärung der Anforderungen und der Definition des Projektumfangs über Architektur und Umsetzungsplanung bis zur funktionsfähigen Lösung.',
       'card5-title':'Bewertung von KI-Potenzialen und Risiken','card5-desc':'Eine strukturierte Bewertung, wo KI einen echten Mehrwert schaffen kann, welche Risiken berücksichtigt werden müssen und an welchen Stellen menschliche Kontrolle erforderlich bleibt.',
       'work-eyebrow':'Ausgewählte Projekte','work-h2':'Umgesetzt, nicht nur konzipiert.',
-      'work-mona-tag':'In finaler Verfeinerung — Vorschau folgt','work-mona-meta':'BRAUTMODENGESCHÄFT · WEBSITE · IN DER FINALEN OPTIMIERUNG','work-mona-desc':'Die öffentliche Website eines Brautmodengeschäfts, die die Marke und ihre Leistungen präsentiert und Anprobetermine mit dem internen Betriebsablauf verbindet. Sie befindet sich derzeit in der finalen inhaltlichen und visuellen Optimierung und ist noch nicht öffentlich verfügbar.','work-soon':'Vorschau folgt in Kürze →',
+      'work-mona-tag':'In finaler Verfeinerung — Vorschau folgt','work-mona-meta':'BRAUTMODENGESCHÄFT · WEBSITE · IN DER FINALEN OPTIMIERUNG','work-mona-desc':'Die öffentliche Website eines Brautmodengeschäfts, die die Marke und ihre Leistungen präsentiert und Anprobetermine mit dem internen Betriebsablauf verbindet. Sie befindet sich derzeit in der finalen inhaltlichen und visuellen Optimierung und ist noch nicht öffentlich verfügbar.','work-soon':'Vorschau folgt in Kürze',
       'work-mona2-tag':'Inhalt und Design in Überarbeitung — Vorschau folgt','work-mona2-meta':'BRAUTMODENGESCHÄFT · RESERVIERUNGSSYSTEM · IN DER FINALEN OPTIMIERUNG','work-mona2-desc':'Eine interne Reservierungs- und Betriebsanwendung zur Verwaltung von Kleiderbestand, Verfügbarkeit, zugehörigen Kundendaten und komplexeren Mietreservierungen. Über die Website eingehende Anprobetermine werden ebenfalls in diese Arbeitsumgebung übernommen.',
       'work-dv-tag':'Live-Produkt','work-dv-meta':'MEHRSPRACHIGE WEBANWENDUNG · LIVE','work-dv-desc':'Eine mehrsprachige Webanwendung mit TanStack Start, React und Supabase. Sie umfasst Authentifizierung, gespeicherte Bibelverse, persönliche Notizen, Theme- und Sprachwechsel sowie eine Zugriffskontrolle auf Datenbankebene. Von der ersten Konzeption bis zum Live-Deployment auf Vercel umgesetzt.','work-visit':'Webanwendung besuchen',
       'approach-eyebrow':'Arbeitsweise','approach-h2':'Ein strukturierter Prozess — keine Blackbox.',
@@ -907,6 +948,7 @@
       'skill-1':'ITIL und ITSM','skill-2':'Anforderungsanalyse und -klärung','skill-3':'Prozessdigitalisierung und Automatisierung','skill-4':'Claude Code und agentische Workflows','skill-5':'Supabase-basierte Anwendungen und MVPs','skill-6':'Lösungskonzeption und Scope-Definition',
       'skill-7':'Use-Case- und Risikoanalyse','skill-8':'KI-Evaluierungsframeworks','skill-9':'EU-AI-Act- und DSGVO-bewusste Umsetzung',
       'certs-label':'WEITERBILDUNGEN UND ZERTIFIZIERUNGEN','cert-verified-label':'VERIFIZIERTER NACHWEIS',
+      'cert-verify-label':'Nachweis überprüfen',
       'cert-1-date':'Ausgestellt: 08.08.2026 · GMK 175342','cert-1-connect':'Grundlage für die strukturierte Bewertung von KI-Potenzialen, Use Cases, Geschäftswert, Risiken und menschlichen Kontrollpunkten.',
       'cert-2-date':'Ausgestellt: 10.08.2026 · GMK 175634','cert-2-connect':'Praktische KI-unterstützte Umsetzung mit Claude Code, strukturiertem Kontext und agentischen Workflows.',
       'cert-3-date':'Ausgestellt: 11.08.2026 · GMK 175855','cert-3-connect':'Schnelle Prototypenentwicklung und Anwendungsumsetzung mit einem KI-unterstützten Delivery-Ansatz.',
@@ -915,7 +957,7 @@
       'quick-a':'Website','quick-b':'Buchungsprozess','quick-c':'Internes Tool','quick-d':'Noch nicht sicher — sprechen wir darüber',
       'time-note':'Dauert etwa eine Minute','cta-button':'Gespräch starten',
       'footer-linkedin':'LinkedIn','footer-email':'E-Mail','copyright':'© 2026 Zoltan Botos. Alle Rechte vorbehalten.',
-      'to-top-label':'Nach oben'
+      'to-top-label':'Nach oben','theme-toggle-label':'Hell-/Dunkelmodus umschalten','menu-toggle-label':'Menü öffnen','menu-close-label':'Menü schließen','carousel-prev-label':'Vorheriges Bild','carousel-next-label':'Nächstes Bild','car-dot-1-label':'Bild 1','car-dot-2-label':'Bild 2'
     }
   };
 
@@ -937,11 +979,103 @@
     try { localStorage.setItem('preview-lang', lang); } catch(e){}
   }
   langSwitch.querySelectorAll('button').forEach(function(b){
-    b.addEventListener('click', function(){ setLang(b.getAttribute('data-lang')); });
+    b.addEventListener('click', function(){ setLang(b.getAttribute('data-lang')); updateBurgerAria(); });
   });
   var savedLang = 'hu';
   try { savedLang = localStorage.getItem('preview-lang') || 'hu'; } catch(e){}
   setLang(savedLang);
+
+  /* ---------- mobile menu ---------- */
+  var burgerBtn = document.getElementById('burgerBtn');
+  var burgerIconEl = document.getElementById('burgerIcon');
+  var mobileMenu = document.getElementById('mobileMenu');
+  var mobileMenuBackdrop = document.getElementById('mobileMenuBackdrop');
+  var menuOpen = false;
+  var BURGER_ICON = '<line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line>';
+  var CLOSE_ICON = '<line x1="4" y1="4" x2="20" y2="20"></line><line x1="20" y1="4" x2="4" y2="20"></line>';
+  var burgerLabelsEn = { open: 'Open menu', close: 'Close menu' };
+  function burgerLabelFor(lang, state){
+    if (lang === 'en') return burgerLabelsEn[state];
+    var key = state === 'open' ? 'menu-toggle-label' : 'menu-close-label';
+    return (T[lang] && T[lang][key]) || burgerLabelsEn[state];
+  }
+  function updateBurgerAria(){
+    var lang = document.documentElement.lang || 'hu';
+    var state = menuOpen ? 'close' : 'open';
+    burgerBtn.setAttribute('aria-label', burgerLabelFor(lang, state));
+    if (burgerIconEl) burgerIconEl.innerHTML = menuOpen ? CLOSE_ICON : BURGER_ICON;
+  }
+  function openMobileMenu(){
+    menuOpen = true;
+    mobileMenu.hidden = false;
+    mobileMenuBackdrop.hidden = false;
+    requestAnimationFrame(function(){
+      mobileMenu.classList.add('show');
+      mobileMenuBackdrop.classList.add('show');
+    });
+    document.body.classList.add('mobile-menu-open');
+    document.body.style.overflow = 'hidden';
+    burgerBtn.setAttribute('aria-expanded', 'true');
+    updateBurgerAria();
+    var firstLink = mobileMenu.querySelector('a');
+    if (firstLink) firstLink.focus();
+  }
+  function closeMobileMenu(returnFocus){
+    if (!menuOpen) return;
+    menuOpen = false;
+    mobileMenu.classList.remove('show');
+    mobileMenuBackdrop.classList.remove('show');
+    document.body.classList.remove('mobile-menu-open');
+    document.body.style.overflow = '';
+    burgerBtn.setAttribute('aria-expanded', 'false');
+    updateBurgerAria();
+    var hidden = false;
+    var hideNow = function(){
+      if (hidden) return;
+      hidden = true;
+      mobileMenu.hidden = true;
+      mobileMenuBackdrop.hidden = true;
+    };
+    if (reduceMotion) {
+      hideNow();
+    } else {
+      mobileMenu.addEventListener('transitionend', hideNow, { once: true });
+      setTimeout(hideNow, 350); // safety net in case transitionend doesn't fire
+    }
+    if (returnFocus) burgerBtn.focus();
+  }
+  burgerBtn.addEventListener('click', function(){
+    if (menuOpen) closeMobileMenu(true); else openMobileMenu();
+  });
+  mobileMenuBackdrop.addEventListener('click', function(){ closeMobileMenu(true); });
+  mobileMenu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){ closeMobileMenu(false); });
+  });
+  document.addEventListener('keydown', function(e){
+    if (!menuOpen) return;
+    if (e.key === 'Escape') { closeMobileMenu(true); return; }
+    if (e.key === 'Tab') {
+      var focusables = Array.prototype.slice.call(mobileMenu.querySelectorAll('a'));
+      if (!focusables.length) return;
+      var first = focusables[0], last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
+  window.addEventListener('resize', function(){
+    if (window.innerWidth >= 900 && menuOpen) {
+      menuOpen = false;
+      mobileMenu.classList.remove('show');
+      mobileMenuBackdrop.classList.remove('show');
+      mobileMenu.hidden = true;
+      mobileMenuBackdrop.hidden = true;
+      document.body.classList.remove('mobile-menu-open');
+      document.body.style.overflow = '';
+      burgerBtn.setAttribute('aria-expanded', 'false');
+      updateBurgerAria();
+    }
+  });
+  updateBurgerAria();
 
   var toTop = document.getElementById('toTop');
   var toTopRing = document.getElementById('toTopRing');
