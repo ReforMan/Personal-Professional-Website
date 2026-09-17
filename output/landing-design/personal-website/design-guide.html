@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design Guide — Personal Professional Website</title>
+<style>
+  :root{
+    --graphite900:#14161A; --graphite700:#1E2126; --graphite500:#3A3D43;
+    --gold500:#C6A25C; --gold300:#D9BA82;
+    --ivory100:#F6F3ED; --ivory200:#EDE8DE;
+    --onDark:#F6F3ED; --onDarkMuted:#9A9DA4;
+    --onLight:#191A1C; --onLightMuted:#61646B;
+    --radius-card:6px; --radius-button:4px;
+    --shadow-sm:0 1px 2px rgba(15,15,15,.08);
+    --shadow-lg:0 24px 48px -12px rgba(15,15,15,.22);
+    --font-display: 'Space Grotesk','Century Gothic','Futura','Avenir Next',sans-serif;
+    --font-body: 'Inter','Segoe UI','Helvetica Neue',Arial,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--ivory100);color:var(--onLight);font-family:var(--font-body);line-height:1.6;}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 24px;}
+  section{padding:72px 0;border-bottom:1px solid var(--ivory200);}
+  section:last-of-type{border-bottom:none;}
+  h1,h2,h3{font-family:var(--font-display);letter-spacing:-0.02em;margin:0 0 8px;}
+  .eyebrow{font-size:0.75rem;letter-spacing:0.18em;text-transform:uppercase;font-weight:700;color:var(--gold500);margin-bottom:12px;display:block;}
+  .lede{max-width:720px;color:var(--onLightMuted);font-size:1.125rem;line-height:1.5;}
+
+  /* HERO of the guide */
+  .guide-hero{background:linear-gradient(160deg,#14161A 0%,#1E2126 55%,#23201A 100%);color:var(--onDark);padding:96px 0 80px;position:relative;overflow:hidden;}
+  .guide-hero .rings{position:absolute;right:-80px;top:-80px;width:420px;height:420px;opacity:.35;}
+  .guide-hero h1{font-size:clamp(2.25rem,5vw,3.75rem);color:var(--onDark);line-height:1.05;max-width:820px;}
+  .guide-hero .stroke{-webkit-text-stroke:1.5px var(--gold500);color:transparent;}
+  .guide-hero p{color:var(--onDarkMuted);max-width:640px;font-size:1.05rem;}
+  .source-tag{display:inline-flex;align-items:center;gap:8px;margin-top:24px;padding:8px 14px;border:1px solid var(--graphite500);border-radius:999px;font-size:0.85rem;color:var(--onDarkMuted);}
+  .source-tag b{color:var(--gold300);font-weight:600;}
+
+  /* palette */
+  .palette-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;margin-top:32px;}
+  .swatch{border-radius:var(--radius-card);overflow:hidden;box-shadow:var(--shadow-sm);border:1px solid var(--ivory200);}
+  .swatch .fill{height:96px;}
+  .swatch .meta{padding:12px 14px;background:#fff;}
+  .swatch .meta .name{font-weight:700;font-size:0.9rem;}
+  .swatch .meta .hex{font-family:monospace;font-size:0.8rem;color:var(--onLightMuted);}
+  .swatch .meta .ratio{font-size:0.75rem;color:var(--onLightMuted);margin-top:4px;}
+  .role-tag{display:inline-block;font-size:0.65rem;letter-spacing:0.08em;text-transform:uppercase;padding:2px 8px;border-radius:999px;margin-top:6px;}
+
+  /* type scale */
+  .type-row{display:flex;align-items:baseline;gap:24px;padding:20px 0;border-top:1px solid var(--ivory200);}
+  .type-row:first-of-type{border-top:none;}
+  .type-row .label{width:120px;flex-shrink:0;font-family:monospace;font-size:0.8rem;color:var(--onLightMuted);}
+  .type-row .sample{font-family:var(--font-display);}
+  .t-h1{font-size:clamp(2.75rem,7vw,6.5rem);line-height:0.98;letter-spacing:-0.03em;}
+  .t-h2{font-size:clamp(2rem,4vw,3.5rem);line-height:1.05;letter-spacing:-0.02em;}
+  .t-h3{font-size:clamp(1.25rem,2vw,1.75rem);}
+  .t-lead{font-family:var(--font-body);font-size:clamp(1.125rem,1.6vw,1.5rem);}
+  .t-body{font-family:var(--font-body);font-size:1.0625rem;}
+  .t-eyebrow{font-family:var(--font-body);font-size:0.75rem;letter-spacing:0.18em;text-transform:uppercase;font-weight:700;}
+
+  /* spacing */
+  .space-row{display:flex;align-items:center;gap:12px;margin:8px 0;}
+  .space-bar{background:var(--gold500);height:20px;border-radius:2px;}
+  .space-row .label{width:160px;font-family:monospace;font-size:0.8rem;color:var(--onLightMuted);}
+
+  /* depth */
+  .depth-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;margin-top:24px;}
+  .depth-card{background:#fff;border-radius:var(--radius-card);padding:24px;}
+  .depth-card.sm{box-shadow:var(--shadow-sm);}
+  .depth-card.lg{box-shadow:var(--shadow-lg);}
+
+  /* components */
+  .comp-row{display:flex;flex-wrap:wrap;gap:20px;align-items:center;margin-top:24px;}
+  .btn{font-family:var(--font-body);font-weight:600;font-size:0.95rem;padding:14px 28px;border-radius:var(--radius-button);border:none;cursor:pointer;transition:transform 240ms cubic-bezier(0.33,1,0.68,1), box-shadow 240ms cubic-bezier(0.33,1,0.68,1), background 240ms;}
+  .btn-primary{background:var(--gold500);color:var(--graphite900);}
+  .btn-primary:hover{background:var(--gold300);transform:translateY(-2px);box-shadow:var(--shadow-lg);}
+  .btn-secondary{background:transparent;color:var(--onLight);border:1px solid var(--onLight);}
+  .btn-secondary:hover{background:var(--onLight);color:var(--ivory100);transform:translateY(-2px);}
+  .btn:focus-visible{outline:2px solid var(--gold500);outline-offset:3px;}
+
+  .comp-card{background:#fff;border-radius:var(--radius-card);box-shadow:var(--shadow-sm);padding:28px;max-width:340px;transition:transform 240ms cubic-bezier(0.33,1,0.68,1), box-shadow 240ms cubic-bezier(0.33,1,0.68,1);}
+  .comp-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);}
+  .comp-card .cat{font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--onLightMuted);}
+  .comp-card h3{font-size:1.25rem;margin:8px 0;}
+  .comp-card a{color:var(--onLight);text-decoration:none;font-weight:600;border-bottom:1px solid transparent;transition:border-color 200ms, text-underline-offset 200ms;}
+  .comp-card a:hover{border-color:var(--gold500);}
+
+  .field{display:flex;flex-direction:column;gap:6px;max-width:300px;}
+  .field label{font-size:0.8rem;font-weight:600;}
+  .field input{padding:12px 14px;border:1px solid var(--ivory200);border-radius:var(--radius-button);font-family:var(--font-body);transition:box-shadow 200ms, border-color 200ms;}
+  .field input:focus{outline:none;border-color:var(--gold500);box-shadow:0 0 0 3px rgba(198,162,92,.25);}
+
+  /* motion */
+  .motion-demo{background:var(--graphite900);border-radius:var(--radius-card);padding:40px;text-align:center;color:var(--onDark);}
+  .motion-box{width:80px;height:80px;background:var(--gold500);border-radius:8px;margin:24px auto 0;opacity:0;transform:translateY(20px);transition:opacity 600ms cubic-bezier(0.16,1,0.3,1), transform 600ms cubic-bezier(0.16,1,0.3,1);}
+  .motion-box.in{opacity:1;transform:translateY(0);}
+  .motion-btn{margin-top:16px;background:transparent;border:1px solid var(--gold500);color:var(--gold300);padding:10px 20px;border-radius:999px;cursor:pointer;font-family:var(--font-body);}
+
+  .gap-list{background:var(--ivory200);border-radius:var(--radius-card);padding:24px;margin-top:16px;}
+  .gap-list li{margin-bottom:8px;}
+
+  .approval-box{background:var(--graphite900);color:var(--onDark);border-radius:var(--radius-card);padding:40px;margin-top:24px;}
+  .approval-box code{display:block;background:var(--graphite700);padding:16px;border-radius:4px;margin-top:16px;white-space:pre-wrap;font-size:0.9rem;color:var(--gold300);}
+
+  footer{padding:40px 0;text-align:center;color:var(--onLightMuted);font-size:0.85rem;}
+</style>
+</head>
+<body>
+
+<div class="guide-hero">
+  <svg class="rings" viewBox="0 0 400 400" fill="none">
+    <circle cx="200" cy="200" r="180" stroke="#C6A25C" stroke-width="1"/>
+    <circle cx="150" cy="220" r="140" stroke="#C6A25C" stroke-width="1"/>
+    <circle cx="240" cy="160" r="110" stroke="#C6A25C" stroke-width="1"/>
+  </svg>
+  <div class="wrap">
+    <span class="eyebrow">Design Guide · Layered Blueprint</span>
+    <h1>Sötét, architektúrális alap, egyetlen meleg <span class="stroke">akcenttel</span>.</h1>
+    <p>A "Layered Blueprint" irány: rétegzett síkok, finom perspektíva-vonalak és
+    visszafogott mozgás — a 12+ éves enterprise-alap és a gyakorlati
+    AI-assisted kivitelezés vizuális megfelelője. Nem sci-fi, nem agency-mázas:
+    letisztult, magabiztos, prémium.</p>
+    <div class="source-tag">Megadott inspiráció: <b>Víg Réka portfóliója</b> (rekavig.pages.dev, screenshotok alapján) — a szerkezetet és energiát vettük át (forgó headline energiája → kontúros kiemelt szó; kurzor-ikon motívum → koncentrikus vonal-jel; portfólió-kártya metaadat-oszlop; lépcsőzetes záró-tipó), a színt és a playful hangot nem.</div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section>
+    <span class="eyebrow">01 · Színpaletta</span>
+    <h2>60 / 30 / 10</h2>
+    <p class="lede">60% ivory alap, 30% graphite szekció-blokk (Hero, Approach, Contact CTA), 10% champagne-gold akcent. Minden kontraszt-arány ténylegesen kiszámolva (sRGB relatív luminancia), nem becsülve.</p>
+    <div class="palette-grid">
+      <div class="swatch">
+        <div class="fill" style="background:#F6F3ED"></div>
+        <div class="meta"><div class="name">Ivory 100</div><div class="hex">#F6F3ED</div><div class="ratio">60% · alap felület</div></div>
+      </div>
+      <div class="swatch">
+        <div class="fill" style="background:#EDE8DE"></div>
+        <div class="meta"><div class="name">Ivory 200</div><div class="hex">#EDE8DE</div><div class="ratio">alap · raised felület</div></div>
+      </div>
+      <div class="swatch">
+        <div class="fill" style="background:#14161A"></div>
+        <div class="meta"><div class="name">Graphite 900</div><div class="hex">#14161A</div><div class="ratio">30% · Hero / Approach / CTA</div></div>
+      </div>
+      <div class="swatch">
+        <div class="fill" style="background:#1E2126"></div>
+        <div class="meta"><div class="name">Graphite 700</div><div class="hex">#1E2126</div><div class="ratio">30% · raised sötét felület</div></div>
+      </div>
+      <div class="swatch">
+        <div class="fill" style="background:#C6A25C"></div>
+        <div class="meta"><div class="name">Gold 500</div><div class="hex">#C6A25C</div><div class="ratio">10% · CTA, hover, kiemelés</div></div>
+      </div>
+      <div class="swatch">
+        <div class="fill" style="background:#D9BA82"></div>
+        <div class="meta"><div class="name">Gold 300</div><div class="hex">#D9BA82</div><div class="ratio">akcent · hover-világosabb</div></div>
+      </div>
+    </div>
+    <div class="depth-grid" style="margin-top:32px;">
+      <div class="depth-card sm">
+        <b>Ivory bg / onLight text</b><br><span style="color:var(--onLightMuted)">15.72:1 — AA törzsre bőven felette</span>
+      </div>
+      <div class="depth-card sm">
+        <b>Graphite900 bg / onDark text</b><br><span style="color:var(--onLightMuted)">16.35:1 — AA bőven felette</span>
+      </div>
+      <div class="depth-card sm">
+        <b>Graphite900 bg / gold500</b><br><span style="color:var(--onLightMuted)">7.52:1 — AA törzsre is jó (sötét alapon)</span>
+      </div>
+      <div class="depth-card sm">
+        <b>Ivory bg / gold500</b><br><span style="color:var(--onLightMuted)">2.17:1 — csak grafikai elemként, NEM szövegként</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">02 · Tipográfia</span>
+    <h2>Space Grotesk + Inter</h2>
+    <p class="lede">Display (geometrikus, karakteres) + UI (semleges, olvasható). A H1 és a törzs között ~5.9× méretugrás. <em>(Ez az előnézet közelítő rendszer-betűtípussal fut — az éles oldal a valódi variable fontokat tölti be.)</em></p>
+    <div class="type-row"><div class="label">H1 · 6.5rem</div><div class="sample t-h1">Real solutions.</div></div>
+    <div class="type-row"><div class="label">H2 · 3.5rem</div><div class="sample t-h2">Working approach</div></div>
+    <div class="type-row"><div class="label">H3 · 1.75rem</div><div class="sample t-h3">Business websites</div></div>
+    <div class="type-row"><div class="label">Lead · 1.5rem</div><div class="sample t-lead">Practical, AI-assisted solutions for real business needs.</div></div>
+    <div class="type-row"><div class="label">Body · 1.0625rem</div><div class="sample t-body">12+ years of enterprise IT support, service operations and application coordination experience — now focused on practical AI-assisted delivery.</div></div>
+    <div class="type-row"><div class="label">Eyebrow · 0.75rem</div><div class="sample t-eyebrow">Selected Work</div></div>
+  </section>
+
+  <section>
+    <span class="eyebrow">03 · Térköz és rács</span>
+    <h2>8px alapegység</h2>
+    <p class="lede">Konténer: 1280px. Szerkesztett szövegoszlop (About, Enterprise foundation): 680px. Szekció-padding desktopon 140px.</p>
+    <div style="margin-top:24px;">
+      <div class="space-row"><span class="label">space.1 — 8px</span><div class="space-bar" style="width:8px"></div></div>
+      <div class="space-row"><span class="label">space.3 — 24px</span><div class="space-bar" style="width:24px"></div></div>
+      <div class="space-row"><span class="label">space.5 — 48px</span><div class="space-bar" style="width:48px"></div></div>
+      <div class="space-row"><span class="label">space.7 — 96px</span><div class="space-bar" style="width:96px"></div></div>
+      <div class="space-row"><span class="label">section.desktop — 140px</span><div class="space-bar" style="width:140px"></div></div>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">04 · Formanyelv</span>
+    <h2>Editorial radius, két árnyék-szint</h2>
+    <p class="lede">4–8px kártya-radius, 4px gomb. Éles, magabiztos sarkok — a nagy, full-bleed képek kompenzálják, nem tűnik "nyers HTML"-nek.</p>
+    <div class="depth-grid">
+      <div class="depth-card sm"><b>shadow.sm</b><br><span style="color:var(--onLightMuted)">0 1px 2px rgba(15,15,15,.08)</span></div>
+      <div class="depth-card lg"><b>shadow.lg</b><br><span style="color:var(--onLightMuted)">0 24px 48px -12px rgba(15,15,15,.22)</span></div>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">05 · Komponens-előnézetek</span>
+    <h2>Élő állapotok</h2>
+    <p class="lede">Vidd az egeret a gombokra/kártyára — valódi hover/fókusz-állapotok, nem statikus képek.</p>
+    <div class="comp-row">
+      <button class="btn btn-primary">Start a conversation</button>
+      <button class="btn btn-secondary">See the work</button>
+    </div>
+    <div class="comp-row">
+      <div class="comp-card">
+        <div class="cat">UI/UX Design · 2026</div>
+        <h3>Daily Verse</h3>
+        <p style="color:var(--onLightMuted);font-size:0.95rem;">Élő projekt — napi ige-alkalmazás, teljes felhasználói folyammal.</p>
+        <a href="#">Megnézem →</a>
+      </div>
+      <div class="field">
+        <label>Email</label>
+        <input type="email" placeholder="name@company.com">
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">06 · Mozgás</span>
+    <h2>Belépő reveal + a Hero jel-effektje</h2>
+    <p class="lede">600ms belépő, cubic-bezier(0.16, 1, 0.3, 1). A hover külön, gyorsabban kifutó görbét kap (240ms). Kattints a gombra a reveal demózásához.</p>
+    <div class="motion-demo">
+      <button class="motion-btn" onclick="document.getElementById('mbox').classList.toggle('in')">Reveal demó</button>
+      <div class="motion-box" id="mbox"></div>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">07 · Képi irány</span>
+    <h2>Nincs kliens-fotó — absztrakt rétegzett vizuál</h2>
+    <p class="lede">Zoltánnak nincs még saját, a projekthez készült fotóanyaga. A Hero és az About szekció ezért NEM portré-alapú (mint az inspiráció), hanem generált/absztrakt rétegzett-sík grafika és a koncentrikus vonal-motívum viszi a vizuális súlyt — ez szándékos döntés, nem hiány. A Selected work szekcióban a Daily Verse valódi mockup-képet kap, a MONA embargó-jelölt absztrakt placeholdert (soha nem üres szürke doboz).</p>
+  </section>
+
+  <section>
+    <span class="eyebrow">08 · Amit még nem tudunk</span>
+    <h2>Hézagok</h2>
+    <ul class="gap-list">
+      <li><b>NO GUIDANCE ON</b> saját fotó/portré — placeholder-vizuállal dolgozunk, cserélhető, ha lesz anyag.</li>
+      <li><b>NO GUIDANCE ON</b> a domain/hosting pontos beállítása Cloudflare Pages-en — ez a build fázis (tech-bridge) feladata.</li>
+      <li><b>NO GUIDANCE ON</b> a kontakt-form beérkező adatok kezelése (email-küldés) — V1-ben nincs backend, ez egy jövőbeli döntés.</li>
+    </ul>
+  </section>
+
+  <section>
+    <span class="eyebrow">Jóváhagyás</span>
+    <h2>Mehetünk?</h2>
+    <div class="approval-box">
+      <p>Elkészült a design guide. Nézd át, és mondd meg, mehetünk-e tovább:</p>
+      <code>A) Rendben, építsd meg az oldalt ezzel
+B) Módosítást kérek — leírom, mit
+C) Mutass egy másik irányt (más paletta / más tipó / más formanyelv)</code>
+      <p style="margin-top:16px;color:var(--onDarkMuted);font-size:0.85rem;">A jóváhagyás ténye és dátuma ide kerül a designer válasza után.</p>
+    </div>
+  </section>
+
+</div>
+
+<footer>Personal Professional Website — design-guide.html · output/landing-design/personal-website/</footer>
+
+</body>
+</html>
