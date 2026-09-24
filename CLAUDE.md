@@ -35,18 +35,27 @@ Szekciók:
   Analyst végzettségből eredő, önálló szolgáltatás-kategória)
 - Selected work (3 elem, külön kártyaként — nem egy projekt, hiába
   kapcsolódnak össze):
-  - MONA Wedding Dress Salon — weboldal, végső finomításban, MÉG NEM
-    publikus, semmilyen érzékeny adat/screenshot nem kerülhet fel
+  - MONA Wedding Dress Salon — weboldal, ÉLESBEN: https://monaeskuvo.com/
+    (2026-09-24 óta publikus). Valódi screenshot + kattintható "Meglátogatom"
+    link a Selected Work kártyán. A leírás a megoldott üzleti problémára
+    fókuszál (szórt megkeresések Instagram/telefon/papírnaptár között →
+    egységes online jelenlét + a próbaidőpontok közvetlen becsatornázása
+    a belső üzemeltetési rendszerbe).
   - MONA foglalási rendszer (reservation app) — funkcionálisan külön
     projekt, előbb készült el, mint a weboldal, utólag lett összekötve
-    vele. MÉG NEM publikus: hiányos a feltöltött tartalom (csak pár
-    ruha van fent), és a design is felülvizsgálatra szorulhat. Ugyanúgy
-    embargó-placeholderként kezelendő, mint a weboldal — semmilyen
-    screenshot/részlet nem mehet ki. Külön esettanulmányként azért
-    hasznos, mert önmagában is eladható szolgáltatás (van kliens, akinek
-    csak foglalási rendszer kell, weboldal nélkül) — a "booking/customer
-    workflows" szolgáltatás-kategóriát bizonyítja, míg a weboldal a
-    "business websites" kategóriát.
+    vele. ÉLESBEN (2026-09-24 óta), DE belső staff-admin felület, nem
+    publikus ügyfél-oldal — ezért a Selected Work kártyán csak screenshot
+    szerepel, kattintható link NÉLKÜL (nem akarjuk nyilvánosan hirdetni
+    a belépési URL-t). A screenshot-on a bejelentkezett email-cím és a
+    belső üzleti statisztika (ruhakészlet-számok) ki van vágva, mielőtt
+    bekerült a repóba — ez nem opcionális, minden jövőbeli screenshot-nál
+    ugyanígy kell eljárni. A leírás a megoldott problémára fókuszál
+    (fejben/táblázatban tartott, dupla foglalásokhoz vezető nyilvántartás →
+    valós idejű, egy helyen kezelt készlet- és foglaláskövetés). Külön
+    esettanulmányként azért hasznos, mert önmagában is eladható
+    szolgáltatás (van kliens, akinek csak foglalási rendszer kell,
+    weboldal nélkül) — a "booking/customer workflows" szolgáltatás-
+    kategóriát bizonyítja, míg a weboldal a "business websites" kategóriát.
   - Daily Verse — élesben: https://daily-verse-ten.vercel.app/
 - Ötlépéses working approach: Understand the context / Define the
   solution / Design and build / Test and refine / Delivery & maintenance
@@ -143,9 +152,12 @@ duplikátum.
 ## Amit kerülj
 
 - Ne találj ki fake testimonialt, logót vagy metrikát.
-- A MONA projekt adatai bizalmasak, amíg más utasítást nem kapsz —
-  semmilyen részlet, screenshot vagy érzékeny adat nem kerülhet be a
-  kódba vagy a publikus tartalomba.
+- A MONA weboldal és a foglalási rendszer 2026-09-24 óta élesben van,
+  az embargó feloldva — a weboldal teljesen publikus tartalomként
+  kezelhető. A foglalási rendszer screenshot-ja viszont mindig
+  személyes/üzleti adatoktól megtisztítva (bejelentkezett email,
+  készlet-statisztika stb. kivágva) kerülhet be, és nem kap nyilvános
+  belépési linket, mert belső staff-eszköz.
 - Ne pozicionáld Zoltant Senior Software Engineerként, AI/ML Engineerként
   vagy ügynökségként; kerüld a junior/kezdő hangnemet.
 - Ne bővítsd a scope-ot kérés nélkül.

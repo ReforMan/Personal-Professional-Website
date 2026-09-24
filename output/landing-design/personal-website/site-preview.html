@@ -204,6 +204,7 @@
   }
   .work-media{border-radius:var(--radius-card);overflow:hidden;box-shadow:var(--shadow-sm);aspect-ratio:16/10;background:linear-gradient(135deg,var(--indigo700),var(--indigo900));display:flex;align-items:center;justify-content:center;color:var(--onDarkMuted);font-family:var(--font-display);font-weight:700;position:relative;}
   .work-media img{width:100%;height:100%;object-fit:cover;}
+  .work-media.shot img{object-position:top center;}
 
   /* kép-karusszel a Work-kártyákon több screenshothoz (pl. nyelvi nézetek) */
   .work-media.carousel .carousel-track{position:relative;width:100%;height:100%;}
@@ -221,8 +222,6 @@
   .work-media .embargo{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;padding:24px;}
   /* MONA-nál a weboldal még nem publikus: a márka-logó áll placeholderként,
      screenshot/tartalom nélkül, amíg fel nem oldódik az embargó */
-  .work-media.logo-media img{width:100%;height:100%;object-fit:cover;object-position:center 42%;}
-  .work-media.logo-media .embargo-tag{position:absolute;left:14px;right:14px;bottom:14px;background:rgba(20,17,30,.78);backdrop-filter:blur(6px);color:var(--onDark);font-size:.76rem;font-weight:700;letter-spacing:.01em;padding:10px 14px;border-radius:12px;text-align:center;}
   .work-meta{font-family:var(--font-body);font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--coral-text);font-weight:700;margin-bottom:10px;}
   .work-item h3{font-size:1.7rem;margin-bottom:10px;}
   .work-item p{color:var(--onLightMuted);margin:0 0 18px;max-width:48ch;}
@@ -468,28 +467,25 @@
     </div>
 
     <div class="work-item reveal">
-      <div class="work-media logo-media">
-        <img src="photos/mona-logo.png" alt="MONA Esküvői Ruhaszalon" loading="lazy">
-        <div class="embargo-tag" data-i18n="work-mona-tag">In final refinement — preview coming soon</div>
+      <div class="work-media shot">
+        <img src="photos/mona-website-screenshot.jpg" alt="MONA Esküvői Ruhaszalon — weboldal" loading="lazy">
       </div>
       <div>
-        <div class="work-meta" data-i18n="work-mona-meta">BRIDAL SALON · WEBSITE · IN FINAL REFINEMENT</div>
+        <div class="work-meta" data-i18n="work-mona-meta">BRIDAL SALON · WEBSITE · LIVE</div>
         <h3 data-i18n="work-mona-title">MONA — Website</h3>
-        <p data-i18n="work-mona-desc">The public website of a bridal salon, presenting the brand and its services while connecting fitting appointments with the internal operational workflow. It is currently undergoing final content and visual refinement and is not yet public.</p>
-        <span class="work-link" style="opacity:.5;cursor:default;"><span data-i18n="work-soon">Preview coming soon</span> <span class="dot" aria-hidden="true">→</span></span>
+        <p data-i18n="work-mona-desc">A bridal salon had no unified online presence — enquiries scattered across Instagram messages, phone calls and a paper diary. The website presents the brand and collection, and every fitting-appointment request now flows directly into the internal operations system below, so nothing gets lost between channels.</p>
+        <a class="work-link" href="https://monaeskuvo.com/" target="_blank" rel="noopener"><span data-i18n="work-mona-visit">Visit monaeskuvo.com</span> <span class="dot" aria-hidden="true">→</span></a>
       </div>
     </div>
 
     <div class="work-item alt reveal">
-      <div class="work-media logo-media">
-        <img src="photos/mona-logo.png" alt="MONA Esküvői Ruhaszalon" loading="lazy">
-        <div class="embargo-tag" data-i18n="work-mona2-tag">Content and design under review — preview coming soon</div>
+      <div class="work-media shot">
+        <img src="photos/mona-booking-screenshot.jpg" alt="MONA foglalási rendszer — belső üzemeltetési felület" loading="lazy">
       </div>
       <div>
-        <div class="work-meta" data-i18n="work-mona2-meta">BRIDAL SALON · RESERVATION SYSTEM · IN FINAL REFINEMENT</div>
+        <div class="work-meta" data-i18n="work-mona2-meta">BRIDAL SALON · RESERVATION SYSTEM · LIVE</div>
         <h3 data-i18n="work-mona2-title">MONA — Reservation System</h3>
-        <p data-i18n="work-mona2-desc">An internal reservation and operations application for managing dress inventory, availability, related customer information and more complex rental bookings. Fitting appointments submitted through the website also enter this operational environment.</p>
-        <span class="work-link" style="opacity:.5;cursor:default;"><span data-i18n="work-soon">Preview coming soon</span> <span class="dot" aria-hidden="true">→</span></span>
+        <p data-i18n="work-mona2-desc">Rental and purchase inventory used to live in someone's head or a spreadsheet — leading to double-bookings and no real visibility into what was available. The internal system tracks every dress's status in real time and receives fitting requests straight from the website, so the whole booking process runs from one place.</p>
       </div>
     </div>
 
@@ -992,8 +988,8 @@
       'card4-title':'Megoldástervezés és megvalósítási támogatás','card4-desc':'Az igények tisztázásától a scope, az architektúra és a megvalósítási irány meghatározásán át a működő megoldásig.',
       'card5-title':'AI-lehetőség- és kockázatfelmérés','card5-desc':'Annak strukturált felmérése, hogy hol teremthet valódi értéket az AI, milyen kockázatokkal kell számolni, és mely döntési pontokon szükséges emberi kontroll.',
       'work-eyebrow':'Kiemelt munkák','work-h2':'Leszállítva, nem csak megtervezve.',
-      'work-mona-tag':'Végső finomításban — hamarosan előnézet','work-mona-meta':'ESKÜVŐI RUHASZALON · WEBOLDAL · VÉGSŐ FINOMÍTÁS ALATT','work-mona-desc':'Egy esküvői ruhaszalon nyilvános weboldala, amely bemutatja a márkát és a szolgáltatásokat, valamint összekapcsolódik a próbaidőpontok kezelésével és a belső üzemeltetési folyamattal. Jelenleg végső tartalmi és vizuális finomítás alatt, még nem publikus.','work-soon':'Előnézet hamarosan',
-      'work-mona2-tag':'Tartalom és design felülvizsgálat alatt — hamarosan előnézet','work-mona-title':'MONA — Weboldal','work-mona2-title':'MONA — Foglalási rendszer','work-mona2-meta':'ESKÜVŐI RUHASZALON · FOGLALÁSI RENDSZER · VÉGSŐ FINOMÍTÁS ALATT','work-mona2-desc':'Belső foglalási és üzemeltetési alkalmazás a ruhakészlet, az elérhetőség, a kapcsolódó ügyféladatok és az összetettebb bérlési foglalások kezelésére. A weboldalról érkező próbaidőpontok szintén ebbe a működési környezetbe futnak be.',
+      'work-mona-meta':'ESKÜVŐI RUHASZALON · WEBOLDAL · ÉLESBEN','work-mona-desc':'Egy esküvői ruhaszalonnak nem volt egységes online jelenléte — a megkeresések Instagram-üzenetek, telefonhívások és egy papíralapú naptár között szóródtak szét. A weboldal bemutatja a márkát és a kollekciót, minden próbaidőpont-kérés pedig közvetlenül a lenti belső üzemeltetési rendszerbe fut be, így semmi nem vész el a csatornák között.','work-mona-visit':'Látogasd meg: monaeskuvo.com',
+      'work-mona-title':'MONA — Weboldal','work-mona2-title':'MONA — Foglalási rendszer','work-mona2-meta':'ESKÜVŐI RUHASZALON · FOGLALÁSI RENDSZER · ÉLESBEN','work-mona2-desc':'A bérelhető és megvásárolható ruhák nyilvántartása korábban fejben vagy egy táblázatban élt — ez dupla foglalásokhoz és átláthatatlan elérhetőséghez vezetett. A belső rendszer valós időben követi minden ruha státuszát, és a weboldalról érkező próbaidőpontok is közvetlenül ide futnak be, így a teljes foglalási folyamat egy helyen kezelhető.',
       'work-dv-tag':'Élő termék','work-dv-meta':'TÖBBNYELVŰ WEBALKALMAZÁS · ÉLESBEN','work-dv-desc':'Többnyelvű webalkalmazás TanStack Starttal, Reacttal és Supabase-zel. Bejelentkezést, mentett igeverseket, személyes jegyzeteket, témaváltást, nyelvváltást és adatbázis-szintű hozzáférés-szabályozást tartalmaz. A koncepciótól az éles Vercel-deploymentig megvalósítva.','work-visit':'Látogasd meg a webalkalmazást',
       'approach-eyebrow':'Munkamódszer','approach-h2':'Strukturált folyamat — nem fekete doboz.',
       'step1-title':'A kontextus és a cél megértése','step1-desc':'Feltérképezzük a jelenlegi működést, a valódi problémát, az érintetteket és azt, hogy milyen eredményt kell elérnie a megoldásnak.',
@@ -1035,8 +1031,8 @@
       'card4-title':'Lösungskonzeption und Umsetzungsbegleitung','card4-desc':'Unterstützung von der Klärung der Anforderungen und der Definition des Projektumfangs über Architektur und Umsetzungsplanung bis zur funktionsfähigen Lösung.',
       'card5-title':'Bewertung von KI-Potenzialen und Risiken','card5-desc':'Eine strukturierte Bewertung, wo KI einen echten Mehrwert schaffen kann, welche Risiken berücksichtigt werden müssen und an welchen Stellen menschliche Kontrolle erforderlich bleibt.',
       'work-eyebrow':'Ausgewählte Projekte','work-h2':'Umgesetzt, nicht nur konzipiert.',
-      'work-mona-tag':'In finaler Verfeinerung — Vorschau folgt','work-mona-meta':'BRAUTMODENGESCHÄFT · WEBSITE · IN DER FINALEN OPTIMIERUNG','work-mona-desc':'Die öffentliche Website eines Brautmodengeschäfts, die die Marke und ihre Leistungen präsentiert und Anprobetermine mit dem internen Betriebsablauf verbindet. Sie befindet sich derzeit in der finalen inhaltlichen und visuellen Optimierung und ist noch nicht öffentlich verfügbar.','work-soon':'Vorschau folgt in Kürze',
-      'work-mona2-tag':'Inhalt und Design in Überarbeitung — Vorschau folgt','work-mona-title':'MONA — Website','work-mona2-title':'MONA — Reservierungssystem','work-mona2-meta':'BRAUTMODENGESCHÄFT · RESERVIERUNGSSYSTEM · IN DER FINALEN OPTIMIERUNG','work-mona2-desc':'Eine interne Reservierungs- und Betriebsanwendung zur Verwaltung von Kleiderbestand, Verfügbarkeit, zugehörigen Kundendaten und komplexeren Mietreservierungen. Über die Website eingehende Anprobetermine werden ebenfalls in diese Arbeitsumgebung übernommen.',
+      'work-mona-meta':'BRAUTMODENGESCHÄFT · WEBSITE · LIVE','work-mona-desc':'Ein Brautmodengeschäft hatte keine einheitliche Online-Präsenz — Anfragen verteilten sich auf Instagram-Nachrichten, Telefonanrufe und einen Papierkalender. Die Website präsentiert die Marke und die Kollektion, und jede Anprobeterminanfrage läuft jetzt direkt in das interne Betriebssystem darunter, sodass nichts zwischen den Kanälen verloren geht.','work-mona-visit':'monaeskuvo.com besuchen',
+      'work-mona-title':'MONA — Website','work-mona2-title':'MONA — Reservierungssystem','work-mona2-meta':'BRAUTMODENGESCHÄFT · RESERVIERUNGSSYSTEM · LIVE','work-mona2-desc':'Der Bestand an Miet- und Kaufkleidern existierte früher im Kopf oder in einer Tabelle — das führte zu Doppelbuchungen und fehlender Übersicht über die Verfügbarkeit. Das interne System verfolgt den Status jedes Kleides in Echtzeit und empfängt Anprobeanfragen direkt von der Website, sodass der gesamte Buchungsprozess an einem Ort abläuft.',
       'work-dv-tag':'Live-Produkt','work-dv-meta':'MEHRSPRACHIGE WEBANWENDUNG · LIVE','work-dv-desc':'Eine mehrsprachige Webanwendung mit TanStack Start, React und Supabase. Sie umfasst Authentifizierung, gespeicherte Bibelverse, persönliche Notizen, Theme- und Sprachwechsel sowie eine Zugriffskontrolle auf Datenbankebene. Von der ersten Konzeption bis zum Live-Deployment auf Vercel umgesetzt.','work-visit':'Webanwendung besuchen',
       'approach-eyebrow':'Arbeitsweise','approach-h2':'Ein strukturierter Prozess — keine Blackbox.',
       'step1-title':'Kontext und Ziel verstehen','step1-desc':'Wir erfassen die aktuellen Abläufe, das tatsächliche Problem, die beteiligten Personen und das Ergebnis, das die Lösung erreichen soll.',
