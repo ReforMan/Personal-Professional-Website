@@ -1,0 +1,76 @@
+{
+  "color": {
+    "brand": {
+      "graphite900": "#14161A",
+      "graphite700": "#1E2126",
+      "graphite500": "#3A3D43",
+      "gold500": "#C6A25C",
+      "gold300": "#D9BA82",
+      "ivory100": "#F6F3ED",
+      "ivory200": "#EDE8DE"
+    },
+    "surface": {
+      "dark": "#14161A",
+      "darkRaised": "#1E2126",
+      "light": "#F6F3ED",
+      "lightRaised": "#EDE8DE"
+    },
+    "text": {
+      "onDark": "#F6F3ED",
+      "onDarkMuted": "#9A9DA4",
+      "onLight": "#191A1C",
+      "onLightMuted": "#61646B",
+      "accent": "#C6A25C"
+    },
+    "state": {
+      "focusRing": "#C6A25C",
+      "error": "#B4553F",
+      "success": "#5C8A66"
+    },
+    "gradient": {
+      "hero": "linear-gradient(160deg, #14161A 0%, #1E2126 55%, #23201A 100%)",
+      "band": "linear-gradient(180deg, #14161A 0%, #1B1D22 100%)"
+    },
+    "overlay": {
+      "image": "linear-gradient(to top, rgba(20,22,26,.85) 0%, rgba(20,22,26,0) 60%)"
+    }
+  },
+  "font": {
+    "display": "'Space Grotesk', 'Helvetica Neue', sans-serif",
+    "body": "'Inter', 'Helvetica Neue', sans-serif",
+    "weights": { "regular": 400, "medium": 500, "bold": 700 }
+  },
+  "type": {
+    "h1": "clamp(2.75rem, 7vw, 6.5rem)",
+    "h2": "clamp(2rem, 4vw, 3.5rem)",
+    "h3": "clamp(1.25rem, 2vw, 1.75rem)",
+    "lead": "clamp(1.125rem, 1.6vw, 1.5rem)",
+    "body": "1.0625rem",
+    "eyebrow": "0.75rem",
+    "tracking": { "display": "-0.03em", "h2": "-0.02em", "eyebrow": "0.18em" },
+    "leading": { "display": "0.98", "h2": "1.05", "body": "1.6", "lead": "1.5" }
+  },
+  "space": {
+    "1": "8px", "2": "16px", "3": "24px", "4": "32px", "5": "48px",
+    "6": "64px", "7": "96px", "8": "140px",
+    "section": { "mobile": "64px", "tablet": "96px", "desktop": "140px" }
+  },
+  "radius": { "card": "6px", "button": "4px", "image": "4px", "pill": "999px" },
+  "shadow": {
+    "sm": "0 1px 2px rgba(15,15,15,.08)",
+    "lg": "0 24px 48px -12px rgba(15,15,15,.22)"
+  },
+  "motion": {
+    "fast": "150ms", "base": "240ms", "reveal": "600ms",
+    "easing": "cubic-bezier(0.33, 1, 0.68, 1)",
+    "revealEasing": "cubic-bezier(0.16, 1, 0.3, 1)",
+    "stagger": "70ms"
+  },
+  "layout": {
+    "contentMax": "1280px",
+    "textMax": "680px",
+    "gutter": { "mobile": "20px", "desktop": "48px" }
+  },
+  "image": { "hero": "21/9", "portrait": "4/5", "square": "1/1" },
+  "texture": { "noiseOpacity": "0.04" }
+}

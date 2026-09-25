@@ -20,6 +20,9 @@ npm-debug.log*
 .vscode/
 .idea/
 
+# Ideiglenes demó/scratch fájlok — nem projekt-tartalom
+scratch/
+
 # Teszt-artefaktok
 test-results/
 playwright-report/
@@ -31,3 +34,9 @@ coverage/
 output/**/site/node_modules/
 output/**/site/dist/
 output/**/site/.astro/
+
+# Személyes forrásdokumentumok — ne kerüljenek nyilvános repóba
+knowledge-base/briefs/personal-website/Zoltan_Botos_Master_CV.docx
+knowledge-base/briefs/personal-website/certificates/
+output/landing-design/personal-website/certs/
+output/landing-design/personal-website/deploy/certs/
