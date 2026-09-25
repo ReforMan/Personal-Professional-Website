@@ -205,6 +205,8 @@
   .work-media{border-radius:var(--radius-card);overflow:hidden;box-shadow:var(--shadow-sm);aspect-ratio:16/10;background:linear-gradient(135deg,var(--indigo700),var(--indigo900));display:flex;align-items:center;justify-content:center;color:var(--onDarkMuted);font-family:var(--font-display);font-weight:700;position:relative;}
   .work-media img{width:100%;height:100%;object-fit:cover;}
   .work-media.shot img{object-position:top center;}
+  .work-media.shot.wide{background:#F5F0EA;}
+  .work-media.shot.wide img{object-fit:contain;padding:18px;box-sizing:border-box;}
 
   /* kép-karusszel a Work-kártyákon több screenshothoz (pl. nyelvi nézetek) */
   .work-media.carousel .carousel-track{position:relative;width:100%;height:100%;}
@@ -479,8 +481,8 @@
     </div>
 
     <div class="work-item alt reveal">
-      <div class="work-media shot">
-        <img src="photos/mona-booking-screenshot.jpg" alt="MONA foglalási rendszer — belső üzemeltetési felület" loading="lazy">
+      <div class="work-media shot wide">
+        <img src="photos/mona-booking-screenshot.jpg" alt="MONA foglalási rendszer — belső üzemeltetési felület, a MONA-logóval a fejlécben" loading="lazy">
       </div>
       <div>
         <div class="work-meta" data-i18n="work-mona2-meta">BRIDAL SALON · RESERVATION SYSTEM · LIVE</div>
