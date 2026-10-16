@@ -1,0 +1,17 @@
+---
+import { t } from '../data/i18n';
+import type { Language } from '../data/routes';
+const { lang, standalone = false } = Astro.props as { lang: Language; standalone?: boolean };
+---
+<section class="solutions" id="solutions">
+  <div class="wrap">
+    {!standalone && <div class="head reveal"><span class="eyebrow">{t(lang,'solutions-eyebrow')}</span><h2>{t(lang,'solutions-h2')}</h2></div>}
+    <div class="bento">
+      {[1,2,3,4,5].map((number) => <div class={number === 1 ? 'card big reveal' : 'card reveal'}>
+        <span class="icon-num">{String(number).padStart(2,'0')}</span>
+        <h3>{t(lang,`card${number}-title`)}</h3>
+        <p>{t(lang,`card${number}-desc`)}</p>
+      </div>)}
+    </div>
+  </div>
+</section>

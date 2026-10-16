@@ -1,0 +1,74 @@
+---
+import type { Route } from '../data/routes';
+import { paths } from '../data/routes';
+import { t, localText } from '../data/i18n';
+import Solutions from './Solutions.astro';
+import Projects from './Projects.astro';
+import About from './About.astro';
+const { route } = Astro.props as { route: Route };
+const lang = route.lang;
+const isCase = route.id === 'monaWebsite' || route.id === 'monaBooking';
+const heading = {
+  home: t(lang,'hero-h1'),
+  solutions: t(lang,'solutions-h2'),
+  projects: t(lang,'work-h2'),
+  about: t(lang,'foundation-h2'),
+  monaWebsite: t(lang,'work-mona-title'),
+  monaBooking: t(lang,'work-mona2-title')
+}[route.id];
+const intro = {
+  home: t(lang,'hero-lead'),
+  solutions: route.meta.description,
+  projects: route.meta.description,
+  about: route.meta.description,
+  monaWebsite: t(lang,'work-mona-desc'),
+  monaBooking: t(lang,'work-mona2-desc')
+}[route.id];
+---
+{route.id === 'home' ? <>
+  <section class="hero" id="home">
+    <canvas id="heroCanvas" class="threads" aria-hidden="true"></canvas>
+    <div class="wrap hero-inner">
+      <div><span class="eyebrow on-dark">{t(lang,'hero-eyebrow')}</span><h1 set:html={heading} />
+        <p class="lead">{intro}</p>
+        <div class="hero-ctas"><a href="#contact" class="btn btn-primary">{t(lang,'hero-cta-primary')}</a><a href={paths.projects[lang]} class="btn btn-secondary">{t(lang,'hero-cta-secondary')}</a></div>
+      </div>
+      <div class="hero-badge" aria-hidden="true">
+        <div class="hero-figure"><img src="/photos/zoltan-headshot-cutout.png" alt="" loading="eager" /></div>
+        <svg viewBox="0 0 200 200"><circle cx="100" cy="100" r="90" fill="none" stroke="#C6F135" stroke-width="1" stroke-dasharray="3 7"/><circle cx="100" cy="100" r="65" fill="none" stroke="#FF8468" stroke-width="1" stroke-dasharray="2 6"/></svg>
+      </div>
+    </div>
+  </section>
+  <section class="proof"><div class="wrap">
+    <div><div class="num">12+</div><div class="label">{t(lang,'proof-years-label')}</div></div>
+    <div><div class="num">{t(lang,'proof-ai-value')}</div><div class="label">{t(lang,'proof-ai-label')}</div></div>
+    <div><div class="num">{t(lang,'proof-practical-value')}</div><div class="label">{t(lang,'proof-practical-label')}</div></div>
+  </div></section>
+  <Solutions lang={lang} />
+  <Projects lang={lang} />
+  <section class="approach" id="approach"><div class="wrap">
+    <span class="eyebrow on-dark reveal">{t(lang,'approach-eyebrow')}</span><h2 class="reveal">{t(lang,'approach-h2')}</h2>
+    <div class="steps">{[1,2,3,4,5].map((number) => <div class="step reveal"><span class="stepnum">{String(number).padStart(2,'0')}</span><h3>{t(lang,`step${number}-title`)}</h3><p>{t(lang,`step${number}-desc`)}</p></div>)}</div>
+  </div></section>
+  <About lang={lang} />
+</> : <>
+  <section class="page-intro"><div class="wrap">
+    <span class="eyebrow">{isCase ? t(lang,'work-eyebrow') : route.id === 'about' ? t(lang,'foundation-eyebrow') : route.id === 'solutions' ? t(lang,'solutions-eyebrow') : t(lang,'work-eyebrow')}</span>
+    <h1>{heading}</h1><p>{intro}</p>
+  </div></section>
+  {route.id === 'solutions' && <Solutions lang={lang} standalone />}
+  {route.id === 'projects' && <Projects lang={lang} standalone />}
+  {route.id === 'about' && <About lang={lang} standalone />}
+  {isCase && <section class="case-section"><div class="wrap">
+    <figure class="case-figure"><img src={route.id === 'monaWebsite' ? '/photos/mona-website-screenshot.jpg' : '/photos/mona-booking-screenshot.jpg'} alt={heading} /></figure>
+    <div class="case-body">
+      <h2>{route.id === 'monaWebsite' ? t(lang,'work-mona-meta') : t(lang,'work-mona2-meta')}</h2>
+      <p>{intro}</p>
+      {route.id === 'monaBooking' && <p>{localText[lang].bookingNote}</p>}
+      <div class="case-actions">
+        <a href={paths.projects[lang]} class="btn btn-secondary">{localText[lang].back}</a>
+        {route.id === 'monaWebsite' && <a href="https://monaeskuvo.com/" class="btn btn-primary" target="_blank" rel="noopener noreferrer">{localText[lang].website}</a>}
+      </div>
+    </div>
+  </div></section>}
+</>}

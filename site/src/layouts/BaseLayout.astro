@@ -1,0 +1,86 @@
+---
+import '../styles/legacy.css';
+import '../styles/site.css';
+import { paths, type Route, type PageId } from '../data/routes';
+import { t, localText } from '../data/i18n';
+const { route } = Astro.props as { route: Route };
+const lang = route.lang;
+const nav: { id: PageId; label: string }[] = [
+  { id: 'home', label: t(lang, 'nav-home') },
+  { id: 'solutions', label: t(lang, 'nav-solutions') },
+  { id: 'projects', label: t(lang, 'nav-work') },
+  { id: 'about', label: t(lang, 'nav-about') }
+];
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{route.meta.title}</title>
+    <meta name="description" content={route.meta.description} />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
+    <script is:inline>document.documentElement.classList.add('js'); try { document.documentElement.dataset.theme = localStorage.getItem('portfolio-theme') || 'dark'; } catch (_) { document.documentElement.dataset.theme = 'dark'; }</script>
+    <script src="/site.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">{lang === 'hu' ? 'Ugrás a tartalomra' : lang === 'de' ? 'Zum Inhalt springen' : 'Skip to content'}</a>
+    <header class="site-nav">
+      <div class="wrap nav-inner">
+        <nav class="links" aria-label={lang === 'hu' ? 'Fő navigáció' : lang === 'de' ? 'Hauptnavigation' : 'Main navigation'}>
+          {nav.map((item) => <a href={paths[item.id][lang]} aria-current={route.id === item.id ? 'page' : undefined}>{item.label}</a>)}
+        </nav>
+        <a href={paths.home[lang]} class="brand-stack">
+          <span class="brand-name">{t(lang, 'brand-name')}</span>
+          <svg id="eyeMark" viewBox="0 0 100 100" aria-hidden="true"><circle class="eye-body" cx="50" cy="50" r="50"/><g id="eyesGrp"><ellipse class="eye-pupil" cx="36" cy="50" rx="8" ry="8"/><ellipse class="eye-pupil" cx="64" cy="50" rx="8" ry="8"/></g></svg>
+        </a>
+        <div class="right-cluster">
+          <nav class="lang-switch" aria-label="Nyelv / Language / Sprache">
+            {(['hu', 'en', 'de'] as const).map((language) => <a href={paths[route.id][language]} lang={language} hreflang={language} aria-current={language === lang ? 'page' : undefined} class={language === lang ? 'sel' : undefined}>{language.toUpperCase()}</a>)}
+          </nav>
+          <button class="icon-btn" id="themeBtn" type="button" aria-label={t(lang, 'theme-toggle-label')} aria-pressed="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          </button>
+          <a href="#contact" class="nav-cta">{t(lang, 'nav-cta')}</a>
+          <button class="burger" type="button" id="burgerBtn" aria-controls="mobileMenu" aria-expanded="false" aria-label={localText[lang].menu}>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+          </button>
+        </div>
+      </div>
+    </header>
+    <div class="mobile-menu-backdrop" id="mobileMenuBackdrop" hidden></div>
+    <div class="mobile-menu" id="mobileMenu" hidden>
+      <nav class="mobile-menu-nav" aria-label={lang === 'hu' ? 'Mobil navigáció' : lang === 'de' ? 'Mobile Navigation' : 'Mobile navigation'}>
+        {nav.map((item) => <a href={paths[item.id][lang]} aria-current={route.id === item.id ? 'page' : undefined}>{item.label}</a>)}
+        <a href="#contact" class="mobile-menu-cta">{t(lang, 'nav-cta')}</a>
+      </nav>
+    </div>
+    <main id="main"><slot /></main>
+    <section class="cta" id="contact">
+      <div class="wrap">
+        <div class="k1 reveal">{t(lang, 'cta-k1')}</div>
+        <div class="k2 reveal">{t(lang, 'cta-k2')}</div>
+        <h2 class="reveal">{t(lang, 'cta-h2')}</h2>
+        <div class="quick reveal" role="group" aria-label={lang === 'hu' ? 'Mit szeretnél javítani?' : lang === 'de' ? 'Was möchten Sie verbessern?' : 'What do you want to improve?'}>
+          {(['quick-a','quick-b','quick-c','quick-d'] as const).map((key, index) => <button type="button" data-sel aria-pressed="false"><b>{String.fromCharCode(65 + index)}</b> <span>{t(lang, key)}</span></button>)}
+        </div>
+        <p class="time-note reveal">{t(lang, 'time-note')}</p>
+        <div class="hero-ctas reveal" style="justify-content:center;margin-bottom:40px">
+          <a href="mailto:z_botos@hotmail.com" class="btn btn-primary" id="ctaMailLink">{t(lang, 'cta-button')}</a>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <div class="wrap footer-top"><div class="footer-links">
+        <a href="https://www.linkedin.com/in/zoltan-botos/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="mailto:z_botos@hotmail.com">{t(lang, 'footer-email')}</a>
+      </div></div>
+      <div class="copyright">{t(lang, 'copyright')}</div>
+    </footer>
+    <button type="button" class="to-top" id="toTop" aria-label={t(lang, 'to-top-label')}>↑</button>
+  </body>
+</html>
