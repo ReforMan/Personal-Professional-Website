@@ -15,7 +15,7 @@ const { lang, standalone = false } = Astro.props as { lang: Language; standalone
     </div>
     <div class="foundation-copy">
       <span class="eyebrow">{t(lang,'foundation-eyebrow')}</span>
-      {!standalone && <h2>{t(lang,'foundation-h2')}</h2>}
+      {standalone ? <h2 class="visually-hidden">{t(lang,'foundation-eyebrow')}</h2> : <h2>{t(lang,'foundation-h2')}</h2>}
       {['foundation-p','foundation-p2','foundation-p3','foundation-p4','foundation-p5'].map((key) => <p class="reveal">{t(lang,key)}</p>)}
       <div class="foundation-facts">
         <div class="fact"><span class="fact-num">12+</span><span class="fact-label">{t(lang,'fact-years')}</span></div>
