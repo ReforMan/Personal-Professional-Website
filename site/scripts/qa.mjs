@@ -74,6 +74,9 @@ for (const width of [375, 768, 1280, 1440]) {
     check(await page.locator('#burgerBtn').getAttribute('aria-expanded') === 'false', 'mobile menu closes');
   }
   if (width === 1280) {
+    check(await page.locator('#heroCanvas').getAttribute('data-effect-active') === null, 'reduced-motion hero animation disabled');
+    check(await page.locator('#glowCursor').getAttribute('data-effect-active') === null, 'reduced-motion cursor trail disabled');
+    check(await page.locator('#ctaMarquee').evaluate((element) => getComputedStyle(element).animationName === 'none'), 'reduced-motion marquee disabled');
     await page.locator('.lang-switch a[lang="en"]').click();
     check(new URL(page.url()).pathname === '/en/', 'language navigation');
     await page.locator('#themeBtn').click();
@@ -86,8 +89,35 @@ for (const width of [375, 768, 1280, 1440]) {
   }
   await page.close();
 }
+const effects = await browser.newPage({ viewport: { width: 1280, height: 850 }, reducedMotion: 'no-preference' });
+const effectErrors = [];
+effects.on('pageerror', (error) => effectErrors.push(error.message));
+await effects.goto(base + '/');
+await effects.waitForFunction(() => document.querySelector('#heroCanvas')?.dataset.effectActive === 'true');
+await effects.mouse.move(320, 260);
+await effects.mouse.move(520, 340, { steps: 8 });
+await effects.waitForFunction(() => document.querySelector('#glowCursor')?.dataset.effectActive === 'true');
+check(await effects.locator('#eyesGrp').getAttribute('transform') !== null, 'cursor-following brand eyes');
+check(await effects.locator('#ctaMarquee span').count() === 8, 'CTA marquee content');
+check(await effects.locator('#footerMarquee span').count() === 16, 'footer marquee content');
+check(await effects.locator('#ctaMarquee').evaluate((element) => getComputedStyle(element).animationName === 'scroll-x'), 'marquee animation running');
+await effects.screenshot({ path: join(screenshots, 's31-effects-hero-1280.png'), fullPage: false });
+await effects.locator('#pcardWrap').scrollIntoViewIfNeeded();
+await effects.locator('#pcardWrap').hover({ position: { x: 275, y: 190 } });
+check(await effects.locator('#pcard').evaluate((element) => element.style.transform.includes('rotateX') && element.style.transform !== 'rotateX(0deg) rotateY(0deg)'), 'profile card tilt');
+await effects.locator('#holoBtn').click();
+check(await effects.locator('#holoBtn').getAttribute('aria-pressed') === 'true', 'holo toggle state');
+check(await effects.locator('#pcardWrap').evaluate((element) => element.classList.contains('holo-on')), 'holo effect enabled');
+await effects.locator('#pcardWrap').hover({ position: { x: 260, y: 180 } });
+await effects.waitForFunction(() => getComputedStyle(document.querySelector('.pcard-shine')).opacity === '0.5');
+check(await effects.locator('.pcard-shine').evaluate((element) => getComputedStyle(element).opacity === '0.5'), 'holo shine visible on hover');
+await effects.screenshot({ path: join(screenshots, 's31-effects-profile-1280.png'), fullPage: false });
+await effects.locator('footer').scrollIntoViewIfNeeded();
+check(await effects.locator('#toTop').evaluate((element) => element.classList.contains('show')), 'back-to-top appears');
+check(effectErrors.length === 0, `effect script errors: ${effectErrors}`);
+await effects.close();
 const baseline = await browser.newPage({ viewport: { width: 1280, height: 850 }, reducedMotion: 'reduce' });
-await baseline.goto(reference + '/');
+await baseline.goto(reference + '/', { waitUntil: 'domcontentloaded' });
 await baseline.locator('img').evaluateAll((images) => images.forEach((image) => { image.loading = 'eager'; }));
 await baseline.waitForFunction(() => [...document.images].every((image) => image.complete));
 await baseline.screenshot({ path: join(screenshots, 's31-reference-1280.png'), fullPage: true });

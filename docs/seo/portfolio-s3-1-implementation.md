@@ -31,11 +31,11 @@ A közös `BaseLayout.astro` készíti a fejlécet, a valódi linkekből álló 
 
 Megmaradt a sötét/világos téma, a mobilmenü, a képgaléria, a reduced-motion támogatás, a referenciafotók, a MONA és Daily Verse munkák, az enterprise tapasztalat és a képzések, valamint a `mailto:` kapcsolatfelvétel. A MONA belső adminisztrációs címe nem szerepel az új oldalon. A referenciák önálló URL-eket kaptak, a képek `/photos/…` útvonalat használnak. A nyelvváltás JavaScript-gomb helyett oldalpárok közötti HTML-link.
 
-A kezdőlap meglévő fő vizuális ritmusa és színei megmaradtak. A régi kurzorfény, a hero canvas effekt, a holografikus kártyakapcsoló és a footer marquee nem került át; a reveal animáció és a galéria működik. Ez tudatosan rögzített vizuális eltérés, nem állítjuk a teljes vizuális azonosságot.
+A kezdőlap meglévő fő vizuális ritmusa és színei mellett átkerült a kurzorfény, az animált hero canvas, a kurzort követő márkajel, a számláló, a dönthető és kapcsolható holografikus profilkártya, a CTA- és footer-marquee, a görgetési állapotot mutató vissza-a-tetejére gomb, a reveal animáció és a galéria. A mozgások `prefers-reduced-motion: reduce` mellett leállnak.
 
 ## Tartalmi bizonyíték és S3.2
 
-Az esettanulmányok kizárólag a meglévő HTML és a `CLAUDE.md` állításait használják. A MONA-oldalak `content-review-needed` jelzést kapnak a route adatmodellben: a problémaleírás és a működés dokumentált, de a publikálás előtti tartalmi és bizonyítékellenőrzés külön feladat. Új eredménymetrikát nem adtunk hozzá.
+Az esettanulmányok kizárólag a meglévő HTML és a `CLAUDE.md` állításait használják. A tulajdonos 2026-10-16-án megerősítette, hogy a felsorolt MONA-funkciókat az alkalmazásban tesztelték, és azok valós időben működnek; ezért a MONA route-ok `functionally-verified` jelzést kapnak. Új eredménymetrikát nem adtunk hozzá.
 
 Az S3.2 feladata a canonical és hreflang címkék tényleges generálása és validálása, a sitemap, a robots-szabályok, a JSON-LD bővítése, a metaadatok szerkesztői ellenőrzése és az automatizált SEO QA. Az S3.1 route registry és metaadatmodell ezekhez előkészített, de a teljes technikai SEO nincs kész.
 

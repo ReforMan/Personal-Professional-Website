@@ -6,11 +6,12 @@ const { lang, standalone = false } = Astro.props as { lang: Language; standalone
 <section class="foundation" id="about">
   <div class="wrap">
     <div class="foundation-intro reveal">
-      <div class="pcard-wrap"><div class="pcard-photo"><img src="/photos/zoltan-headshot-cutout.png" alt={t(lang,'pcard-name')} width="1254" height="1254" loading="lazy" /></div>
-        <div class="pcard"><div class="pcard-duotone"></div><div class="pcard-shine"></div><div class="pcard-glow"></div>
+      <div class="pcard-wrap" id="pcardWrap"><div class="pcard-photo"><img src="/photos/zoltan-headshot-cutout.png" alt={t(lang,'pcard-name')} width="1254" height="1254" loading="lazy" /></div>
+        <div class="pcard" id="pcard"><div class="pcard-duotone"></div><div class="pcard-shine"></div><div class="pcard-glow" id="pcardGlow"></div>
           <div class="pcard-info"><div class="name">{t(lang,'pcard-name')}</div><div class="role">{t(lang,'about-role')}</div></div>
         </div>
       </div>
+      <div class="holo-toggle"><span>{t(lang,'holo-label')}</span><button type="button" id="holoBtn" aria-pressed="false" data-on-label={t(lang,'holo-on-label')} data-off-label={t(lang,'holo-off-label')}>{t(lang,'holo-off-label')}</button></div>
     </div>
     <div class="foundation-copy">
       <span class="eyebrow">{t(lang,'foundation-eyebrow')}</span>

@@ -15,6 +15,8 @@ for (const match of source.matchAll(/<([a-z][a-z0-9]*)\b([^>]*\bdata-i18n(?:-htm
 }
 for (const match of source.matchAll(/<[^>]*\bdata-i18n-aria="([^"]+)"[^>]*\baria-label="([^"]+)"[^>]*>/g)) english[match[1]] = match[2];
 english['hero-h1'] = 'Practical solutions, built with purpose.';
+english['holo-on-label'] = 'On';
+english['holo-off-label'] = 'Off';
 translations.en = english;
 writeFileSync(resolve('src/data/translations.json'), JSON.stringify(translations, null, 2) + '\n');
 console.log(Object.fromEntries(Object.entries(translations).map(([language, values]) => [language, Object.keys(values).length])));

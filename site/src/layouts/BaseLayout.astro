@@ -28,6 +28,7 @@ const nav: { id: PageId; label: string }[] = [
     <script src="/site.js" defer></script>
   </head>
   <body>
+    <canvas id="glowCursor" aria-hidden="true"></canvas>
     <a class="skip-link" href="#main">{lang === 'hu' ? 'Ugrás a tartalomra' : lang === 'de' ? 'Zum Inhalt springen' : 'Skip to content'}</a>
     <header class="site-nav">
       <div class="wrap nav-inner">
@@ -73,14 +74,19 @@ const nav: { id: PageId; label: string }[] = [
           <a href="mailto:z_botos@hotmail.com" class="btn btn-primary" id="ctaMailLink">{t(lang, 'cta-button')}</a>
         </div>
       </div>
+      <div class="marquee-band" aria-hidden="true"><div class="marquee-track" id="ctaMarquee"></div></div>
     </section>
     <footer>
       <div class="wrap footer-top"><div class="footer-links">
         <a href="https://www.linkedin.com/in/zoltan-botos/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         <a href="mailto:z_botos@hotmail.com">{t(lang, 'footer-email')}</a>
       </div></div>
+      <div class="footer-tech" aria-hidden="true"><div class="marquee-band"><div class="marquee-track" id="footerMarquee"></div></div></div>
       <div class="copyright">{t(lang, 'copyright')}</div>
     </footer>
-    <button type="button" class="to-top" id="toTop" aria-label={t(lang, 'to-top-label')}>↑</button>
+    <button type="button" class="to-top" id="toTop" aria-label={t(lang, 'to-top-label')}>
+      <svg viewBox="0 0 52 52" aria-hidden="true"><circle class="ring-bg" cx="26" cy="26" r="23"/><circle class="ring-fg" id="toTopRing" cx="26" cy="26" r="23"/></svg>
+      <span class="arrow" aria-hidden="true">↑</span>
+    </button>
   </body>
 </html>

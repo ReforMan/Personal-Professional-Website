@@ -16,7 +16,8 @@
 | Nyelvváltó célok, belső linkek, képek, 404-válasz | PASS | `node scripts/qa.mjs` |
 | 375 / 768 / 1280 / 1440 px, látható tartalom és vízszintes overflow | PASS | Playwright; 0 hibás eset |
 | Mobilmenü, Escape, nyelvváltás, téma, galéria, e-mail CTA, billentyűfókusz | PASS | Playwright interakciós teszt |
-| Reduced motion | PASS | A reveal tartalom látható és a CSS leállítja az animációkat |
+| Kurzor-, hero-, profilkártya-, számláló-, marquee- és scroll-progress effektek | PASS | Playwright interakciós és állapotellenőrzés |
+| Reduced motion | PASS | A reveal tartalom látható; a hero, kurzor és marquee animációk leállnak |
 | Chrome konzol futási hibák | PASS | A vizsgált viewportokon 0 `pageerror` |
 | Más böngészők, képernyőolvasó, éles Cloudflare | NOT TESTED | Külön QA-kör szükséges |
 | SEO canonical/hreflang/sitemap/JSON-LD QA | NOT TESTED | S3.2 hatókör |
@@ -34,8 +35,8 @@
 
 ## Vizuális összehasonlítás
 
-Az eredeti HTML és az új magyar kezdőlap 1280 px-es, teljes oldalas Playwright képernyőképe készült. A képek a repón kívül találhatók: `C:/Users/User/.codex/visualizations/2026/10/16/01a143b8-537f-7043-8d02-66e1cb3cc6c2/s31-reference-1280.png` és `s31-home-1280.png`; az új oldalról 375, 768 és 1440 px-es kép is készült. A fő színek, tipográfia, elrendezési ritmus, munkakártyák, képek és portré megtartották az eredeti vizuális irányt. A statikus oldalakon a tartalom oldalanként rövidebb és célzottabb.
+Az eredeti HTML és az új magyar kezdőlap 1280 px-es, teljes oldalas Playwright képernyőképe készült. A képek a repón kívül találhatók: `C:/Users/User/.codex/visualizations/2026/10/16/01a143b8-537f-7043-8d02-66e1cb3cc6c2/s31-reference-1280.png` és `s31-home-1280.png`; az új oldalról 375, 768 és 1440 px-es kép is készült. Az effekt-ellenőrzés külön `s31-effects-hero-1280.png` és `s31-effects-profile-1280.png` képet készített. A fő színek, tipográfia, elrendezési ritmus, munkakártyák, képek, portré és mozgásnyelv megtartották az eredeti vizuális irányt. A statikus oldalakon a tartalom oldalanként rövidebb és célzottabb.
 
-**Nem blokkoló eltérések:** a hero körmotívuma egyszerűbb; a kurzorfény, canvas effekt, holografikus kapcsoló és footer marquee hiányzik. A képkarusszel és a reveal effekt megmaradt. A dinamikus, alacsony értékű díszítő elemek visszahozása későbbi vizuális finomításként mérlegelhető.
+Az új Astro-oldalon ellenőrizve működik az animált hero-vonalrendszer, a kurzorfény, a kurzort követő márkajel, a profilkártya tilt és holografikus kapcsolója, a CTA- és footer-marquee, a számláló, a képkarusszel, a reveal és a scroll-progress gomb. A hero körmotívum SVG-je egyszerűbb szerkezetű, de a látható körök és az animált canvas-háttér jelen vannak.
 
-**Blokkoló hibák:** a végső lokális QA-ban nem maradtak. A MONA esettanulmányok tartalmi bizonyítékfelülvizsgálata publikálás előtt szükséges. A production deployment, merge és éles ellenőrzés szándékosan nem történt meg.
+**Blokkoló hibák:** a végső lokális QA-ban nem maradtak. A tulajdonos megerősítette, hogy a dokumentált MONA-funkciókat az alkalmazásban tesztelték, és valós időben működnek. A production deployment, merge és éles ellenőrzés szándékosan nem történt meg.

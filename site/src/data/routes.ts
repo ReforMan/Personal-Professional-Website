@@ -18,7 +18,7 @@ export type Route = {
   lang: Language;
   path: string;
   type: 'home' | 'listing' | 'profile' | 'caseStudy';
-  meta: { title: string; description: string; reviewStatus: 'source-reviewed' | 'content-review-needed' };
+  meta: { title: string; description: string; reviewStatus: 'source-reviewed' | 'functionally-verified' };
 };
 
 const meta: Record<PageId, Record<Language, { title: string; description: string }>> = {
@@ -57,7 +57,7 @@ const meta: Record<PageId, Record<Language, { title: string; description: string
 export const routes: Route[] = pageIds.flatMap((id) => languages.map((lang) => ({
   id, lang, path: paths[id][lang],
   type: id === 'home' ? 'home' : id === 'about' ? 'profile' : id.startsWith('mona') ? 'caseStudy' : 'listing',
-  meta: { ...meta[id][lang], reviewStatus: id.startsWith('mona') ? 'content-review-needed' : 'source-reviewed' }
+  meta: { ...meta[id][lang], reviewStatus: id.startsWith('mona') ? 'functionally-verified' : 'source-reviewed' }
 })));
 
 if (new Set(routes.map((route) => route.path)).size !== routes.length) throw new Error('Duplicate localized route');

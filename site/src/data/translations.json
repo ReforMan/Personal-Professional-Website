@@ -282,6 +282,8 @@
     "pcard-name": "Zoltan Botos",
     "about-role": "AI-Assisted Solutions",
     "holo-label": "Holo shine:",
+    "holo-on-label": "On",
+    "holo-off-label": "Off",
     "foundation-eyebrow": "ENTERPRISE FOUNDATION",
     "foundation-h2": "Built on 12+ years of real IT operations.",
     "foundation-p": "I have worked in enterprise IT environments for more than 12 years, primarily across IT support, system support, application support and service operations. This has taught me how systems, users and business processes interact — and that a solution must not only work, but also remain understandable, manageable and maintainable.",
