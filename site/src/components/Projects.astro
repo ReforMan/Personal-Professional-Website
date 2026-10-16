@@ -5,7 +5,7 @@ const { lang, standalone = false } = Astro.props as { lang: Language; standalone
 ---
 <section class="work" id="work">
   <div class="wrap">
-    {!standalone && <div class="head reveal" style="max-width:640px;margin-bottom:48px"><span class="eyebrow">{t(lang,'work-eyebrow')}</span><h2>{t(lang,'work-h2')}</h2></div>}
+    {standalone ? <h2 class="visually-hidden">{t(lang,'work-eyebrow')}</h2> : <div class="head reveal" style="max-width:640px;margin-bottom:48px"><span class="eyebrow">{t(lang,'work-eyebrow')}</span><h2>{t(lang,'work-h2')}</h2></div>}
     <div class="work-item reveal">
       <div class="work-media shot"><img src="/photos/mona-website-screenshot.jpg" alt="MONA bridal salon website" loading="lazy" /></div>
       <div><div class="work-meta">{t(lang,'work-mona-meta')}</div><h3>{t(lang,'work-mona-title')}</h3><p>{t(lang,'work-mona-desc')}</p>

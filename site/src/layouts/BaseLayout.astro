@@ -1,10 +1,16 @@
 ---
 import '../styles/legacy.css';
 import '../styles/site.css';
-import { paths, type Route, type PageId } from '../data/routes';
+import { languages, paths, type Route, type PageId } from '../data/routes';
 import { t, localText } from '../data/i18n';
+import { absoluteUrl, alternateLinksFor, localeFor, SOCIAL_IMAGE_PATH, SITE_NAME, structuredDataFor } from '../data/seo';
 const { route } = Astro.props as { route: Route };
 const lang = route.lang;
+const canonicalUrl = absoluteUrl(route.path);
+const alternateLinks = alternateLinksFor(route);
+const socialImageUrl = absoluteUrl(SOCIAL_IMAGE_PATH);
+const alternateLocales = languages.filter((language) => language !== lang).map(localeFor);
+const structuredDataJson = JSON.stringify(structuredDataFor(route)).replace(/</g, '\\u003c');
 const nav: { id: PageId; label: string }[] = [
   { id: 'home', label: t(lang, 'nav-home') },
   { id: 'solutions', label: t(lang, 'nav-solutions') },
@@ -19,6 +25,30 @@ const nav: { id: PageId; label: string }[] = [
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{route.meta.title}</title>
     <meta name="description" content={route.meta.description} />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="author" content="Zoltan Botos" />
+    <link rel="canonical" href={canonicalUrl} />
+    {alternateLinks.map((link) => <link rel="alternate" hreflang={link.language} href={link.href} />)}
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE_NAME} />
+    <meta property="og:title" content={route.meta.title} />
+    <meta property="og:description" content={route.meta.description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:locale" content={localeFor(lang)} />
+    {alternateLocales.map((locale) => <meta property="og:locale:alternate" content={locale} />)}
+    <meta property="og:image" content={socialImageUrl} />
+    <meta property="og:image:secure_url" content={socialImageUrl} />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={route.meta.title} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={route.meta.title} />
+    <meta name="twitter:description" content={route.meta.description} />
+    <meta name="twitter:image" content={socialImageUrl} />
+    <meta name="twitter:image:alt" content={route.meta.title} />
+    <meta name="theme-color" content="#17132a" />
+    <script is:inline type="application/ld+json" set:html={structuredDataJson}></script>
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
