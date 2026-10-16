@@ -1,0 +1,7 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageContent from '../components/PageContent.astro';
+import { routeFor } from '../data/routes';
+const route = routeFor('home', 'hu');
+---
+<BaseLayout route={route}><PageContent route={route} /></BaseLayout>
