@@ -1,0 +1,42 @@
+---
+import { t } from '../data/i18n';
+import type { Language } from '../data/routes';
+const { lang, standalone = false } = Astro.props as { lang: Language; standalone?: boolean };
+---
+<section class="foundation" id="about">
+  <div class="wrap">
+    <div class="foundation-intro reveal">
+      <div class="pcard-wrap" id="pcardWrap"><div class="pcard-photo"><img src="/photos/zoltan-headshot-cutout.png" alt={t(lang,'pcard-name')} width="1254" height="1254" loading="lazy" /></div>
+        <div class="pcard" id="pcard"><div class="pcard-duotone"></div><div class="pcard-shine"></div><div class="pcard-glow" id="pcardGlow"></div>
+          <div class="pcard-info"><div class="name">{t(lang,'pcard-name')}</div><div class="role">{t(lang,'about-role')}</div></div>
+        </div>
+      </div>
+      <div class="holo-toggle"><span>{t(lang,'holo-label')}</span><button type="button" id="holoBtn" aria-pressed="false" data-on-label={t(lang,'holo-on-label')} data-off-label={t(lang,'holo-off-label')}>{t(lang,'holo-off-label')}</button></div>
+    </div>
+    <div class="foundation-copy">
+      <span class="eyebrow">{t(lang,'foundation-eyebrow')}</span>
+      {standalone ? <h2 class="visually-hidden">{t(lang,'foundation-eyebrow')}</h2> : <h2>{t(lang,'foundation-h2')}</h2>}
+      {['foundation-p','foundation-p2','foundation-p3','foundation-p4','foundation-p5'].map((key) => <p class="reveal">{t(lang,key)}</p>)}
+      <div class="foundation-facts">
+        <div class="fact"><span class="fact-num">12+</span><span class="fact-label">{t(lang,'fact-years')}</span></div>
+        <div class="fact"><span class="fact-num">HU · DE · EN</span><span class="fact-label">{t(lang,'fact-lang')}</span></div>
+      </div>
+      <h3 class="certs-label">{t(lang,'skills-label')}</h3>
+      <ul class="skill-tags">{[1,2,3,4,5,6,7,8,9].map((number) => <li>{t(lang,`skill-${number}`)}</li>)}</ul>
+      <h3 class="certs-label">{t(lang,'certs-label')}</h3>
+      <div class="certs">
+        {[
+          ['AI Solution Analyst Program','175342',1],
+          ['Claude Code','175634',2],
+          ['Vibe Coding','175855',3],
+          ['Designer 2.0','178536',4]
+        ].map(([title, certificate, index]) => <div class="cert-item">
+          <div class="cert-text"><span class="cert-verified">{t(lang,'cert-verified-label')}</span>
+          <span class="cert-title">{title}</span><span class="cert-date">{t(lang,`cert-${index}-date`)}</span>
+          <span class="cert-connect">{t(lang,`cert-${index}-connect`)}</span>
+          <a class="cert-verify-link" href={`https://mentorklub.gerillaoneletrajz.hu/gmk-certificate/${certificate}/`} target="_blank" rel="noopener noreferrer">{t(lang,'cert-verify-label')}</a></div>
+        </div>)}
+      </div>
+    </div>
+  </div>
+</section>

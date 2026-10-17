@@ -1,0 +1,24 @@
+.skip-link{position:absolute;left:12px;top:-60px;z-index:1000;background:#fff;color:#17132a;padding:10px 14px}
+.visually-hidden{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+.skip-link:focus{top:8px}
+.lang-switch a{display:inline-flex;align-items:center;justify-content:center;min-width:35px;padding:6px 9px;border-radius:999px;color:var(--onDarkMuted);font:700 .75rem var(--font-body);text-decoration:none}
+.lang-switch a.sel{background:var(--coral500);color:#fff}
+.lang-switch a:hover,.lang-switch a:focus-visible{color:#fff;outline:2px solid var(--lime400);outline-offset:2px}
+.reveal{opacity:1;transform:none}
+.js .reveal{opacity:0;transform:translateY(20px)}
+.js .reveal.in{opacity:1;transform:none}
+.page-intro{background:linear-gradient(150deg,var(--indigo900),var(--indigo500));color:var(--onDark);padding:150px 0 72px}
+.page-intro .eyebrow{color:var(--coral300)}
+.page-intro h1{font-size:clamp(2.4rem,6vw,4.6rem);line-height:1.05;max-width:14ch}
+.page-intro p{max-width:65ch;color:var(--onDarkMuted);font-size:1.15rem}
+.case-figure{margin:0 auto 42px;max-width:1000px}
+.case-figure img{display:block;width:100%;height:auto;border-radius:18px}
+.case-body{max-width:760px;margin:0 auto;font-size:1.1rem;line-height:1.75}
+.case-body p{margin-bottom:24px}
+.case-actions{display:flex;gap:20px;flex-wrap:wrap;margin-top:24px}
+.case-section{padding:72px 24px}
+.project-detail-link{display:inline-block;margin-top:14px;color:var(--coral-text);font-weight:700}
+.card a{color:inherit}
+.card a:focus-visible,.project-detail-link:focus-visible{outline:3px solid var(--coral500);outline-offset:4px}
+[hidden]{display:none!important}
+@media(prefers-reduced-motion:reduce){.js .reveal{opacity:1;transform:none;transition:none!important}*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}

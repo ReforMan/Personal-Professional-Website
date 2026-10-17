@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design Guide B — Kinetic Signal</title>
+<style>
+  :root{
+    --indigo900:#17132A; --indigo700:#221C3D; --indigo500:#3B3163;
+    --coral500:#FF5A3C; --coral300:#FF8468; --lime400:#C6F135;
+    --ivory:#FAF8F5;
+    --onDark:#FAF8F5; --onDarkMuted:#9D93B8;
+    --onLight:#19141F; --onLightMuted:#6B6478;
+    --radius-card:20px; --radius-button:999px;
+    --shadow-sm:0 2px 8px rgba(23,19,42,.12);
+    --shadow-lg:0 24px 56px -12px rgba(255,90,60,.28);
+    --font-display:'Poppins','Century Gothic','Futura','Avenir Next',sans-serif;
+    --font-body:'Manrope','Segoe UI','Helvetica Neue',Arial,sans-serif;
+    --ease-bounce:cubic-bezier(0.34,1.56,0.64,1);
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--ivory);color:var(--onLight);font-family:var(--font-body);line-height:1.6;}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 24px;}
+  section{padding:72px 0;border-bottom:1px solid #ECE7F5;}
+  section:last-of-type{border-bottom:none;}
+  h1,h2,h3{font-family:var(--font-display);font-weight:800;letter-spacing:-0.02em;margin:0 0 8px;}
+  .eyebrow{font-size:0.75rem;letter-spacing:0.16em;text-transform:uppercase;font-weight:700;color:var(--coral500);margin-bottom:12px;display:block;}
+  .lede{max-width:720px;color:var(--onLightMuted);font-size:1.125rem;line-height:1.5;}
+
+  .guide-hero{background:linear-gradient(135deg,#17132A 0%,#2B1F4A 45%,#3B1F3D 100%);color:var(--onDark);padding:96px 0 80px;position:relative;overflow:hidden;}
+  .guide-hero h1{font-size:clamp(2.25rem,5vw,3.9rem);color:var(--onDark);line-height:1.05;max-width:820px;}
+  .guide-hero .underline{position:relative;color:var(--coral300);}
+  .guide-hero .underline svg{position:absolute;left:0;bottom:-10px;width:100%;height:14px;}
+  .guide-hero p{color:var(--onDarkMuted);max-width:640px;font-size:1.05rem;}
+  .source-tag{display:inline-flex;align-items:center;gap:8px;margin-top:24px;padding:8px 16px;border:1px solid var(--indigo500);border-radius:999px;font-size:0.85rem;color:var(--onDarkMuted);}
+  .source-tag b{color:var(--lime400);font-weight:700;}
+  .badge{position:absolute;right:6%;top:20%;width:120px;height:120px;}
+  .badge svg{width:100%;height:100%;animation:spin 12s linear infinite;}
+  @keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+  @media (prefers-reduced-motion:reduce){.badge svg{animation:none;}}
+
+  .palette-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;margin-top:32px;}
+  .swatch{border-radius:var(--radius-card);overflow:hidden;box-shadow:var(--shadow-sm);}
+  .swatch .fill{height:96px;}
+  .swatch .meta{padding:14px 16px;background:#fff;}
+  .swatch .meta .name{font-weight:700;font-size:0.9rem;font-family:var(--font-display);}
+  .swatch .meta .hex{font-family:monospace;font-size:0.8rem;color:var(--onLightMuted);}
+  .swatch .meta .ratio{font-size:0.75rem;color:var(--onLightMuted);margin-top:4px;}
+
+  .type-row{display:flex;align-items:baseline;gap:24px;padding:20px 0;border-top:1px solid #ECE7F5;}
+  .type-row:first-of-type{border-top:none;}
+  .type-row .label{width:120px;flex-shrink:0;font-family:monospace;font-size:0.8rem;color:var(--onLightMuted);}
+  .type-row .sample{font-family:var(--font-display);font-weight:800;}
+  .t-h1{font-size:clamp(2.75rem,7vw,6.5rem);line-height:0.98;letter-spacing:-0.02em;}
+  .t-h2{font-size:clamp(2rem,4vw,3.5rem);line-height:1.05;}
+  .t-h3{font-size:clamp(1.25rem,2vw,1.75rem);}
+  .t-lead{font-family:var(--font-body);font-weight:600;font-size:clamp(1.125rem,1.6vw,1.5rem);}
+  .t-body{font-family:var(--font-body);font-weight:400;font-size:1.0625rem;}
+  .t-eyebrow{font-family:var(--font-body);font-size:0.75rem;letter-spacing:0.16em;text-transform:uppercase;font-weight:700;}
+
+  .depth-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;margin-top:24px;}
+  .depth-card{background:#fff;border-radius:var(--radius-card);padding:24px;}
+  .depth-card.sm{box-shadow:var(--shadow-sm);}
+  .depth-card.lg{box-shadow:var(--shadow-lg);}
+
+  .comp-row{display:flex;flex-wrap:wrap;gap:20px;align-items:center;margin-top:24px;}
+  .btn{font-family:var(--font-body);font-weight:700;font-size:0.95rem;padding:16px 32px;border-radius:var(--radius-button);border:none;cursor:pointer;transition:transform 260ms var(--ease-bounce), box-shadow 260ms var(--ease-bounce), background 260ms;}
+  .btn-primary{background:var(--coral500);color:#fff;}
+  .btn-primary:hover{background:var(--coral300);transform:translateY(-3px) scale(1.03);box-shadow:var(--shadow-lg);}
+  .btn-secondary{background:var(--indigo900);color:var(--lime400);border:2px solid var(--lime400);}
+  .btn-secondary:hover{background:var(--lime400);color:var(--indigo900);transform:translateY(-3px) scale(1.03);}
+  .btn:focus-visible{outline:3px solid var(--coral500);outline-offset:3px;}
+
+  .comp-card{background:#fff;border-radius:var(--radius-card);box-shadow:var(--shadow-sm);padding:28px;max-width:340px;transition:transform 260ms var(--ease-bounce), box-shadow 260ms var(--ease-bounce);}
+  .comp-card:hover{transform:translateY(-5px) rotate(-0.5deg);box-shadow:var(--shadow-lg);}
+  .comp-card .cat{font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--coral500);font-weight:700;}
+  .comp-card h3{font-size:1.25rem;margin:8px 0;}
+  .comp-card a{color:var(--onLight);text-decoration:none;font-weight:700;border-bottom:2px solid var(--lime400);}
+
+  .field{display:flex;flex-direction:column;gap:6px;max-width:300px;}
+  .field label{font-size:0.8rem;font-weight:700;}
+  .field input{padding:14px 16px;border:2px solid #ECE7F5;border-radius:16px;font-family:var(--font-body);transition:box-shadow 200ms, border-color 200ms;}
+  .field input:focus{outline:none;border-color:var(--coral500);box-shadow:0 0 0 4px rgba(255,90,60,.18);}
+
+  .letter-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px;}
+  .letter-btn{display:flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;border:2px solid var(--indigo500);background:#fff;font-family:var(--font-body);font-weight:600;font-size:0.85rem;cursor:pointer;transition:all 200ms;}
+  .letter-btn b{background:var(--indigo900);color:var(--lime400);width:20px;height:20px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:0.7rem;}
+  .letter-btn:hover{border-color:var(--coral500);background:#FFF3EF;}
+
+  .motion-demo{background:var(--indigo900);border-radius:var(--radius-card);padding:40px;text-align:center;color:var(--onDark);}
+  .motion-box{width:80px;height:80px;background:var(--coral500);border-radius:16px;margin:24px auto 0;opacity:0;transform:translateY(20px) scale(0.8);transition:opacity 600ms var(--ease-bounce), transform 600ms var(--ease-bounce);}
+  .motion-box.in{opacity:1;transform:translateY(0) scale(1);}
+  .motion-btn{margin-top:16px;background:transparent;border:2px solid var(--lime400);color:var(--lime400);padding:10px 22px;border-radius:999px;cursor:pointer;font-family:var(--font-body);font-weight:700;}
+
+  .gap-list{background:#F3EFFC;border-radius:var(--radius-card);padding:24px;margin-top:16px;}
+  .gap-list li{margin-bottom:8px;}
+
+  .approval-box{background:var(--indigo900);color:var(--onDark);border-radius:var(--radius-card);padding:40px;margin-top:24px;}
+  .approval-box code{display:block;background:var(--indigo700);padding:16px;border-radius:12px;margin-top:16px;white-space:pre-wrap;font-size:0.9rem;color:var(--lime400);}
+
+  footer{padding:40px 0;text-align:center;color:var(--onLightMuted);font-size:0.85rem;}
+</style>
+</head>
+<body>
+
+<div class="guide-hero">
+  <div class="badge">
+    <svg viewBox="0 0 120 120" fill="none">
+      <circle cx="60" cy="60" r="52" stroke="#C6F135" stroke-width="1.5" stroke-dasharray="4 6"/>
+      <circle cx="60" cy="60" r="6" fill="#FF5A3C"/>
+      <path id="circlePath" d="M 60,60 m -40,0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0" fill="none"/>
+      <text font-size="9" fill="#FAF8F5" letter-spacing="2">
+        <textPath href="#circlePath">AI-ASSISTED · REAL RESULTS · </textPath>
+      </text>
+    </svg>
+  </div>
+  <div class="wrap">
+    <span class="eyebrow" style="color:var(--lime400)">Design Guide B · Kinetic Signal</span>
+    <h1>Gyakorlati megoldások, <span class="underline">lendülettel<svg viewBox="0 0 200 14" preserveAspectRatio="none"><path d="M2,8 Q50,2 100,8 T198,6" stroke="#FF5A3C" stroke-width="3" fill="none" stroke-linecap="round"/></svg></span> szállítva.</h1>
+    <p>A "Kinetic Signal" irány: ugyanaz a szerkezeti gerinc (forgó jelvény-motívum, kártya-metaadat minta, lépcsőzetes záró-tipó), de sokkal telítettebb, fiatalosabb kivitelben — mély indigo-lila alap, koral + lime akcentek, kerekített, lendületes formanyelv. Válasz a designer visszajelzésére: az A irány "vaníliás, kocka" volt.</p>
+    <div class="source-tag">Inspiráció energiája most <b>direktebben</b> átvéve: forgó szöveg-gyűrű jelvény, bátrabb szín-kontraszt, pörgősebb hover-mozgás — de kézírásos illusztráció-karakterek és szivárvány-paletta nélkül, mert a pozicionálás (enterprise-hiteles, nem junior/agency) így is megmarad.</div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section>
+    <span class="eyebrow">01 · Színpaletta</span>
+    <h2>Indigo-lila + koral + lime</h2>
+    <p class="lede">60% krém-fehér alap, 30% mély indigo-lila (Hero, Approach, Contact CTA), 10% koral + lime kettős akcent. Minden kontraszt-arány ténylegesen kiszámolva.</p>
+    <div class="palette-grid">
+      <div class="swatch"><div class="fill" style="background:#FAF8F5"></div><div class="meta"><div class="name">Ivory</div><div class="hex">#FAF8F5</div><div class="ratio">60% · alap felület</div></div></div>
+      <div class="swatch"><div class="fill" style="background:#17132A"></div><div class="meta"><div class="name">Indigo 900</div><div class="hex">#17132A</div><div class="ratio">30% · Hero / Approach / CTA</div></div></div>
+      <div class="swatch"><div class="fill" style="background:#221C3D"></div><div class="meta"><div class="name">Indigo 700</div><div class="hex">#221C3D</div><div class="ratio">raised sötét felület</div></div></div>
+      <div class="swatch"><div class="fill" style="background:#FF5A3C"></div><div class="meta"><div class="name">Coral 500</div><div class="hex">#FF5A3C</div><div class="ratio">akcent · CTA, hover</div></div></div>
+      <div class="swatch"><div class="fill" style="background:#C6F135"></div><div class="meta"><div class="name">Lime 400</div><div class="hex">#C6F135</div><div class="ratio">akcent · badge, kontúr</div></div></div>
+    </div>
+    <div class="depth-grid" style="margin-top:32px;">
+      <div class="depth-card sm"><b>Ivory bg / onLight text</b><br><span style="color:var(--onLightMuted)">17.06:1 — AA bőven felette</span></div>
+      <div class="depth-card sm"><b>Indigo900 bg / onDark text</b><br><span style="color:var(--onLightMuted)">17.03:1 — AA bőven felette</span></div>
+      <div class="depth-card sm"><b>Indigo900 bg / coral</b><br><span style="color:var(--onLightMuted)">5.83:1 — AA törzsre is jó sötét alapon</span></div>
+      <div class="depth-card sm"><b>Ivory bg / coral</b><br><span style="color:var(--onLightMuted)">2.92:1 — csak gomb-kitöltés/grafika, NEM szövegszín</span></div>
+      <div class="depth-card sm"><b>Indigo900 bg / lime</b><br><span style="color:var(--onLightMuted)">13.79:1 — kiváló, sötét alapon szövegre is</span></div>
+      <div class="depth-card sm"><b>Ivory bg / lime</b><br><span style="color:var(--onLightMuted)">1.24:1 — csak grafikai badge-kitöltés, SOHA nem szöveg</span></div>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">02 · Tipográfia</span>
+    <h2>Poppins (800) + Manrope</h2>
+    <p class="lede">Bátor, kerek geometrikus display + barátságos, olvasható body. A H1 és a törzs között ~5.9× ugrás. <em>(Közelítő rendszer-betűtípus előnézet — éles oldalon valódi webfontok.)</em></p>
+    <div class="type-row"><div class="label">H1 · 6.5rem</div><div class="sample t-h1">Real results.</div></div>
+    <div class="type-row"><div class="label">H2 · 3.5rem</div><div class="sample t-h2">Working approach</div></div>
+    <div class="type-row"><div class="label">H3 · 1.75rem</div><div class="sample t-h3">Business websites</div></div>
+    <div class="type-row"><div class="label">Lead · 1.5rem</div><div class="sample t-lead">Practical, AI-assisted solutions for real business needs.</div></div>
+    <div class="type-row"><div class="label">Body · 1.0625rem</div><div class="sample t-body">12+ years of enterprise IT support, service operations and application coordination experience — now focused on practical AI-assisted delivery.</div></div>
+    <div class="type-row"><div class="label">Eyebrow</div><div class="sample t-eyebrow" style="color:var(--coral500)">Selected Work</div></div>
+  </section>
+
+  <section>
+    <span class="eyebrow">03 · Formanyelv</span>
+    <h2>Modern-soft radius, két árnyék-szint</h2>
+    <p class="lede">20px kártya-radius, pill (999px) gombok — kerek, barátságos, nem "kocka". A nagy árnyék koral-tónusú glow-t kap, nem semleges szürkét — ez adja a lendületes, energikus hover-érzetet.</p>
+    <div class="depth-grid">
+      <div class="depth-card sm"><b>shadow.sm</b><br><span style="color:var(--onLightMuted)">0 2px 8px rgba(23,19,42,.12)</span></div>
+      <div class="depth-card lg"><b>shadow.lg</b><br><span style="color:var(--onLightMuted)">0 24px 56px -12px rgba(255,90,60,.28) — koral glow</span></div>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">04 · Komponens-előnézetek</span>
+    <h2>Élő, pörgős állapotok</h2>
+    <p class="lede">Vidd az egeret a gombokra/kártyára — a hover enyhe "túllövéssel" (bounce-easing) fut ki, ez adja a lendületet a visszafogott easeOut helyett.</p>
+    <div class="comp-row">
+      <button class="btn btn-primary">Start a conversation</button>
+      <button class="btn btn-secondary">See the work</button>
+    </div>
+    <div class="comp-row">
+      <div class="comp-card">
+        <div class="cat">UI/UX Design · 2026</div>
+        <h3>Daily Verse</h3>
+        <p style="color:var(--onLightMuted);font-size:0.95rem;">Élő projekt — napi ige-alkalmazás, teljes felhasználói folyammal.</p>
+        <a href="#">Megnézem →</a>
+      </div>
+      <div class="field">
+        <label>Email</label>
+        <input type="email" placeholder="name@company.com">
+      </div>
+    </div>
+    <p class="lede" style="margin-top:24px;">Contact CTA gyors-választó gombok (Typeform-minta, architektúrális helyett most már a paletta energiájával összhangban):</p>
+    <div class="letter-row">
+      <div class="letter-btn"><b>A</b> Weboldal</div>
+      <div class="letter-btn"><b>B</b> Booking-workflow</div>
+      <div class="letter-btn"><b>C</b> Belső eszköz</div>
+      <div class="letter-btn"><b>D</b> Nem biztos, beszéljünk</div>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">05 · Mozgás</span>
+    <h2>Bounce-easing — érezhető lendület</h2>
+    <p class="lede">600ms belépő. A hover és a forgó jelvény "backOut" görbével fut (cubic-bezier(0.34, 1.56, 0.64, 1)) — enyhe túllövéssel, ez adja az energikus, nem visszafogott karaktert. Kattints a demóhoz.</p>
+    <div class="motion-demo">
+      <button class="motion-btn" onclick="document.getElementById('mbox').classList.toggle('in')">Reveal demó</button>
+      <div class="motion-box" id="mbox"></div>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">06 · Amit még nem tudunk</span>
+    <h2>Hézagok</h2>
+    <ul class="gap-list">
+      <li><b>NO GUIDANCE ON</b> saját fotó/portré — placeholder-vizuállal dolgozunk.</li>
+      <li><b>NO GUIDANCE ON</b> mennyire mehet messze a "fiatalos" hangnem a copy-ban is (nem csak vizuálisan) — ez a copywriter fázis kérdése lesz, ha ez az irány nyer.</li>
+    </ul>
+  </section>
+
+  <section>
+    <span class="eyebrow">Jóváhagyás</span>
+    <h2>A vagy B?</h2>
+    <div class="approval-box">
+      <p>Két irány áll: <b>A — Layered Blueprint</b> (graphite/gold, visszafogott) és <b>B — Kinetic Signal</b> (indigo/koral/lime, lendületes). Melyik legyen, vagy melyik elemeket keverjük?</p>
+      <code>A) Az A irány, mégis
+B) A B irány — ez a jó, építsd meg ezzel
+C) Keverd: pl. B paletta/tipó + A visszafogottabb mozgás (vagy fordítva)
+D) Még mindig nem ez — mondd el pontosabban, mit hiányolsz</code>
+    </div>
+  </section>
+
+</div>
+
+<footer>Personal Professional Website — design-guide-b.html · output/landing-design/personal-website/</footer>
+
+</body>
+</html>

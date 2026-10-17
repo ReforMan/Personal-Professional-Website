@@ -1,0 +1,13 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageContent from '../components/PageContent.astro';
+import { routes, type Route } from '../data/routes';
+export function getStaticPaths() {
+  return routes.filter((route) => route.path !== '/').map((route) => ({
+    params: { slug: route.path.slice(1, -1) },
+    props: { route }
+  }));
+}
+const { route } = Astro.props as { route: Route };
+---
+<BaseLayout route={route}><PageContent route={route} /></BaseLayout>

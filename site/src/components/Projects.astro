@@ -1,0 +1,40 @@
+---
+import { t, localText } from '../data/i18n';
+import { paths, type Language } from '../data/routes';
+const { lang, standalone = false } = Astro.props as { lang: Language; standalone?: boolean };
+---
+<section class="work" id="work">
+  <div class="wrap">
+    {standalone ? <h2 class="visually-hidden">{t(lang,'work-eyebrow')}</h2> : <div class="head reveal" style="max-width:640px;margin-bottom:48px"><span class="eyebrow">{t(lang,'work-eyebrow')}</span><h2>{t(lang,'work-h2')}</h2></div>}
+    <div class="work-item reveal">
+      <div class="work-media shot"><img src="/photos/mona-website-screenshot.jpg" alt="MONA bridal salon website" loading="lazy" /></div>
+      <div><div class="work-meta">{t(lang,'work-mona-meta')}</div><h3>{t(lang,'work-mona-title')}</h3><p>{t(lang,'work-mona-desc')}</p>
+        <a class="project-detail-link" href={paths.monaWebsite[lang]}>{localText[lang].readMore} →</a>
+        <br /><a class="work-link" href="https://monaeskuvo.com/" target="_blank" rel="noopener noreferrer">{t(lang,'work-mona-visit')} →</a>
+      </div>
+    </div>
+    <div class="work-item alt reveal">
+      <div class="work-media shot wide"><img src="/photos/mona-booking-screenshot.jpg" alt="MONA internal booking system, cleaned screenshot" loading="lazy" /></div>
+      <div><div class="work-meta">{t(lang,'work-mona2-meta')}</div><h3>{t(lang,'work-mona2-title')}</h3><p>{t(lang,'work-mona2-desc')}</p>
+        <a class="project-detail-link" href={paths.monaBooking[lang]}>{localText[lang].readMore} →</a>
+      </div>
+    </div>
+    <div class="work-item reveal">
+      <div class="work-media carousel" data-carousel>
+        <div class="carousel-track">
+          <img src="/photos/daily-verse-screenshot.png" alt="Daily Verse English interface" loading="lazy" class="active" />
+          <img src="/photos/daily-verse-screenshot-hu.png" alt="Daily Verse Hungarian interface" loading="lazy" />
+        </div>
+        <button type="button" class="car-btn prev" aria-label={t(lang,'carousel-prev-label')}>‹</button>
+        <button type="button" class="car-btn next" aria-label={t(lang,'carousel-next-label')}>›</button>
+        <div class="car-dots">
+          <button type="button" class="car-dot active" data-idx="0" aria-label={t(lang,'car-dot-1-label')}></button>
+          <button type="button" class="car-dot" data-idx="1" aria-label={t(lang,'car-dot-2-label')}></button>
+        </div>
+      </div>
+      <div><div class="work-meta">{t(lang,'work-dv-meta')}</div><h3>Daily Verse</h3><p>{t(lang,'work-dv-desc')}</p>
+        <a class="work-link" href="https://daily-verse-ten.vercel.app/" target="_blank" rel="noopener noreferrer">{t(lang,'work-visit')} →</a>
+      </div>
+    </div>
+  </div>
+</section>
